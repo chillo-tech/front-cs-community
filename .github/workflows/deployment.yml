@@ -17,11 +17,11 @@ jobs:
       - name: Create folder
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.RECETTE_APPLICATIONS_HOST }}
-          port: ${{ secrets.RECETTE_APPLICATIONS_PORT }}
-          username: ${{ secrets.RECETTE_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.RECETTE_APPLICATIONS_PASSWPRD }}
-          key: ${{ secrets.RECETTE_APPLICATIONS_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.PROD_APPLICATIONS_HOST }}
+          port: ${{ secrets.PROD_APPLICATIONS_PORT }}
+          username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
+          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
+          key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p /opt/applications/chillo-tech/website
             sudo chmod ugo+rwx /opt/applications/chillo-tech/website

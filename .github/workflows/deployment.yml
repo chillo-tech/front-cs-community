@@ -49,8 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create folder
-        script:
-          - mkdir -p /tmp
+        run: mkdir -p /tmp
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Docker Buildx

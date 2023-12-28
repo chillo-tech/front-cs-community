@@ -26,7 +26,7 @@ jobs:
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p  ${{ env.FOLDER }}
-            sudo chmod ugo+rwx  ${{ secrets.FOLDER }}
+            sudo chmod ugo+rwx  ${{ env.FOLDER }}
 
   copy-configs:
     name: 'copy configs'
@@ -43,7 +43,7 @@ jobs:
           #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: 'docker-compose.yml'
-          target: ${{ secrets.FOLDER }}
+          target: ${{ env.FOLDER }}
 
   dockerize:
     runs-on: ubuntu-latest

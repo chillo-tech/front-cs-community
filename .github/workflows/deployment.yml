@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create folder
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}

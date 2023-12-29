@@ -78,7 +78,7 @@ jobs:
           path: /tmp
       - name: Check artifact
         run: |
-          - ls -al
+          ls -al /tmp
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:

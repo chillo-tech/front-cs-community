@@ -88,7 +88,7 @@ jobs:
           #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: /tmp/${{env.IMAGE}}.tar
-          target: ${{ secrets.FOLDER }}
+          target: /tmp
 
   load-image:
     name: Load image

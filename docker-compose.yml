@@ -4,11 +4,11 @@ services:
   front-cs-community:
     container_name: front-cs-community
     # The official v2 Traefik docker image
-    image: simachille/front-cs-community:latest
+    image: front-cs-community:latest
     restart: always
     ports:
       # The HTTP port
-      - '83:3000'
+      - '83000:3000'
 
     networks:
       - applications-network

@@ -80,13 +80,13 @@ jobs:
         run: |
           ls -al /tmp
       - name: copy file via ssh password
-        uses: appleboy/scp-action@v0.1.6
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
-          source: '/tmp/front-cs-community.tar'
+          source: '${{env.IMAGE}}.tar'
           target: '/tmp/'
 
   load-image:

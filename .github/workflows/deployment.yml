@@ -81,13 +81,12 @@ jobs:
           ls -al /tmp
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.6
-        env:
+        with:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
-        with:
-          source: /tmp/${{env.IMAGE}}.tar
+          source: '/tmp/${{env.IMAGE}}.tar'
           target: '/tmp/'
 
   load-image:

@@ -86,7 +86,7 @@ jobs:
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
-          source: '/tmp/${{env.IMAGE}}.tar'
+          source: '/tmp/front-cs-community.tar'
           target: '/tmp/'
 
   load-image:

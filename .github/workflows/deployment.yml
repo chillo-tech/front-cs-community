@@ -88,12 +88,12 @@ jobs:
           #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: /tmp/${{env.IMAGE}}.tar
-          target: /tmp
+          target: /tmp/
 
   load-image:
     name: Load image
     runs-on: ubuntu-latest
-    needs: [copy-image]
+    needs: copy-image
     steps:
       - name: Load image
         uses: appleboy/ssh-action@master
@@ -104,7 +104,7 @@ jobs:
           #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
-            docker load -i ${{env.IMAGE}}.tar
+            docker load -i /tmp/${{env.IMAGE}}.tar
 
   run-container:
     name: 'Run container'

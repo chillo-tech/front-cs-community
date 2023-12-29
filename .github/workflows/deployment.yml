@@ -75,10 +75,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{env.IMAGE}}
-          path: /tmp
+          path: .
       - name: Check artifact
         run: |
           ls -al /tmp
+          ls -al
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:

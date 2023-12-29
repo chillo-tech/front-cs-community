@@ -22,7 +22,6 @@ jobs:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p  ${{ env.FOLDER }}
@@ -40,7 +39,6 @@ jobs:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: 'docker-compose.yml'
           target: ${{ env.FOLDER }}
@@ -101,7 +99,6 @@ jobs:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
             docker load -i /tmp/${{env.IMAGE}}.tar
@@ -109,7 +106,7 @@ jobs:
   run-container:
     name: 'Run container'
     runs-on: ubuntu-latest
-    needs: [copy-image]
+    needs: load-image
     steps:
       - name: Run container
         uses: appleboy/ssh-action@master
@@ -117,10 +114,9 @@ jobs:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
-            docker compose -f ${{ secrets.FOLDER }}/docker-compose.yml stop
-            docker compose -f ${{ secrets.FOLDER }}/docker-compose.yml rm -f
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
             docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
-            sudo docker compose -f ${{ secrets.FOLDER }}/docker-compose.yml up -d
+            sudo docker compose -f ${{ env.FOLDER }}/docker-compose.yml up -d

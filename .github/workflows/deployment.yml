@@ -60,18 +60,6 @@ jobs:
           context: .
           tags: ${{env.IMAGE}}
           outputs: type=docker,dest=/tmp/${{env.IMAGE}}.tar
-
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@v0.1.6
-        with:
-          host: ${{ secrets.PROD_APPLICATIONS_HOST }}
-          port: ${{ secrets.PROD_APPLICATIONS_PORT }}
-          username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
-          key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
-          source: /tmp/${{env.IMAGE}}.tar
-          target: /tmp/
-
       - name: Upload image artifact
         uses: actions/upload-artifact@v3
         with:
@@ -93,14 +81,14 @@ jobs:
           ls -al /tmp
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.6
-        with:
+        env:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
+        with:
           source: /tmp/${{env.IMAGE}}.tar
-          target: /tmp/
+          target: '/tmp/'
 
   load-image:
     name: Load image

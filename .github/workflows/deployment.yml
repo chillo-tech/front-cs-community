@@ -60,13 +60,22 @@ jobs:
           context: .
           tags: ${{env.IMAGE}}
           outputs: type=docker,dest=/tmp/${{env.IMAGE}}.tar
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{env.IMAGE}}
+          path: /tmp/${{env.IMAGE}}.tar
 
   copy-image:
     name: 'copy image'
     runs-on: ubuntu-latest
     needs: dockerize
     steps:
-      - uses: actions/checkout@master
+      - name: Download image artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{env.IMAGE}}.tar
+          path: /tmp
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:

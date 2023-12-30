@@ -18,6 +18,7 @@ export default function Home() {
       <Toaster />
       {/* <NavBar /> */}
 
+
       <div className={styles.container}>
         <header className="bg-gradient-to-r from-blue-700 via-blue-400 to-green-500 py-12">
           <h2>Avez vous une idee de video ? </h2>

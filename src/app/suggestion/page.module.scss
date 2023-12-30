@@ -126,9 +126,15 @@ body:has(.container)::-webkit-scrollbar {
   .formContainer > .formControl {
     grid-column: span 2;
   }
+  .errorMessageBottom {
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
 }
 @media ((max-width: 1000px) and (min-width: 768px)) or (max-width: 395px) {
-  .errorMessage {
+  .errorMessage,
+  .errorMessageBottom {
     position: relative;
     padding: 0;
     left: 0;

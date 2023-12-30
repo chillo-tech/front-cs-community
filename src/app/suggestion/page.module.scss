@@ -3,9 +3,14 @@
   grid-template-rows: auto 1fr;
 }
 
+.formControl > input {
+}
+
 .formControl {
   position: relative;
   display: grid;
+  gap: 6px;
+  grid-auto-rows: min-content;
   & > * {
     outline: none;
   }
@@ -15,6 +20,20 @@
     border: 1px solid rgb(218, 218, 218);
     padding-left: 10px;
     border-radius: 3px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   & > textarea:nth-child(2) {
@@ -101,6 +120,22 @@ body:has(.container)::-webkit-scrollbar {
 // .submitButton:hover {
 //   background: #000000;
 // }
+
+@media ((max-width: 1070px) and (min-width: 768px)) or (max-width: 485px) {
+  .formContainer > *,
+  .formContainer > .formControl {
+    grid-column: span 2;
+  }
+}
+@media ((max-width: 1000px) and (min-width: 768px)) or (max-width: 395px) {
+  .errorMessage {
+    position: relative;
+    padding: 0;
+    left: 0;
+    right: auto;
+    top: -5px;
+  }
+}
 
 @media (max-width: 501px) {
   .form {

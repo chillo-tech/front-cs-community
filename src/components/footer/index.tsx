@@ -133,7 +133,7 @@ const Footer = () => {
           <div className="container flex flex-col md:flex-row py-2 justify-between text-sm mx-auto text-center border-solid border-t border-gray-600">
             <span>© Copyright 2023 chillo.tech. Tous droits réservés.</span>
             <div className="liens">
-              <Link href="/politique-de-confidentialite">
+              <Link href="https://chillo.tech/politique-de-confidentialite">
                 Politique de confidentialité
               </Link>
             </div>

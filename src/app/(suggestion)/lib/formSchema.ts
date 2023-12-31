@@ -7,7 +7,6 @@ export const formSchema = yup.object().shape({
   phoneIndex: yup.number().min(1).max(999).required(),
   phone: yup.number().min(1).required(),
   tag: yup.string().oneOf(tags).required(),
-  civility: yup.string().required(),
   description: yup.string().required(),
   title: yup.string().required(),
 });

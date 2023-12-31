@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { QueryClient, QueryClientProvider } from "react-query";
-import NavBar from "./suggestion/components/navbar";
-import Footer from "./suggestion/components/footer";
-import GoWhatsappBtn from "./suggestion/components/goWhatsapp";
+import NavBar from "@/components/navbar";
+import Footer from "@/components/footer";
+import GoWhatsappBtn from "@/components/goWhatsapp";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -42,7 +42,6 @@ export const useFn = () => {
         email: data.email,
         phoneIndex: parseInt(data.phoneIndex),
         phone: parseInt(data.phone),
-        civility: data.civility,
         tag: data.tag.split(","),
         age: parseInt(data.age),
       },

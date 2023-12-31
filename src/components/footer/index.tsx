@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="text-center items-center flex pt-10 md:pt-0">
               <Link
                 className="flex mx-auto justify-items-center items-center bg-blue-600 shadow-sm rounded-lg px-4 py-1"
-                href="/nous-contacter"
+                href="https://chillo.tech/nous-contacter"
               >
                 <svg
                   stroke="currentColor"

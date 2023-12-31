@@ -34,11 +34,12 @@
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    background-color: white;
+    height: 46px;
   }
 
   & > textarea:nth-child(2) {
-    height: 80px;
-    resize: none;
+    height: auto;
   }
 }
 
@@ -99,6 +100,7 @@ body:has(.container)::-webkit-scrollbar {
 
 .submitButton {
   grid-column: 1/-1;
+  justify-content: center;
 }
 
 .errorMessage {
@@ -132,7 +134,7 @@ body:has(.container)::-webkit-scrollbar {
     top: 5px;
   }
 }
-@media ((max-width: 1000px) and (min-width: 768px)) or (max-width: 395px) {
+@media ((max-width: 1228px) and (min-width: 768px)) or (max-width: 529px) {
   .errorMessage,
   .errorMessageBottom {
     position: relative;

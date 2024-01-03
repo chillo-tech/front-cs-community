@@ -4,11 +4,14 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { phoneIndexes, tags } from "./lib/mockdata";
 import styles from "./page.module.scss";
-import { useFn } from "./lib/hooks";
+import { useFn, useHome } from "./lib/hooks";
+import { useContext, useEffect } from "react";
+import { HomeContext } from "../layout";
 
 const queryClient = new QueryClient();
 
 export default function Home() {
+  useHome()
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster />

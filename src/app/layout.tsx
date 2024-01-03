@@ -4,15 +4,29 @@ import GoWhatsappBtn from "@/components/goWhatsapp";
 import NavBar from "@/components/navbar";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import { createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const HomeContext = createContext({});
-
-
-
+export const HomeContext = createContext<{
+  value?: {
+    metadata: {
+      title: string;
+      description: string;
+    };
+    descriptions: string[];
+  };
+  setValue?: Dispatch<
+    SetStateAction<{
+      metadata: {
+        title: string;
+        description: string;
+      };
+      descriptions: string[];
+    }>
+  >;
+}>({});
 
 export default function RootLayout({
   children,
@@ -21,14 +35,14 @@ export default function RootLayout({
 }) {
   const [value, setValue] = useState({
     metadata: {
-      title: "Suggest module",
+      title: "Suggestions",
       description: "Powered by chillo.tech",
     },
     descriptions: [""],
   });
   return (
     <html lang="en">
-      <HomeContext.Provider value={value}>
+      <HomeContext.Provider value={{ value, setValue }}>
         <head>
           <title>{value.metadata.title}</title>
           <meta name="description" content={value.metadata.description} />

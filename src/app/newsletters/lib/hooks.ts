@@ -10,15 +10,15 @@ import axios from "./axios";
 import { HomeContext } from "@/app/layout";
 
 export const useFn = () => {
-  const mutation = useMutation(postSuggestion, {
+  const mutation = useMutation(registerNewsletters, {
     onSettled: () => {
       console.log("fait");
     },
   });
 
-  async function postSuggestion(obj: any) {
+  async function registerNewsletters(obj: any) {
     try {
-      const res = await axios.post("/suggest", obj);
+      const res = await axios.post("/newsletters/register", obj);
       toast.success("success, you will recieve a confirmation via email");
     } catch (err: any) {
       console.log("err", err);
@@ -38,16 +38,8 @@ export const useFn = () => {
   const onSubmitHandler = (data: any) => {
     console.log({ data });
     const tempObj = {
-      author: {
-        name: data.nom,
-        email: data.email,
-        phoneIndex: parseInt(data.phoneIndex),
-        phone: parseInt(data.phone),
-        tag: data.tag.split(","),
-        age: parseInt(data.age),
-      },
-      title: data.title,
-      description: data.description,
+      name: data.nom,
+      email: data.email,
     };
 
     console.log("tempObj", tempObj);
@@ -79,8 +71,8 @@ export const useHome = () => {
     if (homeContext.setValue) {
       homeContext.setValue({
         metadata: {
-          title: "suggestion",
-          description: "suggestion module of chillo.tech",
+          title: "newsletters",
+          description: "newsletter module of chillo.tech",
         },
         descriptions: [],
       });

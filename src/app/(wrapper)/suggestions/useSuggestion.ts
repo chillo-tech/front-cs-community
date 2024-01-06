@@ -4,8 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { wrapperContext } from "../layout";
 import { suggestionSchema } from "./suggestion-schema";
+import { wrapperContext } from "../useLayout";
 
 function useSuggestion() {
   const [submissionMessage, setSubmissionMessage] = useState<{
@@ -37,7 +37,7 @@ function useSuggestion() {
           canShow: true,
           message:
             err?.response?.data?.message ||
-            "Quelque chose ne c'est pas bien passé",
+            "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
           variant: "success",
         };
       });
@@ -78,7 +78,10 @@ function useSuggestion() {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync(data);
+    mutation.mutateAsync({
+      ...data,
+      author: { ...data.author, tag: [data.author.tag] },
+    });
     reset();
   };
 

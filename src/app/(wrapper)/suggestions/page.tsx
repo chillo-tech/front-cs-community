@@ -12,10 +12,10 @@ function SuggestionEdit() {
         <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
           <p
             className={`mb-2 font-black text-2xl text-center mt-2 ${
-                submissionMessage.variant === "success"
-                  ? "text-slate-100"
-                  : "text-rose-800"
-              }`}
+              submissionMessage.variant === "success"
+                ? "text-slate-100"
+                : "text-rose-800"
+            }`}
           >
             {submissionMessage.message}
           </p>
@@ -70,7 +70,7 @@ function SuggestionEdit() {
             <label>Vous etes...</label>
             <select
               className="p-2 text-black rounded-md text-xl my-2"
-              {...register("author.position")}
+              {...register("author.tag")}
             >
               <option value="text-black">
                 Selectionnez ce qui vous represente le plus
@@ -84,7 +84,7 @@ function SuggestionEdit() {
             <p className="text-rose-800">
               {errors &&
                 errors.author &&
-                errors.author.position &&
+                errors.author.tag &&
                 "Veuillez nous indiquer ce que vous etes."}
             </p>
           </div>
@@ -95,14 +95,14 @@ function SuggestionEdit() {
 
             <input
               className="p-2 text-black rounded-md text-xl my-2"
-              {...register("author.nom")}
+              {...register("author.name")}
               type="text"
               placeholder="Entrez votre nom"
             />
             <p className="text-rose-800">
               {errors &&
                 errors.author &&
-                errors.author.position &&
+                errors.author.name &&
                 "Veuillez nous indiquer notre nom."}
             </p>
           </div>
@@ -119,7 +119,7 @@ function SuggestionEdit() {
             <p className="text-rose-800">
               {errors &&
                 errors.author &&
-                errors.author.position &&
+                errors.author.email &&
                 "Veuillez nous indiquer notre email."}
             </p>
           </div>
@@ -141,7 +141,7 @@ function SuggestionEdit() {
             <p className="text-rose-800">
               {errors &&
                 errors.author &&
-                errors.author.position &&
+                errors.author.phoneIndex &&
                 "Veuillez nous indiquer votre pays."}
             </p>
           </div>
@@ -158,7 +158,7 @@ function SuggestionEdit() {
             <p className="text-rose-800">
               {errors &&
                 errors.author &&
-                errors.author.position &&
+                errors.author.phone &&
                 "Veuillez nous indiquer votre téléphone."}
             </p>
           </div>

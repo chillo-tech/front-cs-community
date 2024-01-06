@@ -5,8 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { wrapperContext } from "../layout";
 import { newslettersSchema } from "./newsletters-schema";
+import { wrapperContext } from "../useLayout";
 
 export const useNewsletters = () => {
   const [submissionMessage, setSubmissionMessage] = useState<{
@@ -41,7 +41,7 @@ export const useNewsletters = () => {
           canShow: true,
           message:
             err?.response?.data?.message ||
-            "Quelque chose ne c'est pas bien passé",
+            "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
           variant: "success",
         };
       });

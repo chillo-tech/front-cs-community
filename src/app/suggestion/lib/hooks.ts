@@ -18,7 +18,7 @@ export const useFn = () => {
 
   async function postSuggestion(obj: any) {
     try {
-      const res = await axios.post("/suggest", obj);
+      const res = await axios.post("/suggestions", obj);
       toast.success("success, you will recieve a confirmation via email");
     } catch (err: any) {
       console.log("err", err);

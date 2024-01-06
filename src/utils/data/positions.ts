@@ -1,0 +1,7 @@
+const POSITIONS = [
+  "DEVELOPPER",
+  "LEAD DEVELOPPER",
+  "SCRUM MASTER"
+]
+
+export {POSITIONS};

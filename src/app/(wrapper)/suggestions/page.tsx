@@ -13,7 +13,7 @@ function SuggestionEdit() {
           <p
             className={`mb-2 font-black text-2xl text-center mt-2 ${
               submissionMessage.variant === "success"
-                ? "text-slate-100"
+                ? "text-blue-900"
                 : "text-rose-800"
             }`}
           >
@@ -24,7 +24,7 @@ function SuggestionEdit() {
         <form
           onSubmit={handleSuggestionSubmit}
           className={
-            "flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100"
+            "flex flex-col gap-2 font-light infos  bg-slate-200 py-3 px-3 md:px-10 md:text-lg rounded-md text-blue-900"
           }
         >
           <div className="">

@@ -5,14 +5,23 @@ import useSuggestion from './useSuggestion';
 function SuggestionEdit() {
   const { register, handleSuggestionSubmit, errors } = useSuggestion();
   return (
-    <div>
+    <div className=''>
       <form onSubmit={handleSuggestionSubmit} className={'flex flex-col gap-2 font-light'}>
-    
+        <div className="text-white">
+          <p className="mb-2 font-extrabold text-blue-900 text-2xl text-center mt-2">
+            Quelles sont vos attentes pour cette video
+          </p>
+          <p>
+            Nous voulons que cette video vous soit bénéfique. En quelques mots, quelles sont vos
+            attentes pour cette video
+          </p>
+        </div>
+
         {/* titre */}
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>Quel est le titre de votre vidéo</label>
           <input
-            className="p-2 text-black rounded-md text-xl"
+            className="p-2 text-black rounded-m text-xl"
             type="text"
             placeholder="Titre idéal pour la vidéo"
             {...register('title')}
@@ -24,7 +33,7 @@ function SuggestionEdit() {
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>{`Qu'attendez vous de voir dans cette vidéo`}</label>
           <textarea
-            className="p-2 text-black rounded-md text-xl"
+            className="p-2 text-black rounded-m text-xl"
             placeholder="Entrez la description"
             {...register('description')}
             rows={4}
@@ -37,7 +46,7 @@ function SuggestionEdit() {
         {/* tag */}
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>Vous etes...</label>
-          <select className="p-2 text-black rounded-md text-xl" {...register('author.position')}>
+          <select className="p-2 text-black rounded-m text-xl" {...register('author.position')}>
             <option value="text-black">Selectionnez ce qui vous represente le plus</option>
             {POSITIONS.map((tag, idx) => (
               <option key={tag + idx} value={tag}>
@@ -58,7 +67,7 @@ function SuggestionEdit() {
           <label>Votre nom</label>
 
           <input
-            className="p-2 text-black rounded-md text-xl"
+            className="p-2 text-black rounded-m text-xl"
             {...register('author.nom')}
             type="text"
             placeholder="Entrez votre nom"
@@ -75,7 +84,7 @@ function SuggestionEdit() {
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>Votre email</label>
           <input
-            className="p-2 text-black rounded-md text-xl"
+            className="p-2 text-black rounded-m text-xl"
             type="email"
             {...register('author.email')}
             placeholder="Entrez votre email"
@@ -91,7 +100,7 @@ function SuggestionEdit() {
         {/* index telephonique */}
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>Votre pays</label>
-          <select className="p-2 text-black rounded-md text-xl" {...register('author.phoneIndex')}>
+          <select className="p-2 text-black rounded-m text-xl" {...register('author.phoneIndex')}>
             <option value="">Votre pays</option>
             {COUNTRIES_CODES.map(({ name, dial_code, code }, idx) => (
               <option {...{ code }} key={`${code}-${idx}`} value={dial_code}>
@@ -111,7 +120,7 @@ function SuggestionEdit() {
         <div className="flex flex-col text-xl text-slate-100 px-4">
           <label>Numéro de téléphone</label>
           <input
-            className="p-2 text-black rounded-md text-xl"
+            className="p-2 text-black rounded-m text-xl"
             {...register('author.phone')}
             type="number"
             placeholder="Entrez votre numero"
@@ -125,7 +134,7 @@ function SuggestionEdit() {
         </div>
 
         <div className="flex flex-col text-xl text-slate-100 px-4">
-          <button type="submit" className={'bg-blue-600 shadow-sm rounded-md py-3'}>
+          <button type="submit" className={'bg-blue-600 shadow-sm rounded-m py-3'}>
             Transmettre
           </button>
         </div>

@@ -3,7 +3,7 @@ import WhatsappButton from './WhatsappButton'
 
 function Footer() {
   return (
-    <footer className='relative'>
+    <footer className='relative flex justify-end'>
       <WhatsappButton />
     </footer>
   )

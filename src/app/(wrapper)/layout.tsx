@@ -3,49 +3,16 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React, { createContext, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-
-type DataType = {
-  metaData: {
-    title: string;
-    description: string;
-  };
-  leftComponent: {
-    title: string;
-    desc: string;
-  };
-};
-
-const dataInit: DataType = {
-  metaData: {
-    title: "",
-    description: "",
-  },
-  leftComponent: {
-    title: "",
-    desc: "",
-  },
-};
-
-export const wrapperContext = createContext<{
-  data: DataType;
-  setData: (data: DataType) => void;
-}>({
-  data: dataInit,
-  setData: (d: DataType) => {},
-});
+import useLayout, { wrapperContext } from "./useLayout";
 
 export const queryClient = new QueryClient();
-function Wrapper({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useState<DataType>({
-    metaData: {
-      title: "",
-      description: "",
-    },
-    leftComponent: {
-      title: "",
-      desc: "",
-    },
-  });
+
+export default function RootLayout2({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { data, setData } = useLayout();
   return (
     <wrapperContext.Provider value={{ data, setData }}>
       <QueryClientProvider client={queryClient}>
@@ -74,5 +41,3 @@ function Wrapper({ children }: { children: React.ReactNode }) {
     </wrapperContext.Provider>
   );
 }
-
-export default Wrapper;

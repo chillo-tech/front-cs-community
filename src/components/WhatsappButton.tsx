@@ -1,6 +1,6 @@
 import React from "react";
 
-const GoWhatsappBtn = () => {
+const WhatsappButton = () => {
   return (
     <a
       target="_blank"
@@ -24,4 +24,4 @@ const GoWhatsappBtn = () => {
   );
 };
 
-export default GoWhatsappBtn;
+export default WhatsappButton;

@@ -1,6 +1,6 @@
 "use client";
-import Footer from "@/components/footer";
-import GoWhatsappBtn from "@/components/goWhatsapp";
+import Footer from "@/components/Footer";
+import WhatsappButton from "@/components/WhatsappButton";
 import NavBar from "@/components/navbar";
 import { Inter } from "next/font/google";
 import Head from "next/head";
@@ -51,7 +51,7 @@ export default function RootLayout({
           <NavBar />
           {children}
           <Footer />
-          <GoWhatsappBtn />
+          <WhatsappButton />
         </body>
       </HomeContext.Provider>
     </html>

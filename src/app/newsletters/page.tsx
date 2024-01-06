@@ -17,7 +17,7 @@ const Home = () => {
       <div className="container min-w-full px-5 py-5 grid grid-cols-1 gap-4 md:grid-cols-2 bg-gradient-to-r to-slate-100 via-purple-50 from-blue-100">
         <header className="text-blue-900 font-extralight infos bg--900 md:py-10 px-4 flex flex-col">
           <h2 className="title from-slate-900 font-extrabold text-2xl md:text-4xl">
-            Enregistrez vous a nos newsletters
+            Enregistrez vous à nos newsletters
           </h2>
           <p className="mb-3 text-bold md:my-7 text-xl md:text-left">
             Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
@@ -47,7 +47,7 @@ const MainForm = () => {
         </p>
         <p>
           Soyez rassurés, nous nous efforcerons de toujours vous tenir informés<br/>
-          Et ce à chaques nouveautés
+          Et à chaques nouveautés biensur...
         </p>
       </div>
 

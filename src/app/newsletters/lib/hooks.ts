@@ -57,6 +57,7 @@ export const useFn = () => {
     e.preventDefault();
     await reactHookSubmitter();
     console.log("submitted");
+    reset()
   };
   return {
     register,

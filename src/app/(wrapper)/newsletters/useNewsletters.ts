@@ -1,13 +1,14 @@
 "use client";
+
 import { axios } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { wrapperContext } from "../layout";
-import { suggestionSchema } from "./suggestion-schema";
+import { newslettersSchema } from "./newsletters-schema";
 
-function useSuggestion() {
+export const useNewsletters = () => {
   const [submissionMessage, setSubmissionMessage] = useState<{
     canShow: boolean;
     message: string;
@@ -18,11 +19,13 @@ function useSuggestion() {
     variant: "success",
   });
   const { data, setData } = useContext(wrapperContext);
-  const mutation = useMutation(postSuggestion, {});
+  const mutation = useMutation(registerNewsletters, {
+    onSettled: () => {},
+  });
 
-  async function postSuggestion(obj: any) {
+  async function registerNewsletters(obj: any) {
     try {
-      const res = await axios.post("/suggestions", obj);
+      const res = await axios.post("/newsletters/register", obj);
       setSubmissionMessage((prev) => {
         return {
           canShow: true,
@@ -32,6 +35,7 @@ function useSuggestion() {
         };
       });
     } catch (err: any) {
+      console.log("err", err);
       setSubmissionMessage((prev) => {
         return {
           canShow: true,
@@ -57,13 +61,13 @@ function useSuggestion() {
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: `Sentez vous libre de remplir ce formulaire, et je ferais de mon
-        mieux pour creer une video a propos du sujet que vous proposez`,
-        title: `Avez vous une idee de video`,
+        desc: `Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
+        au courant de toutes les nouveautes`,
+        title: `Enregistrez vous à nos newsletters`,
       },
       metaData: {
         description: "Powered by chillo.tech",
-        title: "Suggestions",
+        title: "Newsletters",
       },
     });
   }, [setData]);
@@ -74,24 +78,23 @@ function useSuggestion() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(suggestionSchema),
+    resolver: yupResolver(newslettersSchema),
   });
 
   const onSubmitHandler = (data: any) => {
+    console.log("object");
     mutation.mutateAsync(data);
     reset();
   };
 
   const onInvalid = (errors: any) => console.error(errors);
 
-  const handleSuggestionSubmit = handleSubmit(onSubmitHandler, onInvalid);
+  const onSubmit = handleSubmit(onSubmitHandler, onInvalid);
 
   return {
     register,
     errors,
-    handleSuggestionSubmit,
+    onSubmit,
     submissionMessage,
   };
-}
-
-export default useSuggestion;
+};

@@ -52,8 +52,7 @@ function useSuggestion() {
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: `Sentez vous libre de remplir ce formulaire, et je ferais de mon
-        mieux pour creer une video a propos du sujet que vous proposez`,
+        desc: `Merci de remplir notre formulaire, votre suggestion sera dans la liste des nos sujets à traiter`,
         title: `Avez vous une idee de video`,
       },
       metaData: {

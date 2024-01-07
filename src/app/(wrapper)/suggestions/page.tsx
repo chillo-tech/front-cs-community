@@ -56,7 +56,7 @@ function SuggestionEdit() {
 
           {/* description */}
           <div className="flex flex-col text-xl">
-            <label>Qu'attendez vous de voir dans cette vidéo</label>
+            <label>{`Qu'attendez vous de voir dans cette vidéo`}</label>
             <textarea
               className="p-2 text-black rounded-md text-xl my-2"
               placeholder="Entrez la description"

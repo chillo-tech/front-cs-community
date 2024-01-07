@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { suggestionSchema } from "./suggestion-schema";
-import { WrapperContext } from "../WrapperContext";
+import { ApplicationContext } from "../ApplicationContext";
 
 function useSuggestion() {
   const [submissionMessage, setSubmissionMessage] = useState<{
@@ -15,7 +15,7 @@ function useSuggestion() {
     canShow: false,
     message: "",
   });
-  const { data, setData } = useContext(WrapperContext);
+  const { setData } = useContext(ApplicationContext);
   const mutation = useMutation(postSuggestion, {});
 
   async function postSuggestion(obj: any) {

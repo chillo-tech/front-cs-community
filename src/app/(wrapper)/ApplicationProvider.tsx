@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { WrapperContext } from "./WrapperContext";
-import { QueryClientProvider } from "react-query";
-import { queryClient } from "./layout";
-import useLayout from "./useLayout";
+import { ApplicationContext } from "./ApplicationContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { DataType } from "@/types/WrapperContext";
 
+export const queryClient = new QueryClient();
 const ApplicationProvider = ({
   children,
   value,
@@ -17,7 +16,7 @@ const ApplicationProvider = ({
   };
 }) => {
   return (
-    <WrapperContext.Provider value={value}>
+    <ApplicationContext.Provider value={value}>
       <QueryClientProvider client={queryClient}>
         <head>
           <title>{value.data.metaData.title}</title>
@@ -25,7 +24,7 @@ const ApplicationProvider = ({
         </head>
         {children}
       </QueryClientProvider>
-    </WrapperContext.Provider>
+    </ApplicationContext.Provider>
   );
 };
 

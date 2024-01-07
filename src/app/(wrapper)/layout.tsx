@@ -1,13 +1,10 @@
 "use client";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import React from "react";
-import { QueryClient } from "react-query";
 import ApplicationProvider from "./ApplicationProvider";
 import useLayout from "./useLayout";
 import LayoutAside from "./LayoutAside";
 
-export const queryClient = new QueryClient();
 
 export default function WrapperLayout({
   children,

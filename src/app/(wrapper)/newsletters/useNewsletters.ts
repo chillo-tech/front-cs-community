@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { newslettersSchema } from "./newsletters-schema";
-import { WrapperContext } from "../WrapperContext";
+import { ApplicationContext } from "../ApplicationContext";
 
 export const useNewsletters = () => {
   const [submissionMessage, setSubmissionMessage] = useState<{
@@ -16,7 +16,7 @@ export const useNewsletters = () => {
     canShow: false,
     message: "",
   });
-  const { data, setData } = useContext(WrapperContext);
+  const { setData } = useContext(ApplicationContext);
 
   const mutation = useMutation(registerNewsletters);
   async function registerNewsletters(obj: any) {

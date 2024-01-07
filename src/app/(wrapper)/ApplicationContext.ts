@@ -13,7 +13,7 @@ const dataInit: DataType = {
   },
 };
 
-const WrapperContext = createContext<{
+const ApplicationContext = createContext<{
   data: DataType;
   setData: (data: DataType) => void;
 }>({
@@ -21,4 +21,4 @@ const WrapperContext = createContext<{
   setData: (d: DataType) => {},
 });
 
-export { WrapperContext };
+export { ApplicationContext };

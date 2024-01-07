@@ -72,10 +72,14 @@ function useSuggestion() {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync({
-      ...data,
-      author: { ...data.author, tag: [data.author.tag] },
-    });
+    mutation
+      .mutateAsync({
+        ...data,
+        author: { ...data.author, tag: [data.author.tag] },
+      })
+      .then(() => {
+        mutation.reset();
+      });
     reset();
   };
 

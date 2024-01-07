@@ -74,7 +74,9 @@ export const useNewsletters = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync(data);
+    mutation.mutateAsync(data).then(() => {
+      mutation.reset();
+    });
     reset();
   };
 

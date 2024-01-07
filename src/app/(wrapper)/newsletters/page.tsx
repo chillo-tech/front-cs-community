@@ -2,16 +2,15 @@
 import { useNewsletters } from "./useNewsletters";
 
 const Home = () => {
-  const { register, onSubmit, errors, submissionMessage } = useNewsletters();
+  const { register, onSubmit, errors, submissionMessage, mutation } =
+    useNewsletters();
   return (
     <div className="container px-5 py-5 ">
       {submissionMessage.canShow ? (
         <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
           <p
             className={`mb-2 font-black text-2xl text-center mt-2 ${
-              submissionMessage.variant === "success"
-                ? "text-slate-100"
-                : "text-rose-800"
+              mutation.isSuccess ? "text-blue-900" : "text-rose-800"
             }`}
           >
             {submissionMessage.message}
@@ -21,7 +20,7 @@ const Home = () => {
         <form
           onSubmit={onSubmit}
           className={
-            "flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100"
+            "flex flex-col gap-2 font-light infos bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900"
           }
         >
           <div className="">

@@ -6,23 +6,19 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { newslettersSchema } from "./newsletters-schema";
-import { wrapperContext } from "../useLayout";
+import { WrapperContext } from "../WrapperContext";
 
 export const useNewsletters = () => {
   const [submissionMessage, setSubmissionMessage] = useState<{
     canShow: boolean;
     message: string;
-    variant: "success" | "failed";
   }>({
     canShow: false,
     message: "",
-    variant: "success",
   });
-  const { data, setData } = useContext(wrapperContext);
-  const mutation = useMutation(registerNewsletters, {
-    onSettled: () => {},
-  });
+  const { data, setData } = useContext(WrapperContext);
 
+  const mutation = useMutation(registerNewsletters);
   async function registerNewsletters(obj: any) {
     try {
       const res = await axios.post("/newsletters/register", obj);
@@ -31,18 +27,15 @@ export const useNewsletters = () => {
           canShow: true,
           message:
             "Votre requete a été prise en compte, vous serez notifiés par mail sous peu.",
-          variant: "success",
         };
       });
     } catch (err: any) {
-      console.log("err", err);
       setSubmissionMessage((prev) => {
         return {
           canShow: true,
           message:
             err?.response?.data?.message ||
             "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
-          variant: "success",
         };
       });
     } finally {
@@ -51,7 +44,6 @@ export const useNewsletters = () => {
           return {
             canShow: false,
             message: "",
-            variant: "success",
           };
         });
       }, 5000);
@@ -82,7 +74,6 @@ export const useNewsletters = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    console.log("object");
     mutation.mutateAsync(data);
     reset();
   };
@@ -96,5 +87,6 @@ export const useNewsletters = () => {
     errors,
     onSubmit,
     submissionMessage,
+    mutation,
   };
 };

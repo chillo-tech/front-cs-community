@@ -3,8 +3,13 @@ import { COUNTRIES_CODES, POSITIONS } from "@/utils";
 import useSuggestion from "./useSuggestion";
 
 function SuggestionEdit() {
-  const { register, handleSuggestionSubmit, errors, submissionMessage } =
-    useSuggestion();
+  const {
+    register,
+    handleSuggestionSubmit,
+    errors,
+    submissionMessage,
+    mutation,
+  } = useSuggestion();
 
   return (
     <div className="container px-5 py-5 ">
@@ -12,9 +17,7 @@ function SuggestionEdit() {
         <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
           <p
             className={`mb-2 font-black text-2xl text-center mt-2 ${
-              submissionMessage.variant === "success"
-                ? "text-blue-900"
-                : "text-rose-800"
+              mutation.isSuccess ? "text-blue-900" : "text-rose-800"
             }`}
           >
             {submissionMessage.message}
@@ -53,7 +56,7 @@ function SuggestionEdit() {
 
           {/* description */}
           <div className="flex flex-col text-xl">
-            <label>{`Qu'attendez vous de voir dans cette vidéo`}</label>
+            <label>Qu'attendez vous de voir dans cette vidéo</label>
             <textarea
               className="p-2 text-black rounded-md text-xl my-2"
               placeholder="Entrez la description"

@@ -5,8 +5,8 @@ const suggestionSchema = yup.object().shape({
   author: yup.object({
     name: yup.string().required(),
     email: yup.string().email().required(),
-    phoneIndex: yup.number().min(1).max(9999).required(),
-    phone: yup.number().min(1).required(),
+    phoneIndex: yup.number().min(1).max(9999).optional(),
+    phone: yup.number().min(1).optional(),
     tag: yup.string().oneOf(POSITIONS).required(),
   }),
   description: yup.string().required(),

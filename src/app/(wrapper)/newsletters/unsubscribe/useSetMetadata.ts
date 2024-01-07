@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { wrapperContext } from "../useLayout";
+import { WrapperContext } from "../../WrapperContext";
 
-export const useHome = () => {
-  const { data, setData } = useContext(wrapperContext);
+export const useSetMetadata = () => {
+  const { data, setData } = useContext(WrapperContext);
 
   useEffect(() => {
     setData({

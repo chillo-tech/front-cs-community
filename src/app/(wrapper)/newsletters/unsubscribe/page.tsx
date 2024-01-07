@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { useHome } from "./useHome";
+import { useSetMetadata } from "./useSetMetadata";
 
 const Home = () => {
-  useHome();
+  useSetMetadata();
 
   return (
     <main>

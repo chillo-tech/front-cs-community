@@ -7,7 +7,7 @@ function Header() {
     <header className='pt-8 px-2'>
       <Link href="/suggestionss">
         <>
-          <span className="md:hidden">
+          <span className="md:hidden mb-4">
             <Image
               width="120"
               height="35"
@@ -15,7 +15,7 @@ function Header() {
               alt="chillo services"
             />
           </span>
-          <span className="hidden md:block">
+          <span className="hidden md:block ">
             <Image
               width="200"
               height="60"

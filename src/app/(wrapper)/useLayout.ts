@@ -1,35 +1,7 @@
 "use client";
-import { createContext, useState } from "react";
 
-type DataType = {
-  metaData: {
-    title: string;
-    description: string;
-  };
-  leftComponent: {
-    title: string;
-    desc: string;
-  };
-};
-
-const dataInit: DataType = {
-  metaData: {
-    title: "",
-    description: "",
-  },
-  leftComponent: {
-    title: "",
-    desc: "",
-  },
-};
-
-export const wrapperContext = createContext<{
-  data: DataType;
-  setData: (data: DataType) => void;
-}>({
-  data: dataInit,
-  setData: (d: DataType) => {},
-});
+import { DataType } from "@/types/WrapperContext";
+import { useState } from "react";
 
 const useLayout = () => {
   const [data, setData] = useState<DataType>({
@@ -43,7 +15,7 @@ const useLayout = () => {
     },
   });
 
-  return {data, setData};
+  return { data, setData };
 };
 
 export default useLayout;

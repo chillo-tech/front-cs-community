@@ -5,19 +5,17 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { suggestionSchema } from "./suggestion-schema";
-import { wrapperContext } from "../useLayout";
+import { WrapperContext } from "../WrapperContext";
 
 function useSuggestion() {
   const [submissionMessage, setSubmissionMessage] = useState<{
     canShow: boolean;
     message: string;
-    variant: "success" | "failed";
   }>({
     canShow: false,
     message: "",
-    variant: "success",
   });
-  const { data, setData } = useContext(wrapperContext);
+  const { data, setData } = useContext(WrapperContext);
   const mutation = useMutation(postSuggestion, {});
 
   async function postSuggestion(obj: any) {
@@ -28,7 +26,6 @@ function useSuggestion() {
           canShow: true,
           message:
             "Votre requete a été prise en compte, vous serez notifiés par mail sous peu.",
-          variant: "success",
         };
       });
     } catch (err: any) {
@@ -38,7 +35,6 @@ function useSuggestion() {
           message:
             err?.response?.data?.message ||
             "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
-          variant: "success",
         };
       });
     } finally {
@@ -47,7 +43,6 @@ function useSuggestion() {
           return {
             canShow: false,
             message: "",
-            variant: "success",
           };
         });
       }, 5000);
@@ -94,6 +89,7 @@ function useSuggestion() {
     errors,
     handleSuggestionSubmit,
     submissionMessage,
+    mutation,
   };
 }
 

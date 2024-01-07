@@ -5,7 +5,7 @@ import React from 'react';
 function Header() {
   return (
     <header className='pt-8 px-2'>
-      <Link href="/suggestionss">
+      <Link href="/suggestions">
         <>
           <span className="md:hidden mb-4">
             <Image

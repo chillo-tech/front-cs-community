@@ -12,7 +12,7 @@ function Header() {
             <img
               width="120"
               height="35"
-              src="/static/images/chilloservices.png"
+              src="https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"
               alt="chillo services"
             />
           </span>
@@ -20,7 +20,7 @@ function Header() {
             <img
               width="200"
               height="60"
-              src="/static/images/chilloservices.png"
+              src="https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"
               alt="chillo services"
             />
           </span>

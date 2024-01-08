@@ -102,7 +102,7 @@ const NavBar = () => {
               <Link href="https://chillo.tech/">
                 <span className="md:hidden">
                   <Image
-                    src={"/chillo-services.webp"}
+                    src={"https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"}
                     alt={"chillo service"}
                     width={256}
                     height={70}
@@ -110,7 +110,7 @@ const NavBar = () => {
                 </span>
                 <span className="hidden md:block">
                   <Image
-                    src={"/chillo-services.webp"}
+                    src={"https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"}
                     alt={"chillo service"}
                     width={256}
                     height={70}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,18 +9,18 @@ function Header() {
       <Link href="/suggestions">
         <>
           <span className="md:hidden mb-4">
-            <Image
+            <img
               width="120"
               height="35"
-              src="/public/images/chilloservices.png"
+              src="https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"
               alt="chillo services"
             />
           </span>
           <span className="hidden md:block ">
-            <Image
+            <img
               width="200"
               height="60"
-              src="/public/images/chilloservices.png"
+              src="https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"
               alt="chillo services"
             />
           </span>

@@ -11,7 +11,7 @@ function SuggestionEdit() {
       <form
         onSubmit={handleSuggestionSubmit}
         className={
-          "text-md flex flex-col gap-2 font-light infos  bg-slate-200 py-3 px-3 md:px-6 md:text-lg rounded-md text-blue-900"
+          "text-md flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 px-3 md:px-6 md:text-lg rounded-md text-blue-900"
         }
       >
         {mutation.isError ? (
@@ -24,8 +24,8 @@ function SuggestionEdit() {
         ) : mutation.isSuccess ? (
           <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
             <p className="mb-2 font-black text-2xl text-center mt-2 text-blue-900">
-              Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
-              sur le boutton whatsapp en bas a votre gauche.
+              Votre requete a bien ete prise en compte, vous serez notifies par
+              mail
             </p>
           </div>
         ) : (

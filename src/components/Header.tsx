@@ -8,6 +8,7 @@ function Header() {
     <header className='pt-8 px-2'>
       <Link href="/suggestions">
         <>
+        a
           <span className="md:hidden mb-4">
             <img
               width="120"

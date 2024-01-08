@@ -8,45 +8,11 @@ import { suggestionSchema } from "./suggestion-schema";
 import { ApplicationContext } from "../ApplicationContext";
 
 function useSuggestion() {
-  const [submissionMessage, setSubmissionMessage] = useState<{
-    canShow: boolean;
-    message: string;
-  }>({
-    canShow: false,
-    message: "",
-  });
   const { setData } = useContext(ApplicationContext);
-  const mutation = useMutation(postSuggestion, {});
+  const mutation = useMutation(postSuggestion);
 
   async function postSuggestion(obj: any) {
-    try {
-      const res = await axios.post("/suggestions", obj);
-      setSubmissionMessage((prev) => {
-        return {
-          canShow: true,
-          message:
-            "Votre requete a été prise en compte, vous serez notifiés par mail sous peu.",
-        };
-      });
-    } catch (err: any) {
-      setSubmissionMessage((prev) => {
-        return {
-          canShow: true,
-          message:
-            err?.response?.data?.message ||
-            "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
-        };
-      });
-    } finally {
-      setTimeout(() => {
-        setSubmissionMessage((prev) => {
-          return {
-            canShow: false,
-            message: "",
-          };
-        });
-      }, 5000);
-    }
+    const res = await axios.post("/suggestions", obj);
   }
 
   useEffect(() => {
@@ -91,7 +57,6 @@ function useSuggestion() {
     register,
     errors,
     handleSuggestionSubmit,
-    submissionMessage,
     mutation,
   };
 }

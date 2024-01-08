@@ -9,45 +9,11 @@ import { newslettersSchema } from "./newsletters-schema";
 import { ApplicationContext } from "../ApplicationContext";
 
 export const useNewsletters = () => {
-  const [submissionMessage, setSubmissionMessage] = useState<{
-    canShow: boolean;
-    message: string;
-  }>({
-    canShow: false,
-    message: "",
-  });
   const { setData } = useContext(ApplicationContext);
 
-  const mutation = useMutation(registerNewsletters);
-  async function registerNewsletters(obj: any) {
-    try {
-      const res = await axios.post("/newsletters/register", obj);
-      setSubmissionMessage((prev) => {
-        return {
-          canShow: true,
-          message:
-            "Votre requete a été prise en compte, vous serez notifiés par mail sous peu.",
-        };
-      });
-    } catch (err: any) {
-      setSubmissionMessage((prev) => {
-        return {
-          canShow: true,
-          message:
-            err?.response?.data?.message ||
-            "Quelque chose ne c'est pas bien passé, Vous pouvez cliquer sur le boutton whatsapp pour nous contacter",
-        };
-      });
-    } finally {
-      setTimeout(() => {
-        setSubmissionMessage((prev) => {
-          return {
-            canShow: false,
-            message: "",
-          };
-        });
-      }, 5000);
-    }
+  const mutation = useMutation(newsletters);
+  async function newsletters(obj: any) {
+    const res = await axios.post("/newsletters/register", obj);
   }
 
   useEffect(() => {
@@ -88,7 +54,6 @@ export const useNewsletters = () => {
     register,
     errors,
     onSubmit,
-    submissionMessage,
     mutation,
   };
 };

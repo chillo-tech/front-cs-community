@@ -1,10 +1,8 @@
 "use client";
-import React, { useContext, useEffect } from "react";
-import { HomeContext } from "../layout";
-import styles from "./page.module.scss";
-import { useFn, useHome } from "./lib/hooks";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { useFn, useHome } from "./lib/hooks";
+import styles from "./page.module.scss";
 
 const queryClient = new QueryClient();
 

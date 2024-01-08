@@ -11,7 +11,7 @@ function Header() {
             <Image
               width="120"
               height="35"
-              src="/images/chillo-services.png"
+              src="/static/images/chilloservices.png"
               alt="chillo services"
             />
           </span>
@@ -19,7 +19,7 @@ function Header() {
             <Image
               width="200"
               height="60"
-              src="/images/chillo-services.png"
+              src="/static/images/chilloservices.png"
               alt="chillo services"
             />
           </span>

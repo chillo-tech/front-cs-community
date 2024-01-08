@@ -9,7 +9,7 @@ function Header() {
       <Link href="/suggestions">
         <>
           <span className="md:hidden mb-4">
-            <Image
+            <img
               width="120"
               height="35"
               src="https://chillo.tech/_next/image?url=%2Fimages%2Fchillo-services.png&w=256&q=75"

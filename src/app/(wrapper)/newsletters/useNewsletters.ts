@@ -1,29 +1,31 @@
 "use client";
+
 import { axios } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { suggestionSchema } from "./suggestion-schema";
+import { newslettersSchema } from "./newsletters-schema";
 import { ApplicationContext } from "../ApplicationContext";
 
-function useSuggestion() {
+export const useNewsletters = () => {
   const { setData } = useContext(ApplicationContext);
-  const mutation = useMutation(postSuggestion);
 
-  async function postSuggestion(obj: any) {
-    await axios.post("/suggestions", obj);
+  const mutation = useMutation(newsletters);
+  async function newsletters(obj: any) {
+    const res = await axios.post("/newsletters/register", obj);
   }
 
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: `Merci de remplir notre formulaire, votre suggestion sera dans la liste des nos sujets à traiter`,
-        title: `Avez vous une idee de video`,
+        desc: `Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
+        au courant de toutes les nouveautes`,
+        title: `Enregistrez vous à nos newsletters`,
       },
       metaData: {
         description: "Powered by chillo.tech",
-        title: "Suggestions",
+        title: "Newsletters",
       },
     });
   }, [setData]);
@@ -34,31 +36,24 @@ function useSuggestion() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(suggestionSchema),
+    resolver: yupResolver(newslettersSchema),
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation
-      .mutateAsync({
-        ...data,
-        author: { ...data.author, tag: [data.author.tag] },
-      })
-      .then(() => {
-        mutation.reset();
-      });
+    mutation.mutateAsync(data).then(() => {
+      mutation.reset();
+    });
     reset();
   };
 
   const onInvalid = (errors: any) => console.error(errors);
 
-  const handleSuggestionSubmit = handleSubmit(onSubmitHandler, onInvalid);
+  const onSubmit = handleSubmit(onSubmitHandler, onInvalid);
 
   return {
     register,
     errors,
-    handleSuggestionSubmit,
+    onSubmit,
     mutation,
   };
-}
-
-export default useSuggestion;
+};

@@ -1,20 +1,29 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import React from 'react';
+"use client";
+import Footer from "@/components/Footer";
+import React, { useContext } from "react";
+import ApplicationProvider from "./ApplicationProvider";
+import useLayout from "./useLayout";
+import LayoutAside from "./LayoutAside";
+import { ApplicationContext } from "./ApplicationContext";
 
-function Wrapper({ children }: { children: React.ReactNode }) {
+
+export default function WrapperLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+const { data, setData } = useContext(ApplicationContext)
   return (
-    <section className="border-4 border-red-900 md:grid md:grid-cols-5 min-h-screen justify-between">
-      <aside className='md:col-span-2 flex flex-col justify-between'>
-        <Header />
-        <div className="texte"></div>
-        <Footer />
-      </aside>
-      <section className='md:col-span-3 relative bg-[#1e3b8a]'>
-        {children}
+    <ApplicationProvider >
+      <section className="md:grid md:grid-cols-5 min-h-screen justify-between">
+        <LayoutAside data={data} />
+        <section className="md:col-span-3 relative bg-[#1e3b8a] flex flex-col items-center justify-center">
+          {children}
+          <div className="md:hidden">
+            <Footer color="white" />
+          </div>
+        </section>
       </section>
-    </section>
+    </ApplicationProvider>
   );
 }
-
-export default Wrapper;

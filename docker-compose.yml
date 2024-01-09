@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  front-cs-community:
+    container_name: front-cs-community
+    # The official v2 Traefik docker image
+    image: front-cs-community:latest
+    restart: always
+    ports:
+      # The HTTP port
+      - '8000:3000'
+
+    networks:
+      - applications-network
+    environment:
+      - 'NEXT_PUBLIC_API_URI=${NEXT_PUBLIC_API_URI}'
+networks:
+  applications-network:
+    external: true
+    name: applications-network

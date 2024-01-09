@@ -103,7 +103,7 @@ jobs:
           script: |
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
-            docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
+            docker rmi ${{env.IMAGE}}:${{env.IMAGE_VERSION}}
 
             docker load -i /tmp/${{env.IMAGE}}.tar
 
@@ -121,11 +121,13 @@ jobs:
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
 
-            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
-            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
-            docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop || true
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f || true
+            docker rmi ${{env.IMAGE}}:${{env.IMAGE_VERSION}} || true
 
             rm ${{ env.FOLDER }}/.env
+            echo NEXT_PUBLIC_BACKEND_API_TOKEN=${{ secrets.BACKEND_API_TOKEN }} >> ${{ env.FOLDER }}/.env
+            echo NEXT_PUBLIC_BACKEND_API=${{ secrets.BACKEND_API }} >> ${{ env.FOLDER }}/.env
             echo NEXT_PUBLIC_API_URI=${{ secrets.NEXT_PUBLIC_API_URI }} >> ${{ env.FOLDER }}/.env
 
             sudo docker compose -f ${{ env.FOLDER }}/docker-compose.yml up -d

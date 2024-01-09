@@ -89,7 +89,7 @@ jobs:
           target: '/tmp/'
 
   load-image:
-    name: Load image
+    name: delete and load image
     runs-on: ubuntu-latest
     needs: copy-image
     steps:
@@ -101,6 +101,10 @@ jobs:
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
+            docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
+
             docker load -i /tmp/${{env.IMAGE}}.tar
 
   run-container:

@@ -16,22 +16,23 @@ function SuggestionEdit() {
       >
         {mutation.isError ? (
           <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
-            <p className="mb-2 font-black text-2xl text-center mt-2 text-rose-800">
-              Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
-              sur le boutton whatsapp en bas a votre gauche.
+            <p className="mb-2 font-light text-2xl text-center mt-2 text-rose-800">
+              Une erreur est survenue <br />
+              Vous pouvez nous contacter en cliquant <br />
+              sur le boutton whatsapp ci-dessous.
             </p>
           </div>
         ) : mutation.isSuccess ? (
           <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
-            <p className="mb-2 font-black text-2xl text-center mt-2 text-blue-900">
-              Votre requete a bien ete prise en compte, vous serez notifies par
+            <p className="mb-2 font-light text-2xl text-center mt-2 text-blue-900">
+              Votre requete a bien ete prise en compte, <br/>vous serez notifies par
               mail
             </p>
           </div>
         ) : (
           <>
             <div className="">
-              <p className="mb-2 font-black text-2xl mt-2">
+              <p className="mb-2 font-light text-2xl mt-2">
                 Quelles sont vos attentes pour cette video
               </p>
             </div>

@@ -12,7 +12,7 @@ function useSuggestion() {
   const mutation = useMutation(postSuggestion);
 
   async function postSuggestion(obj: any) {
-    const res = await axios.post("/suggestions", obj);
+    await axios.post("/suggestions", obj);
   }
 
   useEffect(() => {

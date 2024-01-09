@@ -116,7 +116,12 @@ jobs:
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
+
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
             docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
+
+
+            echo NEXT_PUBLIC_API_URI=${{ secrets.NEXT_PUBLIC_API_URI }} >> ${{ env.FOLDER }}/.env
+
             sudo docker compose -f ${{ env.FOLDER }}/docker-compose.yml up -d

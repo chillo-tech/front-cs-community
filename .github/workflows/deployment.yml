@@ -125,7 +125,7 @@ jobs:
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
             docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
 
-
+            rm ${{ env.FOLDER }}/.env
             echo NEXT_PUBLIC_API_URI=${{ secrets.NEXT_PUBLIC_API_URI }} >> ${{ env.FOLDER }}/.env
 
             sudo docker compose -f ${{ env.FOLDER }}/docker-compose.yml up -d

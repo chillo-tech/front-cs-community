@@ -3,6 +3,7 @@
 import {
   AvisFormFieldGenerator,
   FormSubmitResponder,
+  FormWrapper,
   SubmitButton,
 } from "@/components";
 import { useAvis } from "./useAvis";
@@ -19,12 +20,7 @@ const Home = () => {
   } = useAvis();
   return (
     <div className="container px-5 py-5 ">
-      <form
-        onSubmit={onSubmit}
-        className={
-          "flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900"
-        }
-      >
+      <FormWrapper onSubmit={onSubmit}>
         {mutation.isError || mutation.isSuccess ? (
           <FormSubmitResponder
             successMessage={`Votre requete a bien ete prise en compte, vous serez notifies par
@@ -55,7 +51,7 @@ const Home = () => {
             <p className="text-center">{form?.bottom}</p>
           </>
         )}
-      </form>
+      </FormWrapper>
     </div>
   );
 };

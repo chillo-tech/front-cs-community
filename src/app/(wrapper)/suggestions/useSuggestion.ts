@@ -43,9 +43,9 @@ function useSuggestion() {
         ...data,
         author: { ...data.author, tag: [data.author.tag] },
       })
-      .then(() => {
-        mutation.reset();
-      });
+      // .then(() => {
+      //   // mutation.reset();
+      // });
     reset();
   };
 

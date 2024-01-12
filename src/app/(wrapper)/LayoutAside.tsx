@@ -5,15 +5,15 @@ import React from "react";
 
 const LayoutAside = ({ data }: { data: DataType }) => {
   return (
-    <aside className=" px-5 py-4 md:col-span-2 flex flex-col justify-between">
+    <aside className=" px-3 py-2 md:col-span-2 flex flex-col justify-between">
       <Header />
-      <header className="mt-4 text-blue-900 font-extralight infos bg--900 md:py-10 px-4 flex flex-col grow">
+      <header className="mt-1 text-blue-900 font-extralight infos bg--900 md:py-7 px-2 flex flex-col grow">
         <h2
-          className="title from-slate-900 font-extrabold text-2xl md:text-4xl"
+          className="title from-slate-900 font-extrabold text-3xl md:text-3xl"
           dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title }}
         />
         <p
-          className="mb-3 text-bold md:my-7 text-xl md:text-left"
+          className="mb-2 text-bold md:my-5 text-l md:text-left"
           dangerouslySetInnerHTML={{ __html: data?.leftComponent?.desc }}
         />
       </header>

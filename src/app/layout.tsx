@@ -1,14 +1,7 @@
 "use client";
-import type { Metadata } from "next";
-import "./globals.css";
-import { DataType } from "@/types/WrapperContext";
 import { ApplicationContext } from "./(wrapper)/ApplicationContext";
 import useLayout from "./(wrapper)/useLayout";
-
-// export const metadata: Metadata = {
-//   title: "Chillo services community",
-//   description: "Echanges avec la communaté de chillo services",
-// };
+import "./globals.css";
 
 export default function RootLayout({
   children,

@@ -4,3 +4,5 @@ export * from "./Footer";
 export * from "./Header";
 export * from "./WhatsappButton";
 export * from "./AvisFormFieldGenerator";
+export * from "./SubmitButton";
+export * from "./FormError";

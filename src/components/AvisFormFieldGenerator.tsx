@@ -1,6 +1,5 @@
 import { avisFieldSwitcher } from "@/utils";
 import { AvisFormInputWrapper } from ".";
-import CustomCheckbox from "./custom-check-box/CustomCheckbox";
 
 const AvisFormFieldGenerator = ({
   fields,

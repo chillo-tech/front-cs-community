@@ -1,4 +1,3 @@
-"use client";
 import { axios } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";

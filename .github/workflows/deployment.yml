@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - feature/*
   workflow_dispatch:
 env:
   NODE_VERSION: '14.x'
@@ -56,7 +53,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          tags: ${{env.IMAGE}}
+          tags: ${{env.IMAGE}}:${{env.IMAGE_VERSION}}
           outputs: type=docker,dest=/tmp/${{env.IMAGE}}.tar
       - name: Upload image artifact
         uses: actions/upload-artifact@v3
@@ -74,10 +71,6 @@ jobs:
         with:
           name: ${{env.IMAGE}}
           path: .
-      - name: Check artifact
-        run: |
-          ls -al /tmp
-          ls -al
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:

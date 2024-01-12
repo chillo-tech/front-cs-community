@@ -112,7 +112,6 @@ jobs:
 
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop || true
             docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f || true
-            docker rmi ${{env.IMAGE}}:${{env.IMAGE_VERSION}} || true
 
             rm ${{ env.FOLDER }}/.env
             echo NEXT_PUBLIC_BACKEND_API_TOKEN=${{ secrets.BACKEND_API_TOKEN }} >> ${{ env.FOLDER }}/.env

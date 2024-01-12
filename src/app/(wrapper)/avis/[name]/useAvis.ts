@@ -9,44 +9,34 @@ import { useMutation } from "react-query";
 import { ApplicationContext } from "../../ApplicationContext";
 import { avisSchema } from "./avis-schema";
 import { useParams } from "next/navigation";
+import { DEFAULT_FORM } from "./constants";
 
 export const useAvis = () => {
   const params = useParams();
   const name = params.name;
   const { setData } = useContext(ApplicationContext);
+  const [selected, setSelected] = useState<number | null | undefined>();
 
-  const [form, setForm] = useState<AvisFormViewType | undefined | null>();
+  const setSelectedFactory = (i: number) => () => setSelected(i);
+
+  const [form] = useState<AvisFormViewType | undefined | null>(
+    DEFAULT_FORM.right
+  );
   const mutation = useMutation(giveAvis);
-  const viewMutation = useMutation(getView);
-
-  async function getView() {
-    axios.get(`/avis/views?name=${name}`);
-  }
 
   async function giveAvis(obj: any) {
-    const res = await axios.post("/avis", obj);
+    axios.post("/avis", obj);
   }
 
   useEffect(() => {
-    axios
-      .get(`/avis/views?name=${name}`)
-      .then((res) => {
-        if (res.data.view) {
-          console.log("res.data.view", res.data.view);
-          setData({
-            leftComponent: res.data.view.left,
-            metaData: {
-              description: "Powered by chillo.tech",
-              title: "Avis",
-            },
-          });
-          setForm(res.data.view.right);
-        }
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }, [name, setData]);
+    setData({
+      leftComponent: DEFAULT_FORM.left,
+      metaData: {
+        description: "Powered by chillo.tech",
+        title: "Avis",
+      },
+    });
+  }, [setData]);
 
   const {
     register,
@@ -58,8 +48,9 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync(data).then(() => {
-      mutation.reset();
+    console.log("data", data);
+    mutation.mutateAsync({ subject: name, ...data }).then(() => {
+      // mutation.reset();
     });
     reset();
   };
@@ -74,5 +65,7 @@ export const useAvis = () => {
     onSubmit,
     mutation,
     form,
+    setSelectedFactory,
+    selected,
   };
 };

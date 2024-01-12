@@ -1,9 +1,18 @@
 "use client";
 
+import { AvisFormFieldGenerator } from "@/components";
 import { useAvis } from "./useAvis";
 
 const Home = () => {
-  const { register, onSubmit, errors, mutation, form } = useAvis();
+  const {
+    register,
+    onSubmit,
+    errors,
+    mutation,
+    form,
+    setSelectedFactory,
+    selected,
+  } = useAvis();
   return (
     <div className="container px-5 py-5 ">
       <form
@@ -33,51 +42,13 @@ const Home = () => {
               <p>{form?.desc}</p>
             </div>
 
-            {form?.fields.map((el, i) => {
-              switch (el.fieldType) {
-                case "text":
-                case "email":
-                  return (
-                    <div className="flex flex-col text-xl">
-                      <label>{el.label}</label>
-
-                      <input
-                        className="p-2 text-black rounded-md text-xl my-2"
-                        // @ts-ignore
-                        {...register(el.name)}
-                        type={el.fieldType}
-                        placeholder={el.placeholder}
-                      />
-                      <p className="text-rose-800">
-                        {errors &&
-                          errors.email &&
-                          "Veuillez nous indiquer notre email."}
-                      </p>
-                    </div>
-                  );
-                case "textarea":
-                  return (
-                    <div className="flex flex-col text-xl">
-                      <label>{el.label}</label>
-
-                      <textarea
-                        className="p-2 text-black rounded-md text-xl my-2"
-                        // @ts-ignore
-                        {...register(el.name)}
-                        rows={4}
-                        placeholder={el.placeholder}
-                      />
-                      <p className="text-rose-800">
-                        {errors &&
-                          errors.email &&
-                          "Veuillez nous indiquer notre email."}
-                      </p>
-                    </div>
-                  );
-                default:
-                  return null;
-              }
-            })}
+            <AvisFormFieldGenerator
+              errors={errors}
+              fields={form?.fields}
+              register={register}
+              setSelectedFactory={setSelectedFactory}
+              selected={selected}
+            />
 
             <div className="flex flex-col text-xl my-3">
               <button

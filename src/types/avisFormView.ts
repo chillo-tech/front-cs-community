@@ -6,7 +6,7 @@ export type AvisFormViewType = {
     name: string;
     fieldType: string;
     label: string;
-    placeholder: string;
-    choices: string[];
+    placeholder?: string;
+    choices?: string[];
   }[];
 };

@@ -11,7 +11,7 @@ function SuggestionEdit() {
       <form
         onSubmit={handleSuggestionSubmit}
         className={
-          "text-md flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 px-3 md:px-6 md:text-lg rounded-md text-blue-900"
+          "text-sm flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 px-3 md:px-6 md:text-lg rounded-md text-blue-900"
         }
       >
         {mutation.isError ? (

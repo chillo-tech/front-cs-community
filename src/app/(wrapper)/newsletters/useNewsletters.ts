@@ -1,6 +1,6 @@
 "use client";
 
-import { axios } from "@/utils";
+import { axiosInstance } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ export const useNewsletters = () => {
 
   const mutation = useMutation(newsletters);
   async function newsletters(obj: any) {
-    const res = await axios.post("/newsletters/register", obj);
+    const res = await axiosInstance.post("/newsletters/register", obj);
   }
 
   useEffect(() => {

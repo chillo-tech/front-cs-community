@@ -1,7 +1,9 @@
 const POSITIONS = [
-  "DEVELOPPER",
-  "LEAD DEVELOPPER",
-  "SCRUM MASTER"
-]
+  { label: 'Développeur', value: 'dev' },
+  { label: 'Etudiant', value: 'student' },
+  { label: 'DevOps', value: 'devops' },
+  { label: 'Lead DEV.', value: 'lead dev' },
+  { label: 'Autre', value: 'autre' },
+];
 
-export {POSITIONS};
+export { POSITIONS };

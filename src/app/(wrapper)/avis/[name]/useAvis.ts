@@ -1,17 +1,17 @@
 "use client";
 
-import { AvisFormViewType } from "@/types";
 import { axios } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { ApplicationContext } from "../../ApplicationContext";
 import { avisSchema } from "./avis-schema";
-import { useParams } from "next/navigation";
 import { DEFAULT_FORM } from "./constants";
 
 export const useAvis = () => {
+  const router = useRouter();
   const params = useParams();
   const name = params.name;
   const { setData } = useContext(ApplicationContext);
@@ -19,24 +19,24 @@ export const useAvis = () => {
 
   const setSelectedFactory = (i: number) => () => setSelected(i);
 
-  const [form] = useState<AvisFormViewType | undefined | null>(
-    DEFAULT_FORM.right
-  );
   const mutation = useMutation(giveAvis);
+  const viewQuery = useQuery("view", getView);
 
-  async function giveAvis(obj: any) {
-    axios.post("/avis", obj);
-  }
-
-  useEffect(() => {
+  async function getView() {
+    const res = await axios.get(`/avis/views?name=${name}`);
     setData({
-      leftComponent: DEFAULT_FORM.left,
+      leftComponent: res.data.view.left || DEFAULT_FORM.left,
       metaData: {
         description: "Powered by chillo.tech",
         title: "Avis",
       },
     });
-  }, [setData]);
+    return res.data;
+  }
+
+  async function giveAvis(obj: any) {
+    axios.post("/avis", obj);
+  }
 
   const {
     register,
@@ -64,8 +64,8 @@ export const useAvis = () => {
     errors,
     onSubmit,
     mutation,
-    form,
     setSelectedFactory,
     selected,
+    viewQuery,
   };
 };

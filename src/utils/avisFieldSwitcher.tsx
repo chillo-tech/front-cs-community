@@ -43,7 +43,7 @@ const avisFieldSwitcher = ({
       );
     case "checkbox":
       return (
-        <div className="grid md:grid-cols-3 gap-2 my-2 sm:grid-cols-2">
+        <div className="flex">
           {el.choices?.map((choice, j) => {
             return (
               <CustomCheckbox

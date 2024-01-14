@@ -26,7 +26,7 @@ const CustomCheckbox = (props: {
   return (
     <div
       onClick={handleClick}
-      className={`user-select h-fit px-2 py-1 flex rounded-md cursor-pointer gap-2 items-center border-2 transition-all  ${
+      className={` mx-3 h-fit px-2 py-1 flex rounded-md cursor-pointer gap-2 items-center border-2 transition-all  ${
         isSelected ? " border-blue-500 " : " border-blue-200 "
       } ${isSelected ? " border-blue-800 " : "hover:border-blue-300"}`}
     >

@@ -2,7 +2,7 @@
 
 import {
   AvisFormFieldGenerator,
-  FormSubmitResponder,
+  Message,
   FormWrapper,
   SubmitButton,
 } from "@/components";
@@ -17,6 +17,7 @@ const Home = () => {
     setSelectedFactory,
     selected,
     viewQuery,
+    resetAll,
   } = useAvis();
   return (
     <div className="container px-5 py-5 ">
@@ -26,7 +27,8 @@ const Home = () => {
             " bg-slate-200 py-3 px-3 md:px-10 md:text-lg rounded-md text-blue-900"
           }
         >
-          <FormSubmitResponder
+          <Message
+            reloadForm={resetAll}
             successMessage={`Chargement du formulaire...`}
             errorMessage={`Quelque chose a mal tourne! Il semblerait que ce sujet n'existe pas. Vous pouvez nous contacter en
         cliquant sur le boutton whatsapp en bas a votre gauche.`}
@@ -35,12 +37,11 @@ const Home = () => {
           />
         </div>
       )}
-      {/* {viewQuery.status === "loading" && <p>Loading...</p>}
-      {viewQuery.status === "error" && <p>Error when fetching form data</p>} */}
       {viewQuery.status === "success" && (
         <FormWrapper onSubmit={onSubmit}>
           {mutation.isError || mutation.isSuccess ? (
-            <FormSubmitResponder
+            <Message
+              reloadForm={resetAll}
               successMessage={`Votre requete a bien ete prise en compte, vous serez notifies par
               mail`}
               errorMessage={`Quelque chose a mal tourne, vous pouvez nous contacter en

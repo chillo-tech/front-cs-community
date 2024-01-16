@@ -5,7 +5,7 @@ type DataType = {
   };
   leftComponent: {
     title: string;
-    desc: string;
+    description: string;
   };
 };
 

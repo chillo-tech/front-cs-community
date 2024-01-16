@@ -1,22 +1,19 @@
 "use client";
 import { COUNTRIES_CODES, POSITIONS } from "@/utils";
 import useSuggestion from "./useSuggestion";
-import {
-  AvisFormInputWrapper,
-  FormSubmitResponder,
-  FormWrapper,
-} from "@/components";
+import { AvisFormInputWrapper, Message, FormWrapper } from "@/components";
 import { FormTextInput } from "@/components/FormInput";
 
 function SuggestionEdit() {
-  const { register, handleSuggestionSubmit, errors, mutation } =
+  const { register, handleSuggestionSubmit, errors, mutation, resetAll } =
     useSuggestion();
 
   return (
     <>
       <FormWrapper onSubmit={handleSuggestionSubmit}>
         {mutation.isError || mutation.isSuccess ? (
-          <FormSubmitResponder
+          <Message
+            reloadForm={resetAll}
             successMessage={`Votre requete a bien ete prise en compte, vous serez notifies par
             mail`}
             errorMessage={`Quelque chose a mal tourne, vous pouvez nous contacter en cliquant

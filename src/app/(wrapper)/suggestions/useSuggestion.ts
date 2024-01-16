@@ -18,7 +18,7 @@ function useSuggestion() {
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: `Merci de remplir notre formulaire, votre suggestion sera dans la liste des nos sujets à traiter`,
+        description: `Merci de remplir notre formulaire, votre suggestion sera dans la liste des nos sujets à traiter`,
         title: `Avez vous une idee de video`,
       },
       metaData: {
@@ -37,16 +37,16 @@ function useSuggestion() {
     resolver: yupResolver(suggestionSchema),
   });
 
-  const onSubmitHandler = (data: any) => {
-    mutation
-      .mutateAsync({
-        ...data,
-        author: { ...data.author, tag: [data.author.tag] },
-      })
-      // .then(() => {
-      //   // mutation.reset();
-      // });
+  const resetAll = () => {
     reset();
+    mutation.reset();
+  };
+
+  const onSubmitHandler = (data: any) => {
+    mutation.mutateAsync({
+      ...data,
+      author: { ...data.author, tag: [data.author.tag] },
+    });
   };
 
   const onInvalid = (errors: any) => console.error(errors);
@@ -58,6 +58,7 @@ function useSuggestion() {
     errors,
     handleSuggestionSubmit,
     mutation,
+    resetAll,
   };
 }
 

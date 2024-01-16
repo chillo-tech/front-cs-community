@@ -1,5 +1,5 @@
 export * from "./AvisFormInputWrapper";
-export * from "./custom-check-box/CustomCheckbox";
+export * from "./custom-check-box";
 export * from "./Footer";
 export * from "./Header";
 export * from "./WhatsappButton";

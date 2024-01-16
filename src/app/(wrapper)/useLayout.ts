@@ -11,7 +11,7 @@ const useLayout = () => {
     },
     leftComponent: {
       title: "",
-      desc: "",
+      description: "",
     },
   });
 

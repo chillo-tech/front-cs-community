@@ -9,7 +9,7 @@ const dataInit: DataType = {
   },
   leftComponent: {
     title: "",
-    desc: "",
+    description: "",
   },
 };
 

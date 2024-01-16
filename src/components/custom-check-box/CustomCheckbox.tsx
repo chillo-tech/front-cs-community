@@ -11,7 +11,6 @@ const CustomCheckbox = (props: {
   register: Function;
   name: string;
   id: string;
-  // [p: string]: any;
 }) => {
   const { label, setSelected, selected, index, register, id, value, name } =
     props;

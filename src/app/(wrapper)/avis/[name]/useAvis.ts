@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { ApplicationContext } from "../../ApplicationContext";
 import { avisSchema } from "./avis-schema";
-import { DEFAULT_FORM } from "./constants";
 
 export const useAvis = () => {
   const router = useRouter();
@@ -25,7 +24,10 @@ export const useAvis = () => {
   async function getView() {
     const res = await axios.get(`/avis/views?name=${name}`);
     setData({
-      leftComponent: res.data.view.left || DEFAULT_FORM.left,
+      leftComponent: res.data.view.left || {
+        description: "",
+        title: "",
+      },
       metaData: {
         description: "Powered by chillo.tech",
         title: "Avis",
@@ -48,11 +50,12 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    console.log("data", data);
-    mutation.mutateAsync({ subject: name, ...data }).then(() => {
-      // mutation.reset();
-    });
+    mutation.mutateAsync({ subject: name, ...data });
+  };
+
+  const resetAll = () => {
     reset();
+    mutation.reset();
   };
 
   const onInvalid = (errors: any) => console.error(errors);
@@ -67,5 +70,6 @@ export const useAvis = () => {
     setSelectedFactory,
     selected,
     viewQuery,
+    resetAll,
   };
 };

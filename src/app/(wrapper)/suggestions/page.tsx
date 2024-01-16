@@ -14,10 +14,6 @@ function SuggestionEdit() {
         {mutation.isError || mutation.isSuccess ? (
           <Message
             reloadForm={resetAll}
-            successMessage={`Votre requete a bien ete prise en compte, vous serez notifies par
-            mail`}
-            errorMessage={`Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
-            sur le boutton whatsapp en bas a votre gauche.`}
             isError={mutation.isError}
             isSuccess={mutation.isSuccess}
           />

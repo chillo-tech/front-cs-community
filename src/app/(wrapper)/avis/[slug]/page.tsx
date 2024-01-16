@@ -5,8 +5,11 @@ import {
   Message,
   FormWrapper,
   SubmitButton,
+  AvisFormInputWrapper,
 } from "@/components";
 import { useAvis } from "./useAvis";
+import { avisFieldSwitcher } from "@/utils";
+import { Key } from "react";
 
 const Home = () => {
   const {
@@ -29,9 +32,6 @@ const Home = () => {
         >
           <Message
             reloadForm={resetAll}
-            successMessage={`Chargement du formulaire...`}
-            errorMessage={`Quelque chose a mal tourne! Il semblerait que ce sujet n'existe pas. Vous pouvez nous contacter en
-        cliquant sur le boutton whatsapp en bas a votre gauche.`}
             isError={viewQuery.status === "error"}
             isSuccess={viewQuery.status === "loading"}
           />
@@ -58,13 +58,24 @@ const Home = () => {
                 <p>{viewQuery.data?.view.right?.desc}</p>
               </div>
 
-              <AvisFormFieldGenerator
-                errors={errors}
-                fields={viewQuery.data?.view.right?.fields}
-                register={register}
-                setSelectedFactory={setSelectedFactory}
-                selected={selected}
-              />
+              {viewQuery.data?.view.right?.fields?.map((el: any, i: number) => {
+                return (
+                  <AvisFormInputWrapper
+                    key={i}
+                    errors={errors}
+                    label={el.label}
+                    name={el.name}
+                  >
+                    {avisFieldSwitcher({
+                      i,
+                      setSelectedFactory,
+                      el,
+                      register,
+                      selected,
+                    })}
+                  </AvisFormInputWrapper>
+                );
+              })}
 
               <div className="flex flex-col text-xl my-3">
                 <SubmitButton text="Transmettre" />

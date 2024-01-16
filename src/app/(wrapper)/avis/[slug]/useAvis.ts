@@ -12,7 +12,7 @@ import { avisSchema } from "./avis-schema";
 export const useAvis = () => {
   const router = useRouter();
   const params = useParams();
-  const name = params.name;
+  const slug = params.slug;
   const { setData } = useContext(ApplicationContext);
   const [selected, setSelected] = useState<number | null | undefined>();
 
@@ -22,9 +22,9 @@ export const useAvis = () => {
   const viewQuery = useQuery("view", getView);
 
   async function getView() {
-    const res = await axios.get(`/avis/views?name=${name}`);
+    const response = await axios.get(`/avis/views?slug=${slug}`);
     setData({
-      leftComponent: res.data.view.left || {
+      leftComponent: response.data.view.left || {
         description: "",
         title: "",
       },
@@ -33,11 +33,11 @@ export const useAvis = () => {
         title: "Avis",
       },
     });
-    return res.data;
+    return response.data;
   }
 
-  async function giveAvis(obj: any) {
-    axios.post("/avis", obj);
+  async function giveAvis(data: any) {
+    axios.post("/avis", data);
   }
 
   const {
@@ -50,7 +50,7 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync({ subject: name, ...data });
+    mutation.mutateAsync({ subject: slug, ...data });
   };
 
   const resetAll = () => {

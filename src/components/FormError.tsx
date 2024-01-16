@@ -1,18 +1,23 @@
 import React from "react";
 import { SubmitButton } from ".";
 
+const DEFAULT_ERROR_MESSAGE = `Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
+sur le boutton whatsapp en bas a votre gauche.`;
+const DEFAULT_SUCCESS_MESSAGE = `Votre requete a bien ete prise en compte, vous serez notifies par
+mail`;
+
 const Message = ({
   isError,
-  errorMessage,
+  errorMessage = DEFAULT_ERROR_MESSAGE,
   isSuccess,
-  successMessage,
+  successMessage = DEFAULT_SUCCESS_MESSAGE,
   reloadForm,
   reloadText = "rechargez le formulaire",
 }: {
   isError: boolean;
-  errorMessage: string;
+  errorMessage?: string;
   isSuccess: boolean;
-  successMessage: string;
+  successMessage?: string;
   reloadForm: Function;
   reloadText?: string;
 }) => {

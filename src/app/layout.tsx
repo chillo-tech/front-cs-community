@@ -1,59 +1,31 @@
 "use client";
-import Footer from "@/components/Footer";
-import WhatsappButton from "@/components/WhatsappButton";
-import NavBar from "@/components/navbar";
-import { Inter } from "next/font/google";
-import Head from "next/head";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import type { Metadata } from "next";
 import "./globals.css";
+import { DataType } from "@/types/WrapperContext";
+import { ApplicationContext } from "./(wrapper)/ApplicationContext";
+import useLayout from "./(wrapper)/useLayout";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const HomeContext = createContext<{
-  value?: {
-    metadata: {
-      title: string;
-      description: string;
-    };
-    descriptions: string[];
-  };
-  setValue?: Dispatch<
-    SetStateAction<{
-      metadata: {
-        title: string;
-        description: string;
-      };
-      descriptions: string[];
-    }>
-  >;
-}>({});
+// export const metadata: Metadata = {
+//   title: "Chillo services community",
+//   description: "Echanges avec la communaté de chillo services",
+// };
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [value, setValue] = useState({
-    metadata: {
-      title: "Suggestions",
-      description: "Powered by chillo.tech",
-    },
-    descriptions: [""],
-  });
+  const { data, setData } = useLayout();
+
   return (
     <html lang="en">
-      <HomeContext.Provider value={{ value, setValue }}>
+      <ApplicationContext.Provider value={{ data, setData }}>
         <head>
-          <title>{value.metadata.title}</title>
-          <meta name="description" content={value.metadata.description} />
+          <title>{data.metaData.title}</title>
+          <meta name="description" content={data.metaData.description} />
         </head>
-        <body className={inter.className}>
-          <NavBar />
-          {children}
-          <Footer />
-          <WhatsappButton />
-        </body>
-      </HomeContext.Provider>
+        <body className="bg-slate-200">{children}</body>
+      </ApplicationContext.Provider>
     </html>
   );
 }

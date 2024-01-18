@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 env:
   NODE_VERSION: '14.x'
@@ -56,7 +53,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          tags: ${{env.IMAGE}}
+          tags: ${{env.IMAGE}}:${{env.IMAGE_VERSION}}
           outputs: type=docker,dest=/tmp/${{env.IMAGE}}.tar
       - name: Upload image artifact
         uses: actions/upload-artifact@v3
@@ -74,10 +71,6 @@ jobs:
         with:
           name: ${{env.IMAGE}}
           path: .
-      - name: Check artifact
-        run: |
-          ls -al /tmp
-          ls -al
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
@@ -89,7 +82,7 @@ jobs:
           target: '/tmp/'
 
   load-image:
-    name: Load image
+    name: delete and load image
     runs-on: ubuntu-latest
     needs: copy-image
     steps:
@@ -116,7 +109,14 @@ jobs:
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           script: |
-            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop
-            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f
-            docker rmi ${{env.IMAGE}}.${{env.IMAGE_VERSION}}
+
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml stop || true
+            docker compose -f ${{ env.FOLDER }}/docker-compose.yml rm -f || true
+
+            rm ${{ env.FOLDER }}/.env
+            echo NEXT_PUBLIC_BACKEND_API_TOKEN=${{ secrets.BACKEND_API_TOKEN }} >> ${{ env.FOLDER }}/.env
+            echo NEXT_PUBLIC_BACKEND_API=${{ secrets.BACKEND_API }} >> ${{ env.FOLDER }}/.env
+            echo NEXT_PUBLIC_API_URI=${{ secrets.NEXT_PUBLIC_API_URI }} >> ${{ env.FOLDER }}/.env
+
             sudo docker compose -f ${{ env.FOLDER }}/docker-compose.yml up -d
+            sudo docker rmi $(docker images -f "dangling=true" -q)

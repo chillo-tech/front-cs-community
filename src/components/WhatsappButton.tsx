@@ -4,7 +4,7 @@ const WhatsappButton = () => {
   return (
     <a
       target="_blank"
-      className="flex items-center gap-2 fixed bottom-4 right-3 md:bottom-4 md:right-2 text-white bg-green-500 rounded-3xl py-2 px-4"
+      className="flex items-center gap-2 m-2 bottom-4 right-3 md:bottom-4 md:right-2 text-white bg-green-500 rounded-3xl py-2 px-4 h-fit"
       href="https://wa.me/33761705745"
     >
       <svg

@@ -1,90 +1,90 @@
 "use client";
-import { Toaster } from "react-hot-toast";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { useFn, useHome } from "./lib/hooks";
-import styles from "./page.module.scss";
-
-const queryClient = new QueryClient();
+import { useNewsletters } from "./useNewsletters";
 
 const Home = () => {
-  useHome();
-
+  const { register, onSubmit, errors, mutation } = useNewsletters();
   return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <div className="container min-w-full px-5 py-5 grid grid-cols-1 gap-4 md:grid-cols-2 bg-gradient-to-r to-slate-100 via-purple-50 from-blue-100">
-        <header className="text-blue-900 font-extralight infos bg--900 md:py-10 px-4 flex flex-col">
-          <h2 className="title from-slate-900 font-extrabold text-2xl md:text-4xl">
-            Enregistrez vous à nos newsletters
-          </h2>
-          <p className="mb-3 text-bold md:my-7 text-xl md:text-left">
-            Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
-            au courant de toutes les nouveautes
-          </p>
-        </header>
-        <MainForm />
-      </div>
-    </QueryClientProvider>
+    <div className="container px-5 py-5 ">
+      <form
+        onSubmit={onSubmit}
+        className={
+          "flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900"
+        }
+      >
+        {mutation.isError ? (
+          <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
+            <p className="mb-2 font-black text-2xl text-center mt-2 text-rose-800">
+              Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
+              sur le boutton whatsapp en bas a votre gauche.
+            </p>
+          </div>
+        ) : mutation.isSuccess ? (
+          <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
+            <p className="mb-2 font-black text-2xl text-center mt-2 text-blue-900">
+              Votre requete a bien ete prise en compte, vous serez notifies par
+              mail
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="">
+              <p className="mb-2 font-black text-2xl text-center mt-2">
+                Quelles sont vos attentes pour cette video
+              </p>
+              <p>
+                Nous voulons que cette video vous soit bénéfique. En quelques
+                mots, quelles sont vos attentes pour cette video
+              </p>
+            </div>
+
+            {/* nom */}
+            <div className="flex flex-col text-xl">
+              <label>Votre nom</label>
+
+              <input
+                className="p-2 text-black rounded-md text-xl my-2"
+                {...register("name")}
+                type="text"
+                placeholder="Entrez votre nom"
+              />
+              <p className="text-rose-800">
+                {errors && errors.name && "Veuillez nous indiquer notre nom."}
+              </p>
+            </div>
+
+            {/* email */}
+            <div className="flex flex-col text-xl">
+              <label>Votre email</label>
+              <input
+                className="p-2 text-black rounded-md text-xl my-2"
+                type="email"
+                {...register("email")}
+                placeholder="Entrez votre email"
+              />
+              <p className="text-rose-800">
+                {errors &&
+                  errors.email &&
+                  "Veuillez nous indiquer notre email."}
+              </p>
+            </div>
+
+            <div className="flex flex-col text-xl my-3">
+              <button
+                type="submit"
+                className={
+                  "text-center px-2 flex mx-auto h-fit py-2 mt-1 justify-items-center justify-center items-center bg-blue-600 shadow-sm rounded-lg md:w-full w-fit"
+                }
+              >
+                <span className="font-extralight text-xl text-white ">
+                  Transmettre
+                </span>
+              </button>
+            </div>
+          </>
+        )}
+      </form>
+    </div>
   );
 };
 
 export default Home;
-
-const MainForm = () => {
-  const { onSubmit, errors, register } = useFn();
-  return (
-    <form
-      onSubmit={onSubmit}
-      className={
-        "infos bg-slate-200 py-8 rounded-md px-3 md:px-10 md:text-lg grid gap-4 "
-      }
-    >
-      <div className="text-left mb-3 font-extralight col-span-full">
-        <p className="mb-2 font-extrabold text-blue-900 text-2xl mt-2">
-          Entrez vos informations ici
-        </p>
-        <p>
-          Soyez rassurés, nous nous efforcerons de toujours vous tenir informés<br/>
-          Et à chaques nouveautés biensur...
-        </p>
-      </div>
-
-      {/* nom */}
-      <div className={styles.inputLarge + " " + styles.formControl}>
-        <label>Votre nom</label>
-
-        <input
-          {...register("nom")}
-          type="text"
-          placeholder="Entrez votre nom"
-        />
-        <p className={styles.errorMessage}>
-          {errors?.nom && "Veuillez entrer votre nom"}
-        </p>
-      </div>
-
-      {/* email */}
-      <div className={styles.inputLarge + " " + styles.formControl}>
-        <label>Votre email</label>
-        <input
-          type="email"
-          {...register("email")}
-          placeholder="Entrez votre email"
-        />
-        <p className={styles.errorMessage}>
-          {errors?.email && "Veuillez entrer votre email"}
-        </p>
-      </div>
-
-      <button
-        type="submit"
-        className={
-          styles.submitButton +
-          " text-center flex mx-auto h-fit py-2 mt-1 justify-items-center items-center bg-blue-600 shadow-sm rounded-lg px-4 md:w-full w-fit"
-        }
-      >
-        <span className="font-extralight text-xl text-white ">Transmettre</span>
-      </button>
-    </form>
-  );
-};

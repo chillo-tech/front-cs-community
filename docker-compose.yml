@@ -12,6 +12,10 @@ services:
 
     networks:
       - applications-network
+    environment:
+      - NEXT_PUBLIC_API_URI=${NEXT_PUBLIC_API_URI}
+      - NEXT_PUBLIC_BACKEND_API=${NEXT_PUBLIC_BACKEND_API}
+      - NEXT_PUBLIC_BACKEND_API_TOKEN=${NEXT_PUBLIC_BACKEND_API_TOKEN}
 networks:
   applications-network:
     external: true

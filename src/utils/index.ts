@@ -1,3 +1,6 @@
 export * from "./data";
 export * from "./axios";
-export * from "./avisFieldSwitcher";
+export * from "./getInitials";
+export * from "./getRandomBackground";
+export * from "./truncArray";
+export * from "./ellipsis";

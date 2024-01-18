@@ -1,3 +1,4 @@
+import { AvisAndSuggestionsContainer } from "@/components";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { DataType } from "@/types/WrapperContext";
@@ -17,6 +18,9 @@ const LayoutAside = ({ data }: { data: DataType }) => {
           dangerouslySetInnerHTML={{ __html: data?.leftComponent?.description }}
         />
       </div>
+      
+      <AvisAndSuggestionsContainer />
+
       <div className="hidden md:block">
         <Footer />
       </div>

@@ -18,11 +18,11 @@ const Message = ({
   errorMessage?: string;
   isSuccess: boolean;
   successMessage?: string;
-  reloadForm: Function;
+  reloadForm?: Function;
   reloadText?: string;
 }) => {
   const handleReload = () => {
-    reloadForm();
+    if (reloadForm) reloadForm();
   };
   return (
     <div className="flex flex-col gap-2 font-light infos  py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-slate-100">
@@ -34,11 +34,13 @@ const Message = ({
         <p className="mb-2 font-black text-lg text-center mt-2 flex flex-col gap-2">
           {isError && errorMessage}
           {isSuccess && successMessage}
-          <SubmitButton
-            text={reloadText}
-            type="button"
-            onClick={handleReload}
-          />
+          {reloadForm && (
+            <SubmitButton
+              text={reloadText}
+              type="button"
+              onClick={handleReload}
+            />
+          )}
         </p>
       </div>
     </div>

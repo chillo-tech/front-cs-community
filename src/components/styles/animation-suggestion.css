@@ -1,0 +1,12 @@
+@keyframes floatting {
+  from {
+    right: 0;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+.floating-row {
+  animation: floatting ease infinite;
+}

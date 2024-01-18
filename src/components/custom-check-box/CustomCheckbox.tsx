@@ -1,15 +1,16 @@
 "use client";
 import React, { use, useEffect, useRef, useState } from "react";
 import { useCustomCheckBox } from "./useCustomCHeckBox";
+import { UseFormRegister } from "react-hook-form";
 
-const CustomCheckbox = (props: {
+const CustomCheckbox = <U extends (...args: any[]) => any>(props: {
   selected: number | null | undefined;
   index: number;
   label: string;
   setSelected: () => void;
-  value: string;
-  register: Function;
-  name: string;
+  value: string | number;
+  register: U;
+  name: Parameters<U>[0];
   id: string;
 }) => {
   const { label, setSelected, selected, index, register, id, value, name } =

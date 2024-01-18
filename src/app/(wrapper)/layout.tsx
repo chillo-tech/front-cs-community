@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { ApplicationContext } from "./ApplicationContext";
 import ApplicationProvider from "./ApplicationProvider";
 import LayoutAside from "./LayoutAside";
+import { AvisAndSuggestionsContainer } from "@/components";
 
 export default function WrapperLayout({
   children,
@@ -15,7 +16,7 @@ export default function WrapperLayout({
     <ApplicationProvider>
       <section className="md:grid md:grid-cols-5 min-h-screen justify-between">
         <LayoutAside data={data} />
-        <section className="md:col-span-3 relative bg-[#1e3b8a] flex flex-col items-center justify-center">
+        <section className="md:col-span-3 relative bg-[#1e3b8a] flex flex-col items-center">
           {children}
           <div className="md:hidden">
             <Footer color="white" />

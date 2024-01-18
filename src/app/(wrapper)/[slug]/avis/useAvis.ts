@@ -23,8 +23,10 @@ export const useAvis = () => {
 
   async function getView() {
     const response = await axios.get(`/avis/views?slug=${slug}`);
+
+    console.log("response.data", response.data);
     setData({
-      leftComponent: response.data.view.left || {
+      leftComponent: response.data.view || {
         description: "",
         title: "",
       },
@@ -37,7 +39,7 @@ export const useAvis = () => {
   }
 
   async function giveAvis(data: any) {
-    axios.post("/avis", data);
+    await axios.post("/avis", data);
   }
 
   const {
@@ -62,6 +64,7 @@ export const useAvis = () => {
 
   const onSubmit = handleSubmit(onSubmitHandler, onInvalid);
 
+  const reloadPage = router.refresh;
   return {
     register,
     errors,
@@ -71,5 +74,6 @@ export const useAvis = () => {
     selected,
     viewQuery,
     resetAll,
+    reloadPage,
   };
 };

@@ -4,3 +4,4 @@ export * from "./getInitials";
 export * from "./getRandomBackground";
 export * from "./truncArray";
 export * from "./ellipsis";
+export * from "./axios";

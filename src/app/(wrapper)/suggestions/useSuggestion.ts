@@ -1,17 +1,17 @@
-import  axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { suggestionSchema } from "./suggestion-schema";
 import { ApplicationContext } from "../ApplicationContext";
+import { axiosInstance } from "@/utils";
 
 function useSuggestion() {
   const { setData } = useContext(ApplicationContext);
   const mutation = useMutation(postSuggestion);
 
   async function postSuggestion(obj: any) {
-    await axios.post("/api/backend/suggestions", obj);
+    await axiosInstance.post("/api/backend/suggestions", obj);
   }
 
   useEffect(() => {

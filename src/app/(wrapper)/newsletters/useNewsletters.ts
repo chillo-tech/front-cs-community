@@ -13,7 +13,7 @@ export const useNewsletters = () => {
 
   const mutation = useMutation(newsletters);
   async function newsletters(obj: any) {
-    const res = await axiosInstance.post("/newsletters/register", obj);
+    const res = await axiosInstance.post("/api/backend/newsletters/register", obj);
   }
 
   useEffect(() => {

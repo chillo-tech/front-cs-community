@@ -14,7 +14,7 @@ async function handler(
       const {data} = await axiosInstance.post(`${backendUrl}`, req.body);
       return res.status(200).json(data);
     } else if (req.method === 'PUT') {
-      const {data} = await axiosInstance.post(`${backendUrl}`, req.body);
+      const {data} = await axiosInstance.put(`${backendUrl}`, req.body);
       return res.status(200).json(data);
     } else if (req.method === 'PATCH') {
       const {data} = await axiosInstance.patch(`${backendUrl}`, req.body);

@@ -19,7 +19,7 @@ export const useNewsletters = () => {
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: `Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
+        description: `Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
         au courant de toutes les nouveautes`,
         title: `Enregistrez vous à nos newsletters`,
       },
@@ -39,11 +39,13 @@ export const useNewsletters = () => {
     resolver: yupResolver(newslettersSchema),
   });
 
-  const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync(data).then(() => {
-      mutation.reset();
-    });
+  const resetAll = () => {
     reset();
+    mutation.reset();
+  };
+
+  const onSubmitHandler = (data: any) => {
+    mutation.mutateAsync(data);
   };
 
   const onInvalid = (errors: any) => console.error(errors);
@@ -55,5 +57,6 @@ export const useNewsletters = () => {
     errors,
     onSubmit,
     mutation,
+    resetAll,
   };
 };

@@ -9,7 +9,7 @@ export const useSetMetadata = () => {
   useEffect(() => {
     setData({
       leftComponent: {
-        desc: ``,
+        description: ``,
         title: ``,
       },
       metaData: {

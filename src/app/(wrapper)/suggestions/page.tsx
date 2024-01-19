@@ -63,9 +63,9 @@ function SuggestionEdit() {
               <option value="text-black">
                 Selectionnez ce qui vous represente le plus
               </option>
-              {POSITIONS.map((tag, idx) => (
-                <option key={tag.value + idx} value={tag.value}>
-                  {tag.label}
+              {POSITIONS.map(({ value, label }, idx) => (
+                <option key={`${value}${idx}`} value={value}>
+                  {label}
                 </option>
               ))}
             </select>

@@ -14,9 +14,9 @@ export default function WrapperLayout({
   const { data, setData } = useContext(ApplicationContext);
   return (
     <ApplicationProvider>
-      <section className="md:grid md:grid-cols-5 min-h-screen justify-between">
+      <section className="md:grid md:grid-cols-5 min-h-screen justify-between relative">
         <LayoutAside data={data} />
-        <section className="md:col-span-3 relative bg-[#1e3b8a] flex flex-col items-center">
+        <section className="md:col-span-3 bg-[#1e3b8a] flex flex-col justify-center items-center relative ">
           {children}
           <div className="md:hidden">
             <Footer color="white" />

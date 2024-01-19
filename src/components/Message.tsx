@@ -12,7 +12,7 @@ const Message = ({
   isSuccess,
   successMessage = DEFAULT_SUCCESS_MESSAGE,
   reloadForm,
-  reloadText = "rechargez le formulaire",
+  reloadText = "Recharger le formulaire",
 }: {
   isError: boolean;
   errorMessage?: string;

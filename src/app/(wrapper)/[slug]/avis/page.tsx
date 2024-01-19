@@ -40,7 +40,7 @@ const Home = () => {
               isError={true}
               isSuccess={false}
               reloadForm={reloadPage}
-              reloadText="recharger la page"
+              reloadText="Recharger la page"
             />
           )}
         </div>

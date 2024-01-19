@@ -1,10 +1,11 @@
 "use client";
 import { axiosInstance } from "@/utils";
+import axios from "axios";
 import { useQuery } from "react-query";
 
 const useAvisAndSuggestionsContainer = () => {
   const getAvisAndSuggestions = async () => {
-    const response = await axiosInstance.get(
+    const response = await axios.get(
       "/api/backend/frontend-data-views/avis-suggestions"
     );
     return {
@@ -16,8 +17,6 @@ const useAvisAndSuggestionsContainer = () => {
     "avisSuggestionView",
     getAvisAndSuggestions
   );
-
-  console.log("data", avis_suggestionQuery.data);
 
   return {
     avis_suggestionQuery,

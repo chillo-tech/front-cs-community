@@ -11,8 +11,6 @@ const truncArray: (tab: any[], childrenCount: number) => any[][] = (
   }
   const res: any[][] = Array(childrenCount);
   for (let i = 0; i < parentLength; i++) {
-    console.log("i", i);
-    console.log("modulo", i % childrenCount);
     if (!res[i % childrenCount]) res[i % childrenCount] = [];
     res[i % childrenCount].push(tab[i]);
   }

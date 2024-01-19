@@ -9,14 +9,14 @@ const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
   }, [suggestions]);
 
   return (
-    <div className={`grid gap-3 `}>
+    <div className={`grid gap-3 floating-row`}>
       {truncedArray.map((subArray, idx) => {
         return (
           <div
             key={idx}
             className={`flex gap-4 items-center relative pl-${
               idx % 2 === 0 ? 0 : 6
-            } floating-row`}
+            } `}
           >
             {subArray.map((el, j) => {
               return (

@@ -11,6 +11,6 @@
 .floating-row {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-name: ticker;
-  animation-duration: 400s;
+  animation-name: floatting;
+  animation-duration: 100s;
 }

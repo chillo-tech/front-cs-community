@@ -1,13 +1,13 @@
 "use client";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { ApplicationContext } from "../../ApplicationContext";
 import { avisSchema } from "./avis-schema";
-import { axiosInstance } from "@/utils";
 
 export const useAvis = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ export const useAvis = () => {
   const viewQuery = useQuery("view", getView);
 
   async function getView() {
-    const response = await axiosInstance.get(`/api/backend/avis/views?slug=${slug}`);
+    const response = await axios.get(`/api/backend/avis/views?slug=${slug}`);
 
     setData({
       leftComponent: response.data.view || {
@@ -38,7 +38,7 @@ export const useAvis = () => {
   }
 
   async function giveAvis(data: any) {
-    await axiosInstance.post("/api/backend/avis", data);
+    await axios.post("/api/backend/avis", data);
   }
 
   const {

@@ -18,10 +18,9 @@ const LayoutAside = ({ data }: { data: DataType }) => {
           dangerouslySetInnerHTML={{ __html: data?.leftComponent?.description }}
         />
       </div>
-      
-      <AvisAndSuggestionsContainer />
 
       <div className="hidden md:block">
+        <AvisAndSuggestionsContainer />
         <Footer />
       </div>
     </aside>

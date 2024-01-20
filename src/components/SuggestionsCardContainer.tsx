@@ -30,10 +30,6 @@ const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
                     Array.isArray(el.suggestion_contact) &&
                     el.suggestion_contact[0]?.contact_id?.lastName
                   }`}
-                  text={
-                    Array.isArray(el.suggestion_contact) &&
-                    el.suggestion_contact[0]?.contact_id?.tags
-                  }
                 />
               );
             })}

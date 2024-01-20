@@ -11,7 +11,7 @@ function SuggestionEdit() {
   return (
     <form
       className={
-        "flex flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900 "
+        "flex flex-col gap-2 font-light mx-8 infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900 "
       }
       onSubmit={handleSuggestionSubmit}
     >
@@ -57,7 +57,7 @@ function SuggestionEdit() {
             name="tag"
           >
             <select
-              className="p-2 text-black rounded-md"
+              className="px-2 text-black rounded-md max-w-[90vw] h-[36px] md:max-w-full"
               {...register("author.tag")}
             >
               <option value="text-black">
@@ -95,10 +95,10 @@ function SuggestionEdit() {
 
           {/* index telephonique */}
           <div className="flex flex-col">
-            <label>Numéro de téléphone</label>
-            <div className="flex items-center justify-center gap-2">
+            <label>Numéro de téléphone (Ce champ est optionnel)</label>
+            <div className="flex md:items-center justify-center gap-2 flex-col md:flex-row">
               <select
-                className="px-2 py-1 text-black rounded-md w-1/3"
+                className="px-2 py-1 text-black rounded-md h-[36px] md:w-1/3 max-w-[90vw] md:max-w-full"
                 {...register("author.phoneIndex")}
               >
                 <option value="">Votre pays</option>
@@ -112,14 +112,26 @@ function SuggestionEdit() {
                   </option>
                 ))}
               </select>
+              <p className="md:hidden text-rose-800 text-sm">
+                {errors &&
+                  errors.author &&
+                  errors.author.phoneIndex &&
+                  "Veuillez nous indiquer votre pays."}
+              </p>
               <input
-                className="px-2 py-1 text-black rounded-md w-2/3"
+                className="px-2 py-1 text-black rounded-md md:w-2/3"
                 {...register("author.phone")}
                 type="number"
                 placeholder="Entrez votre numero"
               />
+              <p className="md:hidden text-rose-800 text-sm">
+                {errors &&
+                  errors.author &&
+                  errors.author.phone &&
+                  "Veuillez nous indiquer votre téléphone."}
+              </p>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="hidden md:flex md:items-center justify-center gap-2 ">
               <p className="text-rose-800 text-sm w-1/3">
                 {errors &&
                   errors.author &&

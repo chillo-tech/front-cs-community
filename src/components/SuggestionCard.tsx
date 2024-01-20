@@ -1,15 +1,7 @@
 import { wordEllipsis, getInitials, getRandomHexColor } from "@/utils";
 import React from "react";
 
-const SuggestionCard = ({
-  name,
-  title,
-  text,
-}: {
-  name: string;
-  title: string;
-  text: string;
-}) => {
+const SuggestionCard = ({ name, title }: { name: string; title: string }) => {
   return (
     <div className="flex gap-3">
       <div
@@ -21,7 +13,6 @@ const SuggestionCard = ({
         <p>{title}</p>
         <p>
           <span className="font-bold">{wordEllipsis(name, 2)}</span>{" "}
-          <span>{text}</span>
         </p>
       </div>
     </div>

@@ -18,7 +18,9 @@ export default function WrapperLayout({
         <LayoutAside data={data} />
         <section className="md:col-span-3 bg-[#1e3b8a] flex flex-col justify-center items-center relative ">
           {children}
-          <div className="md:hidden">
+          <div className="md:hidden pt-5">
+            <AvisAndSuggestionsContainer />
+
             <Footer color="white" />
           </div>
         </section>

@@ -6,7 +6,7 @@ const AvisAndSuggestionsContainer = () => {
   const { avis_suggestionQuery } = useAvisAndSuggestionsContainer();
 
   return avis_suggestionQuery.data ? (
-    <div className="grid gap-10">
+    <div className="flex flex-col gap-10 max-w-[100vw]">
       <SuggestionsCardContainer
         suggestions={avis_suggestionQuery.data.suggestions}
       />

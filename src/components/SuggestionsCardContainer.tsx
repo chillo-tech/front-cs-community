@@ -5,7 +5,7 @@ import "./styles/animation-suggestion.css";
 
 const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
   const truncedArray = useMemo(() => {
-    return truncArray(suggestions, 3);
+    return truncArray(suggestions, 2);
   }, [suggestions]);
 
   return (
@@ -14,8 +14,8 @@ const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
         return (
           <div
             key={idx}
-            className={`flex gap-4 items-center relative pl-${
-              idx % 2 === 0 ? 0 : 6
+            className={`flex gap-4 items-center relative ${
+              idx % 2 === 0 ? "" : "pl-big"
             } `}
           >
             {subArray.map((el, j) => {
@@ -25,7 +25,8 @@ const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
                   title={el.titre}
                   name={`${
                     Array.isArray(el.suggestion_contact) &&
-                    el.suggestion_contact[0]?.contact_id?.firstName
+                    el.suggestion_contact[0]?.contact_id?.firstName &&
+                    el.suggestion_contact[0]?.contact_id?.firstName.toUpperCase()
                   } ${
                     Array.isArray(el.suggestion_contact) &&
                     el.suggestion_contact[0]?.contact_id?.lastName

@@ -11,14 +11,14 @@ const wordEllipsis = (text: string, wordsCountLimit: number) => {
   return res.join(" ").trim();
 };
 
-const textEllipsis = (text: string, lettersCount: number) => {
+const textEllipsis = (text: string, lettersCount: number, endText?: string) => {
   if (!text) {
     return "";
   }
   if (text.length < lettersCount) {
     return text;
   }
-  return text.slice(0, lettersCount);
+  return text.slice(0, lettersCount) + (endText || "");
 };
 
 export { wordEllipsis, textEllipsis };

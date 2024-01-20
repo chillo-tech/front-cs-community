@@ -42,6 +42,9 @@ function useSuggestion() {
   };
 
   const onSubmitHandler = (data: any) => {
+    if (mutation.isLoading) {
+      return;
+    }
     mutation.mutateAsync({
       ...data,
       author: { ...data.author, tag: [data.author.tag] },

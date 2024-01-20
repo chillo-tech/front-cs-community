@@ -14,3 +14,7 @@
   animation-name: floatting;
   animation-duration: 100s;
 }
+
+.pl-big {
+  padding-left: 60px;
+}

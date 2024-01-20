@@ -5,7 +5,7 @@ import { useMemo } from "react";
 const AvisCardContainer = ({ avisArray }: { avisArray: any[] }) => {
   const truncedArray = useMemo(() => truncArray(avisArray, 2), [avisArray]);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center w-fit mx-auto px-4 sm:px-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center  w-fit mx-auto px-4 sm:px-2">
       {truncedArray.map((subArray, idx) => {
         return (
           <div key={idx} className="grid gap-3 ">

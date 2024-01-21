@@ -21,4 +21,23 @@ const textEllipsis = (text: string, lettersCount: number, endText?: string) => {
   return text.slice(0, lettersCount) + (endText || "");
 };
 
-export { wordEllipsis, textEllipsis };
+const capitalizeWord = (str: string) => {
+  if (str === "") {
+    return str;
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+const capitalizeSentence = (sentence: string) => {
+  if (sentence === "") {
+    return sentence;
+  }
+
+  const words = sentence.split(" ");
+  const capitalizedWords = words.map((word) => capitalizeWord(word));
+  const result = capitalizedWords.join(" ");
+
+  return result;
+};
+
+export { wordEllipsis, textEllipsis, capitalizeSentence, capitalizeWord };

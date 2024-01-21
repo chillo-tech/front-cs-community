@@ -1,16 +1,20 @@
-import React, { useMemo } from "react";
-import { SuggestionCard } from ".";
 import { truncArray } from "@/utils";
-import "./styles/animation-suggestion.css";
+import { useMemo } from "react";
+import { useSuggestions } from ".";
+import { SuggestionCard } from "..";
+import "../styles/animation-suggestion.css";
 
-const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
+const SuggestionsCardContainer = () => {
+  const { suggestionQuery } = useSuggestions();
   const truncedArray = useMemo(() => {
-    return truncArray(suggestions, 2);
-  }, [suggestions]);
+    if (!suggestionQuery.data) return undefined;
+    return truncArray(suggestionQuery.data.suggestions, 2);
+  }, [suggestionQuery.data]);
+  console.log("truncedArray", truncedArray);
 
   return (
     <div className={`grid gap-3 floating-row`}>
-      {truncedArray.map((subArray, idx) => {
+      {truncedArray?.map((subArray, idx) => {
         return (
           <div
             key={idx}
@@ -31,6 +35,7 @@ const SuggestionsCardContainer = ({ suggestions }: { suggestions: any[] }) => {
                     Array.isArray(el.suggestion_contact) &&
                     el.suggestion_contact[0]?.contact_id?.lastName
                   }`}
+                  tags={el.suggestion_contact[0]?.contact_id?.position}
                 />
               );
             })}

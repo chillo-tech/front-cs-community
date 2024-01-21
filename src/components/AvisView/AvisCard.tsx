@@ -1,6 +1,11 @@
-import { getInitials, getRandomHexColor, textEllipsis } from "@/utils";
+import {
+  capitalizeSentence,
+  getInitials,
+  getRandomHexColor,
+  textEllipsis,
+} from "@/utils";
 import React from "react";
-import "./styles/colors.css";
+import "../styles/colors.css";
 const AvisCard = ({
   name,
   description,
@@ -19,7 +24,7 @@ const AvisCard = ({
           {getInitials(name)}
         </div>
         <div>
-          <span className="text-bold">{name}</span>
+          <span className="text-bold">{capitalizeSentence(name)}</span>
           <div className="flex gap-1">
             {Array(note)
               .fill(0)
@@ -40,7 +45,9 @@ const AvisCard = ({
         </div>
       </div>
 
-      <div dangerouslySetInnerHTML={{ __html: textEllipsis(description, 100) }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: textEllipsis(description, 100) }}
+      />
     </div>
   );
 };

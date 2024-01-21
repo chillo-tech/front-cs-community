@@ -1,4 +1,4 @@
-import { AvisAndSuggestionsContainer } from "@/components";
+import { AvisCardContainer, SuggestionsCardContainer } from "@/components";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { DataType } from "@/types/WrapperContext";
@@ -13,7 +13,8 @@ const LayoutAside = ({ data }: { data: DataType }) => {
 
       <div className="hidden md:flex flex-col justify-between md:h-full">
         <Header data={data} />
-        <AvisAndSuggestionsContainer />
+        <SuggestionsCardContainer />
+        <AvisCardContainer />
         <Footer />
       </div>
     </aside>

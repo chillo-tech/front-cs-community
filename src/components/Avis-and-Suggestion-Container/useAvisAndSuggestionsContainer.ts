@@ -17,7 +17,6 @@ const useAvisAndSuggestionsContainer = () => {
     getAvisAndSuggestions
   );
 
-  console.log("avis_suggestionQuery", avis_suggestionQuery.data);
 
   return {
     avis_suggestionQuery,

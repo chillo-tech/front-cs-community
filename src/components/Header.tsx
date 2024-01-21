@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { DataType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function Header() {
+function Header({ data }: { data: DataType }) {
   return (
     <header className="pt-4 px-1">
       <Link href="/suggestions">
@@ -26,6 +27,16 @@ function Header() {
           </span>
         </>
       </Link>
+      <div className="mt-1 text-blue-900 font-extralight infos bg--900 md:py-7 px-2 flex flex-col grow">
+        <h2
+          className="title from-slate-900 font-extrabold text-3xl md:text-3xl"
+          dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title }}
+        />
+        <p
+          className="mb-2 text-bold md:my-5 text-l md:text-left"
+          dangerouslySetInnerHTML={{ __html: data?.leftComponent?.description }}
+        />
+      </div>
     </header>
   );
 }

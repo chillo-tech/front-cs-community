@@ -7,7 +7,7 @@ const Analytics = ({ ga_id }: { ga_id: string }) => (
       src={`https://www.googletagmanager.com/gtag/js?id=${ga_id}`}
     ></Script>
     <Script
-      id="google-analytics"
+      id={`google-analytics-${(Math.random() * 10000).toFixed(2)}`}
       dangerouslySetInnerHTML={{
         __html: `
           window.dataLayer = window.dataLayer || [];

@@ -19,22 +19,28 @@ export const useAvis = () => {
   const setSelectedFactory = (i: number) => () => setSelected(i);
 
   const mutation = useMutation(giveAvis);
-  const viewQuery = useQuery("view", getView);
+  const viewQuery = useQuery("formation", getFormation);
 
-  async function getView() {
-    const response = await axios.get(`/api/backend/avis/views?slug=${slug}`);
-
-    setData({
-      leftComponent: response.data.view || {
-        description: "",
-        title: "",
-      },
-      metaData: {
-        description: "Powered by chillo.tech",
-        title: "Avis",
-      },
-    });
-    return response.data;
+  async function getFormation() {
+    const response = await axios.get(
+      `/api/backend/avis/formation?slug=${slug}`
+    );
+    console.log("data", response.data.formation);
+    if (response.data.formation[0].titre)
+      setData({
+        leftComponent: {
+          description:
+            response.data.formation[0]?.apres ||
+            response.data.formation[0]?.description ||
+            "",
+          title: response.data.formation[0]?.titre || "",
+        },
+        metaData: {
+          description: "Powered by chillo.tech",
+          title: "Avis",
+        },
+      });
+    return response.data.formation;
   }
 
   async function giveAvis(data: any) {
@@ -51,10 +57,20 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    mutation.mutateAsync({ subject: slug, ...data });
+    console.log("data", data);
+    mutation.mutateAsync({
+      slug,
+      session_id:
+        (Array.isArray(viewQuery.data[0]?.sessions) &&
+          viewQuery.data[0].sessions?.at(-1)?.Session_id) ||
+        0,
+      ...data,
+      note: parseInt(data.note),
+    });
   };
 
   const resetAll = () => {
+    setSelected(undefined);
     reset();
     mutation.reset();
   };
@@ -63,7 +79,10 @@ export const useAvis = () => {
 
   const onSubmit = handleSubmit(onSubmitHandler, onInvalid);
 
-  const reloadPage = router.refresh;
+  const reloadPage = () => {
+    setSelected(undefined);
+    router.refresh();
+  };
   return {
     register,
     errors,

@@ -8,9 +8,8 @@ const SuggestionsCardContainer = () => {
   const { suggestionQuery } = useSuggestions();
   const truncedArray = useMemo(() => {
     if (!suggestionQuery.data) return undefined;
-    return truncArray(suggestionQuery.data.suggestions, 2);
+    return truncArray(suggestionQuery.data.suggestions, 1);
   }, [suggestionQuery.data]);
-  console.log("truncedArray", truncedArray);
 
   return (
     <div className={`grid gap-3 floating-row`}>
@@ -18,7 +17,7 @@ const SuggestionsCardContainer = () => {
         return (
           <div
             key={idx}
-            className={`flex gap-4 items-center relative ${
+            className={`flex gap-1 items-center relative ${
               idx % 2 === 0 ? "" : "pl-big"
             } `}
           >
@@ -35,7 +34,7 @@ const SuggestionsCardContainer = () => {
                     Array.isArray(el.suggestion_contact) &&
                     el.suggestion_contact[0]?.contact_id?.lastName
                   }`}
-                  tags={el.suggestion_contact[0]?.contact_id?.position}
+                  position={el.suggestion_contact[0]?.contact_id?.position}
                 />
               );
             })}

@@ -5,8 +5,8 @@ const suggestionSchema = yup.object().shape({
   author: yup.object({
     name: yup.string().required(),
     email: yup.string().email().required(),
-    phoneIndex: yup.number().min(1).max(9999).optional(),
-    phone: yup.number().min(1).optional(),
+    phoneIndex: yup.string().transform(transformToNull).nullable().optional(),
+    phone: yup.string().transform(transformToNull).nullable().optional(),
     tag: yup.string().oneOf(POSITIONS_VALUES).required(),
   }),
   description: yup.string().required(),
@@ -14,3 +14,10 @@ const suggestionSchema = yup.object().shape({
 });
 
 export { suggestionSchema };
+
+function transformToNull(value: any, originalValue: any) {
+  if (!value) {
+    return null;
+  }
+  return originalValue;
+}

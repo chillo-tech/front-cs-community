@@ -29,5 +29,12 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    "bg-green-900",
+    "bg-blue-700",
+    "bg-sky-400",
+    "bg-yellow-400",
+    "bg-red-400",
+  ],
 };
 export default config;

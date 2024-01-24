@@ -8,3 +8,4 @@ export * from "./custom-check-box";
 export * from "./SuggestionsView/SuggestionCard";
 export * from "./SuggestionsView/SuggestionsCardContainer";
 export * from "./AvisView";
+export * from "./Analytics";

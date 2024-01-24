@@ -8,9 +8,8 @@ const SuggestionsCardContainer = () => {
   const { suggestionQuery } = useSuggestions();
   const truncedArray = useMemo(() => {
     if (!suggestionQuery.data) return undefined;
-    return truncArray(suggestionQuery.data.suggestions, 2);
+    return truncArray(suggestionQuery.data.suggestions, 1);
   }, [suggestionQuery.data]);
-  console.log("truncedArray", truncedArray);
 
   return (
     <div className={`grid gap-3 floating-row`}>

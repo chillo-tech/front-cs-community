@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 const useSuggestions = () => {
   const getSuggestions = async () => {
     const response = await axios.get(
-      "/api/backend/frontend-data-views/suggestions"
+      "/api/backend/backoffice/suggestions"
     );
     return {
       suggestions: response.data.suggestions,

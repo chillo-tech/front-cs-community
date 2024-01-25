@@ -19,9 +19,8 @@ export const useNewsletters = () => {
   useEffect(() => {
     setData({
       leftComponent: {
-        description: `Sentez vous libre de remplir ce formulaire, et nous vous tiendrons
-        au courant de toutes les nouveautes`,
-        title: `Enregistrez vous à nos newsletters`,
+        description: `Rejoignez plus de 10 000 apprenants et professionnels passionnés du code.  les ingénieurs font confiance à nos contenus !`,
+        title: `Inscrivez vous à notre newsletter`,
       },
       metaData: {
         description: "Powered by chillo.tech",

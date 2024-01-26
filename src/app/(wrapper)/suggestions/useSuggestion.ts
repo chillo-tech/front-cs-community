@@ -17,8 +17,8 @@ function useSuggestion() {
   useEffect(() => {
     setData({
       leftComponent: {
-        description: `Merci de remplir notre formulaire, votre suggestion sera dans la liste des nos sujets à traiter`,
-        title: `Avez vous une idee de video`,
+        description: `Merci de remplir notre formulaire, votre suggestion sera dans la liste de nos sujets à traiter`,
+        title: `Avez vous une idée de vidéo`,
       },
       metaData: {
         description: "Powered by chillo.tech",

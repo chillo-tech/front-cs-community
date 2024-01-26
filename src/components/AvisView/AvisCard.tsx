@@ -16,7 +16,7 @@ const AvisCard = ({
   description: string;
 }) => {
   return (
-    <div className="p-2 m-1 bg-[#ebedfc] rounded-md h-full">
+    <div className="p-2 m-1 bg-white rounded-md h-full">
       <div className="flex gap-3 items-center ">
         <div
           className={`rounded-full h-[45px] text-xl font-bold w-[45px] flex items-center justify-center gap-2  ${getRandomHexColor()}`}
@@ -45,9 +45,7 @@ const AvisCard = ({
         </div>
       </div>
 
-      <div
-        dangerouslySetInnerHTML={{ __html: textEllipsis(description, 100) }}
-      />
+      <div dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   );
 };

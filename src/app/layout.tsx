@@ -1,6 +1,7 @@
 "use client";
 import { ApplicationContext } from "./(wrapper)/ApplicationContext";
 import useLayout from "./(wrapper)/useLayout";
+import ApplicationProvider from "./ApplicationProvider";
 import "./globals.css";
 
 export default function RootLayout({
@@ -12,13 +13,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <ApplicationContext.Provider value={{ data, setData }}>
-        <head>
-          <title>{data.metaData.title}</title>
-          <meta name="description" content={data.metaData.description} />
-        </head>
-        <body className="bg-slate-200">{children}</body>
-      </ApplicationContext.Provider>
+      <ApplicationProvider>
+        <ApplicationContext.Provider value={{ data, setData }}>
+          <head>
+            <title>{data.metaData.title}</title>
+            <meta name="description" content={data.metaData.description} />
+          </head>
+          <body className="bg-slate-200">{children}</body>
+        </ApplicationContext.Provider>
+      </ApplicationProvider>
     </html>
   );
 }

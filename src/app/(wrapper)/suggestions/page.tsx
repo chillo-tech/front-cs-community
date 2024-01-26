@@ -32,7 +32,7 @@ function SuggestionEdit() {
             ) : null}
             <div className="">
               <p className="mb-2 font-black text-2xl mt-2">
-                Quelles sont vos attentes pour cette video
+                Quelles sont vos attentes pour cette vidéo
               </p>
             </div>
 
@@ -60,7 +60,7 @@ function SuggestionEdit() {
             {/* tag */}
             <AvisFormInputWrapper
               errors={errors && errors.author}
-              label="Vous etes..."
+              label="Vous êtes..."
               name="tag"
             >
               <select

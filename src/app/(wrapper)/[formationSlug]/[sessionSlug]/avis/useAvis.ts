@@ -6,13 +6,15 @@ import { useParams, useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { ApplicationContext } from "../../ApplicationContext";
 import { avisSchema } from "./avis-schema";
+import { ApplicationContext } from "@/app/(wrapper)/ApplicationContext";
 
 export const useAvis = () => {
   const router = useRouter();
   const params = useParams();
-  const slug = params?.slug;
+  const formationSlug = params?.formationSlug;
+  const sessionSlug = params?.sessionSlug;
+  const [session_id, setSession_id] = useState<number | null | undefined>();
   const { setData } = useContext(ApplicationContext);
   const [selected, setSelected] = useState<number | null | undefined>();
 
@@ -23,9 +25,8 @@ export const useAvis = () => {
 
   async function getFormation() {
     const response = await axios.get(
-      `/api/backend/avis/formation?slug=${slug}`
+      `/api/backend/avis/formation?formationSlug=${formationSlug}&sessionSlug=${sessionSlug}`
     );
-    console.log("data", response.data.formation);
     if (response.data.formation[0].titre)
       setData({
         leftComponent: {
@@ -40,6 +41,7 @@ export const useAvis = () => {
           title: "Avis",
         },
       });
+    setSession_id((prev) => response.data.session.id);
     return response.data.formation;
   }
 
@@ -57,13 +59,9 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    console.log("data", data);
     mutation.mutateAsync({
-      slug,
-      session_id:
-        (Array.isArray(viewQuery.data[0]?.sessions) &&
-          viewQuery.data[0].sessions?.at(-1)?.Session_id) ||
-        0,
+      slug: formationSlug,
+      session_id: session_id || 0,
       ...data,
       note: parseInt(data.note),
     });

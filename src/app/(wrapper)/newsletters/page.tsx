@@ -28,11 +28,8 @@ const Home = () => {
                 </div>
               ) : null}
               <div className="">
-                <p className="mb-2 font-black text-2xl text-center mt-2">
+                <p className="mb-2 mt-2 font-black text-2xl">
                   Inscrivez vous à notre newsletter
-                </p>
-                <p>
-                  Rejoignez plus de 10 000 apprenants et professionnels passionnés du code. les ingénieurs font confiance à nos contenus !                </p>
                 </p>
               </div>
 

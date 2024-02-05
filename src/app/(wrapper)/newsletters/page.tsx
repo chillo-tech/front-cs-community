@@ -29,11 +29,10 @@ const Home = () => {
               ) : null}
               <div className="">
                 <p className="mb-2 font-black text-2xl text-center mt-2">
-                  Quelles sont vos attentes pour cette video
+                  Inscrivez vous à notre newsletter
                 </p>
                 <p>
-                  Nous voulons que cette video vous soit bénéfique. En quelques
-                  mots, quelles sont vos attentes pour cette video
+                  Rejoignez plus de 10 000 apprenants et professionnels passionnés du code. les ingénieurs font confiance à nos contenus !                </p>
                 </p>
               </div>
 

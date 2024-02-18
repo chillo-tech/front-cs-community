@@ -26,7 +26,7 @@ const CustomNotFound = () => {
           <main>
             <section className="container mx-auto py-32 md:my-auto  flex flex-col justify-center">
               <div className="bg-white p-5 rounded-xl text-blue-800 text-lg w-3/4 mx-auto">
-                <p className="text-center my-5">
+                <p className="text-center my-5 text-rose-800">
                   Désolé, La page que vous recherchez n&apos;existe pas
                 </p>
                 <p className="text-center my-5">

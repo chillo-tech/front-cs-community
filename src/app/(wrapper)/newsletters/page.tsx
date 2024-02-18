@@ -44,7 +44,7 @@ const Home = () => {
                   placeholder="Entrez votre nom"
                 />
                 <p className="text-rose-800">
-                  {errors && errors.name && "Veuillez nous indiquer notre nom."}
+                  {errors && errors.name && "Veuillez nous indiquer votre nom."}
                 </p>
               </div>
 
@@ -60,7 +60,7 @@ const Home = () => {
                 <p className="text-rose-800">
                   {errors &&
                     errors.email &&
-                    "Veuillez nous indiquer notre email."}
+                    "Veuillez nous indiquer votre email."}
                 </p>
               </div>
 

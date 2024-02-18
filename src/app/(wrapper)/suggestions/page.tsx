@@ -68,7 +68,7 @@ function SuggestionEdit() {
                 {...register("author.tag")}
               >
                 <option value="text-black">
-                  Selectionnez ce qui vous represente le plus
+                  Selectionnez ce qui vous représente le plus
                 </option>
                 {POSITIONS.map(({ value, label }, idx) => (
                   <option key={`${value}${idx}`} value={value}>
@@ -126,7 +126,7 @@ function SuggestionEdit() {
                   className="px-2 py-1 text-black rounded-md md:w-2/3"
                   {...register("author.phone")}
                   type="number"
-                  placeholder="Entrez votre numero"
+                  placeholder="Entrez votre numéro"
                 />
               </div>
             </div>

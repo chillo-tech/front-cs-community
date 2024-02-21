@@ -1,14 +1,9 @@
 "use client";
 
-import {
-  Analytics,
-  AvisFormInputWrapper,
-  CustomCheckbox,
-  Message,
-  SubmitButton,
-} from "@/components";
+import { Analytics, Message, SubmitButton } from "@/components";
 import { ScaleLoader } from "react-spinners";
 import { useWaitingList } from "./useWaitingList";
+import { isAxiosError } from "axios";
 
 const Home = () => {
   const {
@@ -19,6 +14,7 @@ const Home = () => {
     viewQuery,
     resetAll,
     reloadPage,
+    backToHome
   } = useWaitingList();
   return (
     <>
@@ -33,6 +29,16 @@ const Home = () => {
               <div className="flex top-0 left-0 z-50 justify-center items-center h-full w-full">
                 <ScaleLoader color="rgb(30,50,138)" />
               </div>
+            ) : isAxiosError(viewQuery.error) &&
+              viewQuery.error.response?.data.description ===
+                "Path: query > id - Invalid uuid" ? (
+              <Message
+                isError={true}
+                isSuccess={false}
+                errorMessage={`La video que vous cherchez n'existe pas.`}
+                reloadForm={backToHome}
+                reloadText="Retourner à la page d'acceuil"
+              />
             ) : (
               <Message
                 isError={true}

@@ -34,9 +34,23 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
           status === 401 ||
           (response && response.status && response.status === 401)
         ) {
-          // console.log("error", error);
           console.log("data error", error.response?.data?.error);
-          res.status(401).json({ message: "Veuillez vous connecter" });
+          res.status(401).json({
+            message: "Veuillez vous connecter",
+          });
+          return;
+        }
+        if (response && response.status && response.status === 400) {
+          res.status(400).json({
+            message: error.response?.data?.error,
+            description: response.data.description,
+            data: response.data,
+          });
+
+          return;
+        }
+        if (response && response.status && response.status === 404) {
+          res.status(404).redirect("/not-found");
           return;
         }
       }

@@ -1,7 +1,7 @@
 "use client";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ export const useWaitingList = () => {
     const response = await axios.get(
       `/api/backend/waiting-list/video/?id=${slug}`
     );
-    if (response.data.video)
+    if (response.data.video) {
       setData({
         leftComponent: {
           description: `Inscrivez-vous dès maintenant sur la liste d'attente et bénéficiez d'une réduction exclusive EARLY-BIRD dès que le cours sera disponible.`,
@@ -33,7 +33,11 @@ export const useWaitingList = () => {
           title: "Liste d'attente",
         },
       });
-    return response.data.video;
+      return response.data.video;
+    } else {
+      router.push("not-found");
+      return null;
+    }
   }
 
   async function subscribeToWaitingList(data: any) {
@@ -68,6 +72,9 @@ export const useWaitingList = () => {
   const reloadPage = () => {
     router.refresh();
   };
+  const backToHome = () => {
+    router.push(process.env.NEXT_PUBLIC_APP_URL || "/");
+  };
   return {
     register,
     errors,
@@ -76,5 +83,6 @@ export const useWaitingList = () => {
     viewQuery,
     resetAll,
     reloadPage,
+    backToHome,
   };
 };

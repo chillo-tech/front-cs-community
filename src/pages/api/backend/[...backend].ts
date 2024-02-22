@@ -49,8 +49,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
 
           return;
         }
+        if (response && response.status && response.status === 409) {
+          res.status(409).json({
+            ...response.data,
+          });
+
+          return;
+        }
         if (response && response.status && response.status === 404) {
-          res.status(404).redirect("/not-found");
+          res.status(404).json({});
           return;
         }
       }

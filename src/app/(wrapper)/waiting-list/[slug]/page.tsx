@@ -30,8 +30,7 @@ const Home = () => {
                 <ScaleLoader color="rgb(30,50,138)" />
               </div>
             ) : isAxiosError(viewQuery.error) &&
-              viewQuery.error.response?.data.description ===
-                "Path: query > id - Invalid uuid" ? (
+              viewQuery.error.response?.status === 404 ? (
               <Message
                 isError={true}
                 isSuccess={false}
@@ -57,7 +56,10 @@ const Home = () => {
             }
             onSubmit={onSubmit}
           >
-            {mutation.isError || mutation.isSuccess ? (
+            {(mutation.isError &&
+              isAxiosError(mutation.error) &&
+              mutation.error.response?.status !== 409) ||
+            mutation.isSuccess ? (
               <Message
                 reloadForm={resetAll}
                 isError={mutation.isError}
@@ -70,16 +72,6 @@ const Home = () => {
                     <ScaleLoader color="rgb(30,50,138)" />
                   </div>
                 ) : null}
-                <div className="">
-                  <p className="mb-2 font-black text-2xl mt-2">
-                    Merci de nous donner votre avis
-                  </p>
-                  <p>
-                    Les évaluations nous permmettent de constament nous
-                    améliorer. Globalement vous êtes ...
-                  </p>
-                </div>
-
                 {/* nom */}
                 <div className="flex flex-col">
                   <label>Votre nom</label>
@@ -103,6 +95,9 @@ const Home = () => {
                   />
                   <p className="text-rose-800 text-sm">
                     {errors && errors.email && "Veuillez entrer votre email"}
+                    {isAxiosError(mutation.error) &&
+                      mutation.error.response?.status === 409 &&
+                      "Cet email est deja enregistre"}
                   </p>
                 </div>
 

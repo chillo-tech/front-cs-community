@@ -1,7 +1,7 @@
 "use client";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -16,27 +16,53 @@ export const useWaitingList = () => {
   const { setData } = useContext(ApplicationContext);
 
   const mutation = useMutation(subscribeToWaitingList);
-  const viewQuery = useQuery("waiting-list", getWaitingList);
+  const viewQuery = useQuery("waiting-list", getWaitingList );
 
   async function getWaitingList() {
-    const response = await axios.get(
-      `/api/backend/waiting-list/formation/?id=${slug}`
-    );
-    if (response.data.formation) {
-      setData({
-        leftComponent: {
-          description: `Inscrivez-vous dès maintenant sur la liste d'attente et bénéficiez d'une réduction exclusive EARLY-BIRD dès que le cours sera disponible.`,
-          title: response.data.formation.titre || "Formation de chillo.tech",
-        },
-        metaData: {
-          description: "Powered by chillo.tech",
-          title: "Liste d'attente",
-        },
-      });
-      return response.data.formation;
-    } else {
-      router.push("not-found");
-      return null;
+    try {
+      const response = await axios.get(
+        `/api/backend/waiting-list/formation/?slug=${slug}`
+      );
+      if (response.data.formation) {
+        setData({
+          leftComponent: {
+            description: `Inscrivez-vous dès maintenant sur la liste d'attente et bénéficiez d'une réduction exclusive EARLY-BIRD dès que le cours sera disponible.`,
+            title: response.data.formation.titre || "Formation de chillo.tech",
+          },
+          metaData: {
+            description: "Powered by chillo.tech",
+            title: "Liste d'attente",
+          },
+        });
+        return response.data.formation;
+      } else {
+        // router.push("not-found");
+        setData({
+          leftComponent: {
+            description: `La formation que vous cherchez semble ne pas exister. Vous pouvez nous contacter en cliquant sur le bouton vert en bat de page!`,
+            title: "Ressource inexistante",
+          },
+          metaData: {
+            description: "Powered by chillo.tech",
+            title: "Ressource inexistante",
+          },
+        });
+        return null;
+      }
+    } catch (error) {
+      if (isAxiosError(error) && error.response?.status === 404) {
+        setData({
+          leftComponent: {
+            description: `La formation que vous cherchez semble ne pas exister. Vous pouvez nous contacter en cliquant sur le bouton vert en bat de page!`,
+            title: "Ressource inexistante",
+          },
+          metaData: {
+            description: "Powered by chillo.tech",
+            title: "Ressource inexistante",
+          },
+        });
+      }
+      throw error;
     }
   }
 
@@ -54,8 +80,9 @@ export const useWaitingList = () => {
   });
 
   const onSubmitHandler = (data: any) => {
+    if (typeof slug !== "string" && !(slug instanceof String)) return;
     mutation.mutateAsync({
-      formationId: slug,
+      formationId: parseInt(slug.split("-").at(-1) || ""),
       ...data,
     });
   };

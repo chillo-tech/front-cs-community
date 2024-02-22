@@ -16,7 +16,11 @@ export const useWaitingList = () => {
   const { setData } = useContext(ApplicationContext);
 
   const mutation = useMutation(subscribeToWaitingList);
-  const viewQuery = useQuery("waiting-list", getWaitingList );
+  const viewQuery = useQuery({
+    queryKey: ["waiting-list"],
+    queryFn: getWaitingList,
+    retry: false,
+  });
 
   async function getWaitingList() {
     try {

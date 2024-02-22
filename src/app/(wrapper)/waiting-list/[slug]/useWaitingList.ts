@@ -1,12 +1,12 @@
 "use client";
 
+import { ApplicationContext } from "@/app/(wrapper)/ApplicationContext";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios, { AxiosError, isAxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { ApplicationContext } from "@/app/(wrapper)/ApplicationContext";
 import { waitingListSchema } from "./wl-schema";
 
 export const useWaitingList = () => {

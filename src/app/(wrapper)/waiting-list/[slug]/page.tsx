@@ -14,7 +14,7 @@ const Home = () => {
     viewQuery,
     resetAll,
     reloadPage,
-    backToHome
+    backToHome,
   } = useWaitingList();
   return (
     <>
@@ -35,7 +35,7 @@ const Home = () => {
               <Message
                 isError={true}
                 isSuccess={false}
-                errorMessage={`La video que vous cherchez n'existe pas.`}
+                errorMessage={`La formation que vous cherchez n'existe pas.`}
                 reloadForm={backToHome}
                 reloadText="Retourner à la page d'acceuil"
               />

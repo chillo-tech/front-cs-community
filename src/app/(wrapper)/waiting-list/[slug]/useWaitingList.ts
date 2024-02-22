@@ -20,20 +20,20 @@ export const useWaitingList = () => {
 
   async function getWaitingList() {
     const response = await axios.get(
-      `/api/backend/waiting-list/video/?id=${slug}`
+      `/api/backend/waiting-list/formation/?id=${slug}`
     );
-    if (response.data.video) {
+    if (response.data.formation) {
       setData({
         leftComponent: {
           description: `Inscrivez-vous dès maintenant sur la liste d'attente et bénéficiez d'une réduction exclusive EARLY-BIRD dès que le cours sera disponible.`,
-          title: response.data.video.titre || "Video de chillo.tech",
+          title: response.data.formation.titre || "Formation de chillo.tech",
         },
         metaData: {
           description: "Powered by chillo.tech",
           title: "Liste d'attente",
         },
       });
-      return response.data.video;
+      return response.data.formation;
     } else {
       router.push("not-found");
       return null;
@@ -55,7 +55,7 @@ export const useWaitingList = () => {
 
   const onSubmitHandler = (data: any) => {
     mutation.mutateAsync({
-      videoId: slug,
+      formationId: slug,
       ...data,
     });
   };

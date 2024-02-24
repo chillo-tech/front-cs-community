@@ -1,9 +1,9 @@
 import React from "react";
 import { SubmitButton } from ".";
 
-const DEFAULT_ERROR_MESSAGE = `Quelque chose a mal tourne, vous pouvez nous contacter en cliquant
-sur le boutton whatsapp en bas a votre gauche.`;
-const DEFAULT_SUCCESS_MESSAGE = `Votre requete a bien ete prise en compte, vous serez notifies par
+const DEFAULT_ERROR_MESSAGE = `Quelque chose à mal tourné, vous pouvez nous contacter en cliquant
+sur le boutton whatsapp en bas à votre gauche.`;
+const DEFAULT_SUCCESS_MESSAGE = `Votre requête a bien été prise en compte, vous serez notifiés par
 mail`;
 
 const Message = ({

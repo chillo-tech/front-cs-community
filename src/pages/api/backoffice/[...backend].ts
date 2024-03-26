@@ -4,8 +4,6 @@ import axios, { AxiosError } from "axios";
 
 async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    // const { NEXT_PUBLIC_BACKEND_API } = process.env;
-    // axiosInstance.defaults.baseURL = NEXT_PUBLIC_BACKEND_API;
     const { url: backendUrl = "" } = req;
     if (req.method === "POST") {
       const { data } = await axiosInstance.post(`${backendUrl}`, req.body);

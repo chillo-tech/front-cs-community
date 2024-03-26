@@ -23,6 +23,11 @@ const nextConfig = {
         hostname: 'backoffice.chillo.fr',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'chillo.tech',
+        port: '',
+      },
     ],
   },
 }

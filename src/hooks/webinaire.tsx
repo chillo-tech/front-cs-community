@@ -47,7 +47,7 @@ const useWrapper = () => {
   const [formPageIndex, setFormPageIndex] = useState(0);
 
   const answerWebinaire = (data: any) => {
-    return axiosInstance.post("/api/backoffice/Webinaire", data);
+    return axiosInstance.post("/api/backend/Webinaire", data);
   };
   const mutation = useMutation({
     mutationFn: answerWebinaire,

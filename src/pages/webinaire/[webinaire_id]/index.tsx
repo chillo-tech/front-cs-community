@@ -1,14 +1,13 @@
+import Header from "@/components/Header";
 import { Wrapper as WebinaireWapper } from "@/components/webinaire/form/context";
-
+import Head from "next/head";
 import WebinaireForm from "@/components/webinaire/form/webinaireForm";
 import { useWebinaire } from "@/hooks/webinaire";
 import styles from "@/styles/SignIn.module.css";
 import { capitalize, getHumanDate } from "@/utils";
 import { formatSnakeCase } from "@/utils/formatSnakeCase";
 import { GetServerSideProps, Metadata } from "next";
-import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Webinaire",
@@ -19,13 +18,27 @@ const Webinaire = ({ webinaire_id }: { webinaire_id: string }) => {
   const { viewQuery } = useWebinaire({ webinaire_id });
   return viewQuery.data ? (
     <WebinaireWapper>
+      <Head>
+        <title>Webinaire</title>
+        <meta
+          name="description"
+          content="Formulaire de webinaire propulsé par chillo tech"
+        />
+      </Head>
       <section className={`${styles.wrapper} !overflow-y-hidden`}>
-        {/* <Metadata entry={{ title: 'Webinaire', description: 'description metadonnees' }} /> */}
-
         <nav className={`${styles.navigation}`}>
-          <Link href={"/"} className={styles.logo}>
-            ZEEVEN
-          </Link>
+          <Header
+            data={{
+              leftComponent: {
+                title: ``,
+                description: "",
+              },
+              metaData: {
+                title: "Webinaire",
+                description: "Webinaire propose par chillo tech",
+              },
+            }}
+          />
         </nav>
         <main
           className={` container mx-auto my-5 mb-10 flex w-full flex-col items-start justify-between gap-10 px-2 lg:flex-row  lg:items-center`}

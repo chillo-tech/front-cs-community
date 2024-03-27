@@ -7,14 +7,26 @@ const onRequest = async (
   config: AxiosRequestConfig
 ): Promise<AxiosRequestConfig> => {
   const { url = "" } = config;
-  const urlToCall = url.replaceAll("/api/backend", "/api/v1");
+  const isToBackoffice = url.startsWith("/api/backoffice");
+  const urlToCall = isToBackoffice
+    ? url.replaceAll("/api/backoffice", "/items")
+    : url.replaceAll("/api/backend", "/api/v1");
 
   const authorization = {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_BACKEND_API_TOKEN}`,
+    Authorization: `Bearer ${
+      isToBackoffice
+        ? process.env.NEXT_PUBLIC_BACKOFFICE_API_TOKEN
+        : process.env.NEXT_PUBLIC_BACKEND_API_TOKEN
+    }`,
   };
+
+  const newBaseUrl = isToBackoffice
+    ? process.env.NEXT_PUBLIC_BACKOFFICE_API
+    : process.env.NEXT_PUBLIC_BACKEND_API;
 
   return {
     ...config,
+    baseURL: newBaseUrl,
     url: urlToCall,
     headers: {
       ...config.headers,

@@ -16,6 +16,20 @@ const nextConfig = {
     NEXT_PUBLIC_BACKEND_API: process.env.NEXT_PUBLIC_BACKEND_API,
     NEXT_PUBLIC_BACKEND_API_TOKEN: process.env.NEXT_PUBLIC_BACKEND_API_TOKEN
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'backoffice.chillo.fr',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'chillo.tech',
+        port: '',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

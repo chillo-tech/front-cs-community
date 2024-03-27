@@ -25,7 +25,6 @@ export const useAvis = () => {
     const response = await axios.get(
       `/api/backend/avis/formation?slug=${slug}`
     );
-    console.log("data", response.data.formation);
     if (response.data.formation[0].titre)
       setData({
         leftComponent: {
@@ -57,7 +56,6 @@ export const useAvis = () => {
   });
 
   const onSubmitHandler = (data: any) => {
-    console.log("data", data);
     mutation.mutateAsync({
       slug,
       session_id:

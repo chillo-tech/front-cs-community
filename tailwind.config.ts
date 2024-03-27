@@ -10,6 +10,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
     screens: {
       xsm: "420px",
@@ -21,20 +22,24 @@ const config: Config = {
       "2xl": "1536px",
     },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "0.25rem",
+          sm: "2rem",
+          lg: "0rem",
+          xl: "0rem",
+          "2xl": "0rem",
+        },
+      },
+      colors: {
+        "app-blue": "#1D3A8A",
+        "app-yellow": "#FDDE6D",
+        "app-light-blue": "#EEF5FA",
+        "app-light-gray": "#F8FAFB",
       },
     },
   },
-  plugins: [],
-  safelist: [
-    "bg-green-900",
-    "bg-blue-700",
-    "bg-sky-400",
-    "bg-yellow-400",
-    "bg-red-400",
-  ],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;

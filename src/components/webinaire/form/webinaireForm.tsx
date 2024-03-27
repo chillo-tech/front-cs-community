@@ -32,7 +32,7 @@ const WebinaireForm = ({ formView }: { formView: IWebinaireFormulaire }) => {
           </p>
           <p className="p-4 text-center text-lg">A très vite | Chillo tech</p>
           <button type="button" className={formStyles.form_control__button}>
-            <Link href="https://chillo.tech">Retourner à l'acceuil</Link>
+            <Link href="https://chillo.tech">Retourner à l&apos;acceuil</Link>
           </button>
         </>
       ) : (

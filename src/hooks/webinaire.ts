@@ -86,7 +86,7 @@ const useWrapper = () => {
     if ((errors.email || errors.numero_telephone) && formPageIndex !== 0) {
       setFormPageIndex(0);
     }
-  }, [errors]);
+  }, [errors , formPageIndex]);
 
   const handleSubmitFn = handleSubmit(onSubmit);
   return {

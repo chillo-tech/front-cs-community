@@ -9,22 +9,24 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 const useWebinaire = ({ slug }: { slug: string }) => {
+  const router = useRouter();
+
   const fetchView = async () => {
+    const id = parseInt(slug.split("-").at(-1) || "");
+    if(isNaN(id)) router.push('/404')
     const {
       data: { data: view },
     } = await axios.get(
-      `/api/backoffice/Description_Webinaire/?fields=*,image_webinaire.*,formulaire.*&filter[slug][_eq]=${slug}`
+      `/api/backoffice/Description_Webinaire/${id}/?fields=*,image_webinaire.*,formulaire.*`
     );
 
-    console.log("view", view);
-    if (!view[0] || !view[0].formulaire) {
+    if (!view || !view.formulaire || view.slug !== slug) {
       router.push("/404");
       return;
     }
 
     return view[0] as IWebinaireView;
   };
-  const router = useRouter();
 
   const viewQuery = useQuery({
     queryKey: ["vue-webinaire", 1],

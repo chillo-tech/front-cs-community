@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "description metadonnees",
 };
 
-const Webinaire = ({ webinaire_id }: { webinaire_id: string }) => {
-  const { viewQuery } = useWebinaire({ webinaire_id });
+const Webinaire = ({ slug }: { slug: string }) => {
+  const { viewQuery } = useWebinaire({ slug });
   return viewQuery.data ? (
     <WebinaireWapper>
       <Head>
@@ -115,6 +115,6 @@ const Webinaire = ({ webinaire_id }: { webinaire_id: string }) => {
 export default Webinaire;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const webinaire_id = ctx.params?.webinaire_id || "0";
-  return { props: { webinaire_id } };
+  const slug = ctx.params?.slug || "";
+  return { props: { slug } };
 };

@@ -11,7 +11,7 @@ const LayoutAside = ({ data }: { data: DataType }) => {
         <Header data={data} />
       </div>
 
-      <div className="hidden md:flex flex-col justify-between md:h-full">
+      <div className="overflow-hidden hidden md:flex flex-col justify-between md:h-full">
         <Header data={data} />
         <SuggestionsCardContainer />
         <h3 className="title text-blue-900 font-extrabold text-xl md:text-xl pl-2 mt-2">

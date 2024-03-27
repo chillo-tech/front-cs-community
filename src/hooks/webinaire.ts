@@ -8,20 +8,21 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
-const useWebinaire = ({ webinaire_id }: { webinaire_id: string }) => {
+const useWebinaire = ({ slug }: { slug: string }) => {
   const fetchView = async () => {
     const {
       data: { data: view },
     } = await axios.get(
-      `/api/backoffice/Description_Webinaire/${webinaire_id}/?fields=*,image_webinaire.*,formulaire.*`
+      `/api/backoffice/Description_Webinaire/?fields=*,image_webinaire.*,formulaire.*&filter[slug][_eq]=${slug}`
     );
 
-    if (!view || !view.formulaire) {
+    console.log("view", view);
+    if (!view[0] || !view[0].formulaire) {
       router.push("/404");
       return;
     }
 
-    return view as IWebinaireView;
+    return view[0] as IWebinaireView;
   };
   const router = useRouter();
 
@@ -75,6 +76,7 @@ const useWrapper = () => {
   const onSubmit = (data: any) => {
     const postObj = {
       ...data,
+      connaissance_webinaire: data.connaissance_webinaire || "",
       adresse_mail: data.email,
       numero_telephone: `+${phoneNumber}`,
       date_inscription: new Date().toISOString(),
@@ -86,7 +88,7 @@ const useWrapper = () => {
     if ((errors.email || errors.numero_telephone) && formPageIndex !== 0) {
       setFormPageIndex(0);
     }
-  }, [errors , formPageIndex]);
+  }, [errors, formPageIndex]);
 
   const handleSubmitFn = handleSubmit(onSubmit);
   return {

@@ -19,7 +19,7 @@ export const useNewsletters = () => {
   useEffect(() => {
     setData({
       leftComponent: {
-        description: `Rejoignez plus de 10 000 apprenants et professionnels passionnés du code.  Les ingénieurs font confiance à nos contenus !`,
+        description: `Rejoignez la communauté de stagiaires et de professionnels passionnés du code.  Les ingénieurs font confiance à nos contenus !`,
         title: `Inscrivez vous à notre newsletter`,
       },
       metaData: {

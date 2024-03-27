@@ -13,7 +13,7 @@ const useWebinaire = ({ slug }: { slug: string }) => {
 
   const fetchView = async () => {
     const id = parseInt(slug.split("-").at(-1) || "");
-    if(isNaN(id)) router.push('/404')
+    if (isNaN(id)) router.push("/404");
     const {
       data: { data: view },
     } = await axios.get(
@@ -25,7 +25,7 @@ const useWebinaire = ({ slug }: { slug: string }) => {
       return;
     }
 
-    return view[0] as IWebinaireView;
+    return view as IWebinaireView;
   };
 
   const viewQuery = useQuery({

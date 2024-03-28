@@ -23,8 +23,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'backoffice.chillo.fr',
+        hostname: process.env.NEXT_PUBLIC_BACKOFFICE_API,
         port: '',
       },
       {

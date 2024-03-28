@@ -23,7 +23,7 @@ const onRequest = async (
   const newBaseUrl = isToBackoffice
     ? process.env.NEXT_PUBLIC_BACKOFFICE_API
     : process.env.NEXT_PUBLIC_BACKEND_API;
-
+  console.log({envs: process.env})
   return {
     ...config,
     baseURL: newBaseUrl,

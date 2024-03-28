@@ -23,7 +23,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: process.env.NEXT_PUBLIC_BACKOFFICE_API,
+        protocol: 'http',
+        hostname: ' 192.168.1.101:8060',
         port: '',
       },
       {

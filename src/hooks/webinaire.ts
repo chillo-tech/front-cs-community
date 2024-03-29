@@ -49,7 +49,7 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
   const fetchView = async () => {
     const {
       data: { data: channels },
-    } = await axios.get(`/api/backoffice/channel/`);
+    } = await axios.get(`/api/backoffice/channel/?filter[status][_eq]=published`);
 
     return channels as IChannel[];
   };

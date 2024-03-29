@@ -1,6 +1,5 @@
 import { schema } from "@/components/webinaire/form/schama";
-import { IWebinaireView } from "@/types";
-import { axiosInstance } from "@/utils";
+import { IChannel, IWebinaireView } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/router";
@@ -13,16 +12,18 @@ const useWebinaire = ({ slug }: { slug: string }) => {
 
   const fetchView = async () => {
     const id = parseInt(slug.split("-").at(-1) || "");
-    if (isNaN(id)) router.push("/404");
+    if (isNaN(id)) {
+      throw new Error("View not found : id is not a number");
+    }
     const {
       data: { data: view },
     } = await axios.get(
-      `/api/backoffice/Description_Webinaire/${id}/?fields=*,image_webinaire.*,formulaire.*`
+      `/api/backoffice/webinaire/${id}/?fields=*,image.*,plannings.*,channels.channel_id.*`
     );
 
-    if (!view || !view.formulaire || view.slug !== slug) {
-      router.push("/404");
-      return;
+    if (!view || view.slug !== slug) {
+      console.log("second");
+      throw new Error("View not found : provided slug doesnt match");
     }
 
     return view as IWebinaireView;
@@ -40,18 +41,38 @@ const useWebinaire = ({ slug }: { slug: string }) => {
   return { viewQuery };
 };
 
-const useWrapper = () => {
+const useWrapper = ({ view }: { view: IWebinaireView }) => {
   const [errorMessage, setErrorMessage] = useState(
     "Une erreur est survenue, nous allons la résoudre sous peu"
   );
+
+  const fetchView = async () => {
+    const {
+      data: { data: channels },
+    } = await axios.get(`/api/backoffice/channel/`);
+
+    return channels as IChannel[];
+  };
+
+  const viewQuery = useQuery({
+    queryKey: ["vue-channels", 1],
+    queryFn: fetchView,
+    retry: 10,
+    refetchOnWindowFocus: false,
+  });
 
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const [formPageIndex, setFormPageIndex] = useState(0);
 
   const answerWebinaire = (data: any) => {
-    return axiosInstance.post("/api/backend/Webinaire", data);
+    console.log("data", data);
+    return axios.post(
+      `/api/backend/webinaire/${view.id}/planning/${view.plannings.at(-1)?.id}`,
+      data
+    );
   };
+
   const mutation = useMutation({
     mutationFn: answerWebinaire,
     onError: (error) => {
@@ -76,18 +97,18 @@ const useWrapper = () => {
   const [radioSelectedValue, setRadioSelectedValue] = useState("");
 
   const onSubmit = (data: any) => {
-    const postObj = {
-      ...data,
-      connaissance_webinaire: data.connaissance_webinaire || "",
-      adresse_mail: data.email,
-      numero_telephone: `+${phoneNumber}`,
-      date_inscription: new Date().toISOString(),
-    };
-    mutation.mutate(postObj);
+    mutation.mutate(data);
   };
 
   useEffect(() => {
-    if ((errors.email || errors.numero_telephone) && formPageIndex !== 0) {
+    if (
+      (errors.email ||
+        errors.phoneIndex ||
+        errors.phoneNumber ||
+        errors.lastName ||
+        errors.firstName) &&
+      formPageIndex !== 0
+    ) {
       setFormPageIndex(0);
     }
   }, [errors, formPageIndex]);
@@ -108,6 +129,8 @@ const useWrapper = () => {
     setErrorMessage,
     phoneNumber,
     setPhoneNumber,
+    view,
+    channels: viewQuery.data || [],
   };
 };
 

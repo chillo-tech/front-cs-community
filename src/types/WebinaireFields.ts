@@ -9,23 +9,26 @@ export interface IWebinaireFields {
 export interface IWebinaireView {
   duree: number;
   id: number;
-  sort: any;
-  public_cible: string;
-  objectif_webinaire: string;
   description: string;
-  plateforme: string;
-  langue: string;
-  status: string;
-  titre: string;
-  date_et_heure_prevue: string;
-  date_created: string;
-  date_updated: string;
-  user_updated: string;
-  user_created: string;
-  format_de_la_session: any[];
-  maitre_de_session: any[];
-  image_webinaire: ImageWebinaire;
-  formulaire: IWebinaireFormulaire;
+  title: string;
+  slug: string;
+  image: ImageWebinaire;
+  plannings: IPlanning[];
+}
+
+export interface IChannel {
+  title: string;
+  description: string;
+  id: number;
+}
+
+export interface IPlanning {
+  id: number;
+  startHour: string;
+  endHour: string;
+  description: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface ImageWebinaire {

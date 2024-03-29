@@ -66,9 +66,9 @@ export const getHumanDate = (entry: Date) => {
     entry = new Date(entry)
   }
 
-	const [dayOfDate, month, year] = getFormattedDate(entry).split('/');
+	const [dayOfDate] = getFormattedDate(entry).split('/');
 	const [dayOfWeekLabel, monthLabel] = getDayAndMonthLabel(entry);
-	return `${dayOfWeekLabel} ${dayOfDate} ${monthLabel} ${getFormattedNumber(entry.getHours())}:${getFormattedNumber(entry.getMinutes())}`;
+	return `${dayOfWeekLabel} ${dayOfDate} ${monthLabel}`;
 
 };
 

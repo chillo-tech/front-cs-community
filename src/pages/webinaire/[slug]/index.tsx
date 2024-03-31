@@ -1,12 +1,11 @@
 import Header from "@/components/Header";
 import { Wrapper as WebinaireWapper } from "@/components/webinaire/form/context";
-import Head from "next/head";
 import WebinaireForm from "@/components/webinaire/form/webinaireForm";
 import { useWebinaire } from "@/hooks/webinaire";
 import styles from "@/styles/SignIn.module.css";
-import { capitalize, getHumanDate } from "@/utils";
-import { formatSnakeCase } from "@/utils/formatSnakeCase";
+import { getFormattedTime, getHumanDate } from "@/utils";
 import { GetServerSideProps, Metadata } from "next";
+import Head from "next/head";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
 const Webinaire = ({ slug }: { slug: string }) => {
   const { viewQuery } = useWebinaire({ slug });
   return viewQuery.data ? (
-    <WebinaireWapper>
+    <WebinaireWapper view={viewQuery.data}>
       <Head>
         <title>Webinaire</title>
         <meta
@@ -45,16 +44,16 @@ const Webinaire = ({ slug }: { slug: string }) => {
         >
           <aside className={`w-full shrink-0 space-y-5 pr-0 lg:w-1/2 lg:pr-3`}>
             <Image
-              src={viewQuery.data.image_webinaire.link}
+              src={viewQuery.data.image.link}
               className="w-full object-cover"
               height={400}
               width={400}
-              alt={viewQuery.data.image_webinaire.name}
+              alt={viewQuery.data.image.name}
             />
             <h1
               className={`${styles.form__title} text-center !text-2xl !font-bold lg:!text-left lg:!text-4xl`}
             >
-              {viewQuery.data.titre}
+              {viewQuery.data.title}
             </h1>
             <div>
               <p
@@ -67,45 +66,28 @@ const Webinaire = ({ slug }: { slug: string }) => {
               >
                 {viewQuery.data.description}
               </p>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <p className="text-light rounded-[35px] bg-gray-300 px-2 py-1 text-sm ">
-                {capitalize(viewQuery.data.langue)}
-              </p>
-              <p className="text-light rounded-[35px] bg-gray-300 px-2 py-1 text-sm ">
-                {getHumanDate(new Date(viewQuery.data.date_et_heure_prevue))}
-              </p>
-              <p className="text-light rounded-[35px] bg-gray-300 px-2 py-1 text-sm ">
-                {capitalize(formatSnakeCase(viewQuery.data.plateforme))}
-              </p>
-              <p className="text-light rounded-[35px] bg-gray-300 px-2 py-1 text-sm ">
-                {viewQuery.data.duree} min
-              </p>
-            </div>
-            <div>
-              <p
-                className={`${styles.form__title} !m-0  !text-center lg:!text-left`}
-              >
-                Objectif
-              </p>
-              <p className="text-center font-light lg:text-left">
-                {viewQuery.data.objectif_webinaire}
-              </p>
-            </div>
-            <div>
-              <p
-                className={`${styles.form__title} !m-0  !text-center lg:!text-left`}
-              >
-                Cible
-              </p>
-              <p className="text-center  font-light lg:text-left">
-                {viewQuery.data.public_cible}
+              <p className="">
+                Le webinaire débutera{" "}
+                {getHumanDate(
+                  new Date(viewQuery.data.plannings.at(-1)?.startDate || "")
+                )}{" "}
+                à{" "}
+                {getFormattedTime(
+                  new Date(viewQuery.data.plannings.at(-1)?.startHour || "")
+                )}{" "}
+                pour se terminer{" "}
+                {getHumanDate(
+                  new Date(viewQuery.data.plannings.at(-1)?.endDate || "")
+                )}{" "}
+                à{" "}
+                {getFormattedTime(
+                  new Date(viewQuery.data.plannings.at(-1)?.endHour || "")
+                )}
               </p>
             </div>
           </aside>
-          {viewQuery.data.formulaire && (
-            <WebinaireForm formView={viewQuery.data.formulaire} />
-          )}
+
+          <WebinaireForm />
         </main>
       </section>
     </WebinaireWapper>

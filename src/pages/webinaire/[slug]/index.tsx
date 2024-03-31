@@ -43,9 +43,9 @@ const Webinaire = ({ slug }: { slug: string }) => {
           className={` container mx-auto my-5 mb-10 flex w-full flex-col items-start justify-between gap-10 px-2 lg:flex-row  lg:items-center`}
         >
           <aside className={`w-full shrink-0 space-y-5 pr-0 lg:w-1/2 lg:pr-3`}>
-            <Image
+            <img
               src={viewQuery.data.image.link}
-              className="w-full object-cover"
+              className="w-full object-cover max-h-[350px]"
               height={400}
               width={400}
               alt={viewQuery.data.image.name}
@@ -71,18 +71,12 @@ const Webinaire = ({ slug }: { slug: string }) => {
                 {getHumanDate(
                   new Date(viewQuery.data.plannings.at(-1)?.startDate || "")
                 )}{" "}
-                à{" "}
-                {getFormattedTime(
-                  new Date(viewQuery.data.plannings.at(-1)?.startHour || "")
-                )}{" "}
-                pour se terminer{" "}
+                à {viewQuery.data.plannings.at(-1)?.startHour.slice(0 , -3)} pour se terminer{" "}
                 {getHumanDate(
                   new Date(viewQuery.data.plannings.at(-1)?.endDate || "")
                 )}{" "}
                 à{" "}
-                {getFormattedTime(
-                  new Date(viewQuery.data.plannings.at(-1)?.endHour || "")
-                )}
+                {viewQuery.data.plannings.at(-1)?.endHour.slice(0 , -3)}
               </p>
             </div>
           </aside>

@@ -2,16 +2,16 @@ import { schema } from "@/components/webinaire/form/schama";
 import { IChannel, IWebinaireView } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
-const useWebinaire = ({ slug }: { slug: string }) => {
+const useWebinaire = () => {
   const router = useRouter();
-
+  const {query: {slug = ""}} = router;
   const fetchView = async () => {
-    const id = parseInt(slug.split("-").at(-1) || "");
+    const id = parseInt((slug as string).split("-").at(-1) || "");
     if (isNaN(id)) {
       throw new Error("View not found : id is not a number");
     }

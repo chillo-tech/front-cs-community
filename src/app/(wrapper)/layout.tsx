@@ -2,7 +2,7 @@
 import { AvisCardContainer, SuggestionsCardContainer } from "@/components";
 import Footer from "@/components/Footer";
 import React, { useContext } from "react";
-import { ApplicationContext } from "./ApplicationContext";
+import { ApplicationContext } from "../../context/ApplicationContext";
 import LayoutAside from "./LayoutAside";
 
 export default function WrapperLayout({

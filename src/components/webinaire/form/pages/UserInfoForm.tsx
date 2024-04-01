@@ -1,6 +1,6 @@
 import formStyles from "@/styles/Form.module.css";
 import { useContext } from "react";
-import { context } from "../context";
+import { context } from "@/context/WebinaireContext";
 
 import PhoneInput from "react-phone-input-2";
 import fr from "react-phone-input-2/lang/fr.json";
@@ -11,27 +11,6 @@ const UserInfoForm = () => {
     useContext(context);
   return (
     <>
-      {/* nom */}
-      <div className={formStyles.form_control}>
-        <label htmlFor={`nom`} className={formStyles.form_control__label}>
-          <span className={formStyles.form_control__label__first}>
-            Votre nom
-          </span>
-        </label>
-        <input
-          type="text"
-          id={`nom`}
-          className={formStyles.form_control__input}
-          placeholder={"Veuillez entrer votre nom"}
-          {...register("firstName")}
-        />
-        {errors.firstName && (
-          <p className={formStyles.form_control__error}>
-            Veuillez indiquer votre nom{" "}
-          </p>
-        )}
-      </div>
-
       {/* prenom */}
       <div className={formStyles.form_control}>
         <label htmlFor={`prenom`} className={formStyles.form_control__label}>
@@ -49,6 +28,27 @@ const UserInfoForm = () => {
         {errors.lastName && (
           <p className={formStyles.form_control__error}>
             Veuillez indiquer votre prénom{" "}
+          </p>
+        )}
+      </div>
+
+      {/* nom */}
+      <div className={formStyles.form_control}>
+        <label htmlFor={`nom`} className={formStyles.form_control__label}>
+          <span className={formStyles.form_control__label__first}>
+            Votre nom
+          </span>
+        </label>
+        <input
+          type="text"
+          id={`nom`}
+          className={formStyles.form_control__input}
+          placeholder={"Veuillez entrer votre nom"}
+          {...register("firstName")}
+        />
+        {errors.firstName && (
+          <p className={formStyles.form_control__error}>
+            Veuillez indiquer votre nom{" "}
           </p>
         )}
       </div>
@@ -109,19 +109,6 @@ const UserInfoForm = () => {
             Veuillez indiquer votre numéro de téléphone{" "}
           </p>
         )}
-      </div>
-
-      {/*  */}
-
-      {/* Consentement marketing */}
-      <div className={`${formStyles.form_control}`}>
-        <input type="checkbox" id={`newsletter`} {...register("newsletter")} />{" "}
-        <label
-          className="leading-0 relative top-[2px] cursor-pointer font-light"
-          htmlFor={`newsletter`}
-        >
-          Rejoignez notre communauté et soyez à jour sur toutes les nouveautés
-        </label>
       </div>
     </>
   );

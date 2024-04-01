@@ -1,7 +1,7 @@
 "use client";
-import { ApplicationContext } from "./(wrapper)/ApplicationContext";
+import { ApplicationContext } from "../context/ApplicationContext";
 import useLayout from "./(wrapper)/useLayout";
-import ApplicationProvider from "./ApplicationProvider";
+import ApplicationProvider from "../context/ApplicationProvider";
 import "./globals.css";
 
 export default function RootLayout({

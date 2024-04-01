@@ -11,8 +11,12 @@ const truncArray: (tab: any[], childrenCount: number) => any[][] = (
   }
   const res: any[][] = Array(childrenCount);
   for (let i = 0; i < parentLength; i++) {
-    if (!res[i % childrenCount]) res[i % childrenCount] = [];
-    res[i % childrenCount].push(tab[i]);
+    if (!tab[i]) continue;
+    else {
+      if (!res[i % childrenCount]) res[i % childrenCount] = [];
+
+      res[i % childrenCount].push(tab[i]);
+    }
   }
   return res;
 };

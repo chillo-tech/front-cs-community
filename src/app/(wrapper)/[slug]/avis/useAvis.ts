@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { ApplicationContext } from "../../ApplicationContext";
+import { ApplicationContext } from "@/context/ApplicationContext";
 import { avisSchema } from "./avis-schema";
 
 export const useAvis = () => {

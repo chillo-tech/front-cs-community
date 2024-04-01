@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { context } from './context';
+import { context } from '@/context/WebinaireContext';
 
 import formStyles from '@/styles/Form.module.css';
 import { Pages } from './pages';

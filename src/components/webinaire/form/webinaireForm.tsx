@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useContext } from "react";
 import { ScaleLoader } from "react-spinners";
 import FormActionsButtons from "./FormActionsButtons";
-import { context } from "./context";
+import { context } from "@/context/WebinaireContext";
 import { Pages } from "./pages";
+import { IWebinaireView } from "@/types";
+import { getHumanDate } from "@/utils";
 
-const WebinaireForm = () => {
+const WebinaireForm = ({ data }: { data?: IWebinaireView }) => {
   const { mutation, handleSubmitFn, errorMessage, formPageIndex } =
     useContext(context);
 
@@ -37,11 +39,25 @@ const WebinaireForm = () => {
       ) : (
         <form onSubmit={handleSubmitFn} className="">
           <header className="mb-4 space-y-2">
-            <h3 className="text-center text-xl lg:text-left">
-              {/* {formView.titre} */}
+            <h3 className="text-md lg:text-left">
+              Inscrivez vous à <br />
+              <span className="uppercase text-2xl text-bold">{data?.title}</span>
             </h3>
-            <h4 className="text-center font-light lg:text-left">
-              {/* {formView.description} */}
+
+            <h4 className="font-light lg:text-left">
+              Le webinaire débutera le{" "}
+              <span className="font-semibold">
+                {getHumanDate(
+                  new Date(data?.plannings.at(-1)?.startDate || "")
+                )}{" "}
+                à {data?.plannings.at(-1)?.startHour.slice(0, -3) || ""}
+              </span>{" "}
+              <br />
+              et prendra fin le{" "}
+              <span className="font-semibold">
+                {getHumanDate(new Date(data?.plannings.at(-1)?.endDate || ""))}{" "}
+                à {data?.plannings.at(-1)?.endHour.slice(0, -3) || ""}
+              </span>
             </h4>
           </header>
           {Pages[formPageIndex]()}

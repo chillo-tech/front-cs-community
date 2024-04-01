@@ -16,7 +16,7 @@ const SuggestionCard = ({
   title: string;
   position: string;
 }) => {
-  return (
+  return !name.includes("undefined") && name && title ? (
     <div className="flex gap-3 rounded-xl md:bg-transparent bg-white p-5 h-[105px] w-max min-w-[200px] max-w-[400px] items-center">
       <div
         className={`rounded-full text-xl font-bold flex-shrink-0 h-[45px] w-[45px] flex items-center justify-center gap-1 ${getRandomHexColor()}`}
@@ -31,7 +31,7 @@ const SuggestionCard = ({
         <p>{textEllipsis(title, 60, "...")}</p>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export { SuggestionCard };

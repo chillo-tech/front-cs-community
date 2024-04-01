@@ -27,7 +27,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
       const axiosError = error as Error | AxiosError;
       if (axios.isAxiosError(axiosError)) {
         const { status, response } = error;
-
         if (
           status === 401 ||
           (response && response.status && response.status === 401)

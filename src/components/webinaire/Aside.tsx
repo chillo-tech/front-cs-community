@@ -18,12 +18,11 @@ const Aside = ({ data }: { data: IWebinaireView | undefined }) => {
         />
         <div className="flex flex-wrap gap-3 items-center my-2">
           <p className="rounded-[35px] bg-gray-300 py-1 px-3">
-            debut:{" "}
             {getHumanDate(new Date(data.plannings.at(-1)?.startDate || ""))} à{" "}
             {data.plannings.at(-1)?.startHour.slice(0, -3) || ""}
           </p>
           <p className="rounded-[35px] bg-gray-300 py-1 px-3">
-            fin: {getHumanDate(new Date(data.plannings.at(-1)?.endDate || ""))}{" "}
+            {getHumanDate(new Date(data.plannings.at(-1)?.endDate || ""))}{" "}
             à {data.plannings.at(-1)?.endHour.slice(0, -3) || ""}
           </p>
           <p className="rounded-[35px] bg-gray-300 py-1 px-3">Google Meet</p>

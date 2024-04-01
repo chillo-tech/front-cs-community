@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { DataType } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -27,20 +26,25 @@ function Header({ data }: { data: DataType }) {
           </span>
         </>
       </Link>
-      {(data.leftComponent.title || data.leftComponent.description) && (
-        <div className="mt-1 text-blue-900 font-extralight infos bg--900 md:py-7 px-2 flex flex-col grow">
-          <h2
-            className="title from-slate-900 font-extrabold text-3xl md:text-3xl"
-            dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title }}
-          />
-          <p
-            className="mb-2 text-bold md:my-5 text-l md:text-left"
-            dangerouslySetInnerHTML={{
-              __html: data?.leftComponent?.description,
-            }}
-          />
-        </div>
-      )}
+      {React.isValidElement(data.leftComponent)
+        ? data.leftComponent
+        : /* @ts-ignore */
+          (data.leftComponent.title || data.leftComponent.description) && (
+            <div className="mt-1 text-blue-900 font-extralight infos bg--900 md:py-7 px-2 flex flex-col grow">
+              <h2
+                className="title from-slate-900 font-extrabold text-3xl md:text-3xl"
+                // @ts-ignore
+                dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title }}
+              />
+              <p
+                className="mb-2 text-bold md:my-5 text-l md:text-left"
+                dangerouslySetInnerHTML={{
+                  // @ts-ignore
+                  __html: data?.leftComponent?.description,
+                }}
+              />
+            </div>
+          )}
     </header>
   );
 }

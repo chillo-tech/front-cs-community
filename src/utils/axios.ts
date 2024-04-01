@@ -22,8 +22,8 @@ const onRequest = async (
 
   const newBaseUrl = isToBackoffice
     ? process.env.NEXT_PUBLIC_BACKOFFICE_API
-    : "https://api.leganda.chillo.fr";
-  
+    : process.env.NEXT_PUBLIC_BACKEND_API;
+
   return {
     ...config,
     baseURL: newBaseUrl,

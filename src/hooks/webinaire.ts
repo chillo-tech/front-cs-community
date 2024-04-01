@@ -1,15 +1,21 @@
+"use client";
 import { schema } from "@/components/webinaire/form/schama";
 import { IChannel, IWebinaireView } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 const useWebinaire = () => {
   const router = useRouter();
-  const {query: {slug = ""}} = router;
+
+  const slug =
+    typeof window !== "undefined"
+      ? window.location.pathname.split("/").at(-1)
+      : "";
+  console.log("slug", slug);
   const fetchView = async () => {
     const id = parseInt((slug as string).split("-").at(-1) || "");
     if (isNaN(id)) {
@@ -21,8 +27,9 @@ const useWebinaire = () => {
       `/api/backoffice/webinaire/${id}/?fields=*,image.*,plannings.*,channels.channel_id.*`
     );
 
+    console.log("view", view);
+
     if (!view || view.slug !== slug) {
-      console.log("second");
       throw new Error("View not found : provided slug doesnt match");
     }
 
@@ -49,7 +56,9 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
   const fetchView = async () => {
     const {
       data: { data: channels },
-    } = await axios.get(`/api/backoffice/channel/?filter[status][_eq]=published`);
+    } = await axios.get(
+      `/api/backoffice/channel/?filter[status][_eq]=published`
+    );
 
     return channels as IChannel[];
   };
@@ -66,7 +75,6 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
   const [formPageIndex, setFormPageIndex] = useState(0);
 
   const answerWebinaire = (data: any) => {
-    console.log("data", data);
     return axios.post(
       `/api/backend/webinaire/${view.id}/planning/${view.plannings.at(-1)?.id}`,
       data
@@ -88,13 +96,14 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
     getValues,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
-  const [radioSelectedValue, setRadioSelectedValue] = useState("");
+  const channel = Number(watch("channel"));
 
   const onSubmit = (data: any) => {
     mutation.mutate(data);
@@ -117,8 +126,7 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
   return {
     mutation,
     getValues,
-    radioSelectedValue,
-    setRadioSelectedValue,
+    channel,
     register,
     handleSubmitFn,
     errors,

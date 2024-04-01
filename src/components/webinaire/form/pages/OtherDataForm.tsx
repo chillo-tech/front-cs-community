@@ -1,7 +1,7 @@
 import formStyles from "@/styles/Form.module.css";
 import classNames from "classnames";
 import { useContext } from "react";
-import { context } from "../../../../context/WebinaireContext";
+import { context } from "@/context/WebinaireContext";
 const OtherDataForm = () => {
   const { register, channels, channel } = useContext(context);
   return (

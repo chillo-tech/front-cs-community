@@ -1,6 +1,6 @@
 import formStyles from "@/styles/Form.module.css";
 import { useContext } from "react";
-import { context } from "../../../../context/WebinaireContext";
+import { context } from "@/context/WebinaireContext";
 
 import PhoneInput from "react-phone-input-2";
 import fr from "react-phone-input-2/lang/fr.json";

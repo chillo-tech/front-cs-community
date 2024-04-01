@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { ApplicationContext } from "../../../../context/ApplicationContext";
+import { ApplicationContext } from "@/context/ApplicationContext";
 
 export const useSetMetadata = () => {
   const {setData } = useContext(ApplicationContext);

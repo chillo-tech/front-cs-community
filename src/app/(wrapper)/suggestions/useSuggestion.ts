@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { ApplicationContext } from "../../../context/ApplicationContext";
+import { ApplicationContext } from "../@/context/ApplicationContext";
 import { suggestionSchema } from "./suggestion-schema";
 
 function useSuggestion() {

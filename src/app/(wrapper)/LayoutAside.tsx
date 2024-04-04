@@ -6,12 +6,12 @@ import React from 'react';
 
 const LayoutAside = ({ data }: { data: DataType }) => {
   return (
-    <aside className=" px-3 py-2 md:col-span-6">
+    <aside className=" px-3 py-2 md:col-span-6 md:h-[100vh] overflow-y-scroll layout-aside">
       <div className="md:hidden">
         <Header data={data} />
       </div>
 
-      <div className="overflow-hidden hidden md:flex flex-col justify-between md:h-full">
+      <div className="overflow-x-hidden hidden md:flex flex-col justify-between ">
         <Header data={data} />
         <div className='flex flex-col gap-4'>
           <SuggestionsCardContainer />

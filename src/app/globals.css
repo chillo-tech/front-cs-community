@@ -43,3 +43,17 @@ strong {
   }
 
 }
+
+
+.layout-aside::-webkit-scrollbar {
+  width: 4px;
+  padding: 0.5px;
+  border-radius: 8px;
+  background-color: rgba(29, 58, 138, 0.205);
+}
+
+.layout-aside::-webkit-scrollbar-thumb {
+  width: 3px;
+  border: 6px;
+  background-color: rgba(29, 58, 138, 0.356);
+}

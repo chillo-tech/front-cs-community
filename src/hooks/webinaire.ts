@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 const useWebinaire = () => {

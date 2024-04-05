@@ -27,7 +27,6 @@ const useWebinaire = () => {
       `/api/backoffice/webinaire/${id}/?fields=*,image.*,plannings.*,channels.channel_id.*`
     );
 
-    console.log("view", view);
 
     if (!view || view.slug !== slug) {
       throw new Error("View not found : provided slug doesnt match");

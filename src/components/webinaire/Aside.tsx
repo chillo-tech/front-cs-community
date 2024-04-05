@@ -5,7 +5,7 @@ import React from "react";
 
 const Aside = ({ data }: { data: IWebinaireView | undefined }) => {
   return data ? (
-    <aside className={`w-full shrink-0 my-3 space-y-5 pr-0 lg:pr-3`}>
+    <aside className={`w-full shrink-0 my-3 space-y-5 pr-0 lg:pr-3 `}>
       <h1
         className={`${styles.form__title} text-center !text-2xl !font-bold lg:!text-left pb-0 pt-4 lg:!text-4xl`}
       >
@@ -13,7 +13,7 @@ const Aside = ({ data }: { data: IWebinaireView | undefined }) => {
       </h1>
       <div>
         <div
-          className={`${styles.form_control__label} !text-center font-light lg:!text-left pt-0 pb-8`}
+          className={`${styles.form_control__label} !text-center font-light lg:!text-left pt-0 pb-8 [&>ul]:list-disc [&>ul]:my-2 `}
           dangerouslySetInnerHTML={{ __html: data.description }}
         />
         <div className="flex flex-wrap gap-3 items-center my-2">

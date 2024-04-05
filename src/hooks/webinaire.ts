@@ -15,7 +15,6 @@ const useWebinaire = () => {
     typeof window !== "undefined"
       ? window.location.pathname.split("/").at(-1)
       : "";
-  console.log("slug", slug);
   const fetchView = async () => {
     const id = parseInt((slug as string).split("-").at(-1) || "");
     if (isNaN(id)) {

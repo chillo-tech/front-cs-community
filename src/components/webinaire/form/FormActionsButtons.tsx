@@ -3,6 +3,7 @@ import { context } from '@/context/WebinaireContext';
 
 import formStyles from '@/styles/Form.module.css';
 import { Pages } from './pages';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const FormActionsButtons = () => {
   const { formPageIndex, setFormPageIndex } = useContext(context);
@@ -15,6 +16,7 @@ const FormActionsButtons = () => {
   };
   return (
     <div className="flex items-center gap-2">
+      <GoogleAnalytics gaId="G-X5R24HCH63"/>
       {formPageIndex > 0 && (
         <button
           className={`${formStyles.form_control__button} !bg-white !text-blue-900`}

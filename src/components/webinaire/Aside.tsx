@@ -25,7 +25,6 @@ const Aside = ({ data }: { data: IWebinaireView | undefined }) => {
             {getHumanDate(new Date(data.plannings.at(-1)?.endDate || ""))} à{" "}
             {data.plannings.at(-1)?.endHour.slice(0, -3) || ""}
           </p>
-          <p className="rounded-[35px] bg-gray-300 py-1 px-3">Google Meet</p>
         </div>
       </div>
     </aside>

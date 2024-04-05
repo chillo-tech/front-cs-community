@@ -4,6 +4,7 @@ import WebinaireForm from "@/components/webinaire/form/webinaireForm";
 import { ApplicationContext } from "@/context/ApplicationContext";
 import { Wrapper as WebinaireWapper } from "@/context/WebinaireContext";
 import { useWebinaire } from "@/hooks/webinaire";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { useContext, useEffect } from "react";
 
 const Webinaire = () => {
@@ -28,6 +29,7 @@ const Webinaire = () => {
         <main
           className={` container mx-auto my-5 mb-10 flex w-full flex-col items-start justify-between gap-10 px-2 lg:flex-row  lg:items-center`}
         >
+          <GoogleAnalytics gaId="G-X5R24HCH63"/>
           <WebinaireForm data={viewQuery.data} />
         </main>
       </section>

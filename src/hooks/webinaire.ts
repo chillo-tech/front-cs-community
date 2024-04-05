@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 const useWebinaire = () => {
@@ -15,7 +15,6 @@ const useWebinaire = () => {
     typeof window !== "undefined"
       ? window.location.pathname.split("/").at(-1)
       : "";
-  console.log("slug", slug);
   const fetchView = async () => {
     const id = parseInt((slug as string).split("-").at(-1) || "");
     if (isNaN(id)) {
@@ -27,7 +26,6 @@ const useWebinaire = () => {
       `/api/backoffice/webinaire/${id}/?fields=*,image.*,plannings.*,channels.channel_id.*`
     );
 
-    console.log("view", view);
 
     if (!view || view.slug !== slug) {
       throw new Error("View not found : provided slug doesnt match");

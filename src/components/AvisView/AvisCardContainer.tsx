@@ -13,7 +13,7 @@ const AvisCardContainer = () => {
     <div>
       {Array.isArray(truncedArray) && truncedArray.length ? (
         <h3 className="title text-blue-900 pl-2 mt-2 flex justify-between items-center">
-          <span className="font-extrabold text-xl">
+          <span className="font-extrabold text-xl text-white md:text-blue-900">
             Ce que pensent nos stagiaires
           </span>
           <Link href={"https://avis.chillo.tech"} className="underline text-white md:text-blue-900">

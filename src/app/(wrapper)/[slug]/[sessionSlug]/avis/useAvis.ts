@@ -13,17 +13,15 @@ export const useAvis = () => {
   const router = useRouter();
   const params = useParams();
   const slug = params?.slug;
+  const sessionSlug = params?.sessionSlug;
   const { setData } = useContext(ApplicationContext);
-  const [selected, setSelected] = useState<number | null | undefined>();
-
-  const setSelectedFactory = (i: number) => () => setSelected(i);
 
   const mutation = useMutation(giveAvis);
   const viewQuery = useQuery("formation", getFormation);
 
   async function getFormation() {
     const response = await axios.get(
-      `/api/backend/avis/formation?slug=${slug}`
+      `/api/backend/avis/formation?formationSlug=${slug}&sessionSlug=${sessionSlug}`
     );
     if (response.data.formation[0].titre)
       setData({
@@ -51,24 +49,25 @@ export const useAvis = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm({
     resolver: yupResolver(avisSchema),
   });
 
+  const note = watch("note");
+
+  const sessionId = Number((sessionSlug as string).split("-").at(-1));
+
   const onSubmitHandler = (data: any) => {
     mutation.mutateAsync({
       slug,
-      session_id:
-        (Array.isArray(viewQuery.data[0]?.sessions) &&
-          viewQuery.data[0].sessions?.at(-1)?.Session_id) ||
-        0,
+      session_id: !isNaN(sessionId) ? sessionId : 0,
       ...data,
       note: parseInt(data.note),
     });
   };
 
   const resetAll = () => {
-    setSelected(undefined);
     reset();
     mutation.reset();
   };
@@ -78,7 +77,6 @@ export const useAvis = () => {
   const onSubmit = handleSubmit(onSubmitHandler, onInvalid);
 
   const reloadPage = () => {
-    setSelected(undefined);
     router.refresh();
   };
   return {
@@ -86,10 +84,9 @@ export const useAvis = () => {
     errors,
     onSubmit,
     mutation,
-    setSelectedFactory,
-    selected,
     viewQuery,
     resetAll,
     reloadPage,
+    note,
   };
 };

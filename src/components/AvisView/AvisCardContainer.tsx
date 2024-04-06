@@ -16,7 +16,7 @@ const AvisCardContainer = () => {
           <span className="font-extrabold text-xl">
             Ce que pensent nos stagiaires
           </span>
-          <Link href={"https://avis.chillo.tech"} className="underline">
+          <Link href={"https://avis.chillo.tech"} className="underline text-white md:text-blue-900">
             Partagez nous votre avis
           </Link>
         </h3>

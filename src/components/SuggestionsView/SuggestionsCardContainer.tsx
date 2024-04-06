@@ -16,7 +16,7 @@ const SuggestionsCardContainer = () => {
       {Array.isArray(truncedArray) && truncedArray.length ? (
         <h3 className="title text-blue-900 pl-2 mt-2 flex items-center justify-between">
           <span className="font-extrabold text-xl">Formations suggerées</span>
-          <Link href={"https://suggestions.chillo.tech"} className="underline">
+          <Link href={"https://suggestions.chillo.tech"} className="underline text-white md:text-blue-900">
             Suggérer une formation
           </Link>
         </h3>

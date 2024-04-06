@@ -1,8 +1,8 @@
-import { AvisCardContainer, SuggestionsCardContainer } from '@/components';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import { DataType } from '@/types/WrapperContext';
-import React from 'react';
+import { AvisCardContainer, SuggestionsCardContainer } from "@/components";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { DataType } from "@/types/WrapperContext";
+import React from "react";
 
 const LayoutAside = ({ data }: { data: DataType }) => {
   return (
@@ -11,11 +11,13 @@ const LayoutAside = ({ data }: { data: DataType }) => {
         <Header data={data} />
       </div>
 
-      <div className="overflow-x-hidden hidden md:flex flex-col justify-between ">
-        <Header data={data} />
-        <div className='flex flex-col gap-4'>
-          <SuggestionsCardContainer />
-          <AvisCardContainer />
+      <div className="overflow-x-hidden hidden h-full md:flex flex-col justify-between ">
+        <div className="space-y-3">
+          <Header data={data} />
+          <div className="flex flex-col gap-4">
+            <SuggestionsCardContainer />
+            <AvisCardContainer />
+          </div>
         </div>
         <Footer />
       </div>

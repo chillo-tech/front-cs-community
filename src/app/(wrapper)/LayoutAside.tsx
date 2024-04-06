@@ -11,7 +11,7 @@ const LayoutAside = ({ data }: { data: DataType }) => {
         <Header data={data} />
       </div>
 
-      <div className="overflow-x-hidden hidden h-full md:flex flex-col justify-between ">
+      <div className="overflow-x-hidden hidden min-h-screen md:flex flex-col justify-between ">
         <div className="space-y-3">
           <Header data={data} />
           <div className="flex flex-col gap-4">

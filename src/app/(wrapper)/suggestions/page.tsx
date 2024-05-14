@@ -82,11 +82,22 @@ function SuggestionEdit() {
             <FormTextInput
               label="Votre nom"
               placeholder="Entrez votre nom"
-              name="author.name"
-              errorMessage="Veuillez entrer une description"
+              name="author.firstName"
+              errorMessage="Veuillez entrer votre nom"
               register={register}
               errors={errors && errors.author}
-              errorName="name"
+              errorName="firstName"
+            />
+
+            {/* prenom */}
+            <FormTextInput
+              label="Votre prénom"
+              placeholder="Entrez votre prénom"
+              name="author.lastName"
+              errorMessage="Veuillez entrer votre prénom"
+              register={register}
+              errors={errors && errors.author}
+              errorName="lastName"
             />
 
             {/* email */}

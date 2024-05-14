@@ -3,7 +3,8 @@ import * as yup from "yup";
 
 const suggestionSchema = yup.object().shape({
   author: yup.object({
-    name: yup.string().required(),
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
     email: yup.string().email().required(),
     phoneIndex: yup.string().transform(transformToNull).nullable().optional(),
     phone: yup.string().transform(transformToNull).nullable().optional(),

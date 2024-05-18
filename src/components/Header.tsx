@@ -34,7 +34,7 @@ function Header({ data }: { data: DataType }) {
               <h2
                 className="title from-slate-900 font-extrabold text-3xl md:text-3xl"
                 // @ts-ignore
-                dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title }}
+                dangerouslySetInnerHTML={{ __html: data?.leftComponent?.title  }}
               />
               <p
                 className="mb-2 text-bold md:my-5 text-l md:text-left"

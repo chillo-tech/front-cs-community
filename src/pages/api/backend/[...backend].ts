@@ -18,8 +18,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
       const { data } = await axiosInstance.delete(`${backendUrl}`);
       return res.status(200).json(data);
     } else {
-      const { data } = await axiosInstance.get(`${backendUrl}`);
-      return res.status(200).json(data);
+      if (backendUrl.includes("newsletters/unsubscribe")) {
+        axios.get(`${backendUrl}`);
+        return res.redirect("/newsletters/unsubscribe");
+      } else {
+        const { data } = await axiosInstance.get(`${backendUrl}`);
+        return res.status(200).json(data);
+      }
     }
   } catch (error: any) {
     const axiosError = error as Error | AxiosError;

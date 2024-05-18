@@ -7,7 +7,7 @@ const CustomCheckbox = <U extends (...args: any[]) => any>(props: {
   register: U;
   name: Parameters<U>[0];
   id: string;
-  note: string;
+  note: string | null | undefined;
   activeColor: string;
 }) => {
   const { label, register, id, value, name, activeColor, note } = props;

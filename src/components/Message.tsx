@@ -3,7 +3,7 @@ import { SubmitButton } from ".";
 
 const DEFAULT_ERROR_MESSAGE = `Une erreur s'est produite. Merci de nous contacter en cliquant
 sur le boutton whatsapp en bas à votre gauche.`;
-const DEFAULT_SUCCESS_MESSAGE = `Votre requete a bien été prise en compte, vous serez notifiés par
+const DEFAULT_SUCCESS_MESSAGE = `Votre requete a bien été prise en compte, vous serez notifié par
 mail`;
 
 const Message = ({

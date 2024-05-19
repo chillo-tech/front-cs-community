@@ -39,12 +39,27 @@ const Home = () => {
 
                 <input
                   className="p-2 text-black rounded-md text-xl my-2"
-                  {...register("name")}
+                  {...register("firstName")}
                   type="text"
                   placeholder="Entrez votre nom"
                 />
                 <p className="text-rose-800">
-                  {errors && errors.name && "Veuillez nous indiquer votre nom."}
+                  {errors && errors.firstName && "Veuillez nous indiquer votre nom."}
+                </p>
+              </div>
+
+              {/* prenom */}
+              <div className="flex flex-col text-xl">
+                <label>Votre prénom</label>
+
+                <input
+                  className="p-2 text-black rounded-md text-xl my-2"
+                  {...register("lastName")}
+                  type="text"
+                  placeholder="Entrez votre prénom"
+                />
+                <p className="text-rose-800">
+                  {errors && errors.lastName && "Veuillez nous indiquer votre prénom."}
                 </p>
               </div>
 

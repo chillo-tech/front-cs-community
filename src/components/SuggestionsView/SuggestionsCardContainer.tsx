@@ -1,4 +1,4 @@
-import { truncArray } from "@/utils";
+import { capitalizeSentence, truncArray } from "@/utils";
 import { useMemo } from "react";
 import { useSuggestions } from ".";
 import { SuggestionCard } from "..";
@@ -11,17 +11,23 @@ const SuggestionsCardContainer = () => {
     if (!suggestionQuery.data) return undefined;
     return truncArray(suggestionQuery.data.suggestions, 1);
   }, [suggestionQuery.data]);
+  console.log("truncedArray", truncedArray);
   return (
     <div>
       {Array.isArray(truncedArray) && truncedArray.length ? (
-        <h3 className="title text-blue-900 pl-2 mt-2 flex items-center justify-between">
-          <span className="font-extrabold text-xl">Formations suggerées</span>
-          <Link href={"https://suggestions.chillo.tech"} className="underline">
+        <h3 className="title text-blue-900 pl-2 mt-2 flex flex-wrap items-center justify-between">
+          <span className="font-extrabold text-xl text-white md:text-blue-900">
+            Formations suggerées
+          </span>
+          <Link
+            href={"https://suggestions.chillo.tech"}
+            className="underline text-white md:text-blue-900"
+          >
             Suggérer une formation
           </Link>
         </h3>
       ) : null}
-      <div className={`grid gap-3 floating-row`}>
+      <div className={`grid gap-3 floating-row my-4`}>
         {truncedArray?.map((subArray, idx) => {
           return (
             <div
@@ -34,16 +40,11 @@ const SuggestionsCardContainer = () => {
                 return (
                   <SuggestionCard
                     key={`${idx}-${j}`}
-                    title={el.titre}
-                    name={`${
-                      Array.isArray(el.suggestion_contact) &&
-                      el.suggestion_contact[0]?.contact_id?.firstName &&
-                      el.suggestion_contact[0]?.contact_id?.firstName.toUpperCase()
-                    } ${
-                      Array.isArray(el.suggestion_contact) &&
-                      el.suggestion_contact[0]?.contact_id?.lastName
-                    }`}
-                    position={el.suggestion_contact[0]?.contact_id?.position}
+                    title={el.title}
+                    name={`${el.author?.first_name.toUpperCase()} ${capitalizeSentence(
+                      el.author?.last_name || ""
+                    )}`}
+                    position={el.author?.position}
                   />
                 );
               })}

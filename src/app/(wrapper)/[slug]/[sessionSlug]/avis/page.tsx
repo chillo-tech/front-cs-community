@@ -16,8 +16,7 @@ const Home = () => {
     onSubmit,
     errors,
     mutation,
-    setSelectedFactory,
-    selected,
+    note,
     viewQuery,
     resetAll,
     reloadPage,
@@ -86,12 +85,10 @@ const Home = () => {
                           activeColor={choice.activeColor}
                           name="note"
                           id={`checkbox-note-${j}`}
-                          index={j}
                           key={`checkbox-note-${j}`}
                           label={choice.label}
-                          selected={selected}
+                          note={note}
                           value={choice.value}
-                          setSelected={setSelectedFactory(j)}
                           register={register}
                         />
                       );

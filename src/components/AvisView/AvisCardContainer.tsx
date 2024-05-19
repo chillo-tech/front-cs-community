@@ -1,4 +1,4 @@
-import { truncArray } from "@/utils";
+import { capitalize, capitalizeSentence, truncArray } from "@/utils";
 import { AvisCard, useAvis } from ".";
 import { useMemo } from "react";
 import Link from "next/link";
@@ -16,7 +16,10 @@ const AvisCardContainer = () => {
           <span className="font-extrabold text-xl text-white md:text-blue-900">
             Ce que pensent nos stagiaires
           </span>
-          <Link href={"https://avis.chillo.tech"} className="underline text-white md:text-blue-900">
+          <Link
+            href={"https://avis.chillo.tech"}
+            className="underline text-white md:text-blue-900"
+          >
             Partagez nous votre avis
           </Link>
         </h3>
@@ -29,9 +32,11 @@ const AvisCardContainer = () => {
                 return (
                   <AvisCard
                     key={`avis-${avisIdx}`}
-                    description={avis.texte}
-                    name={avis.nom}
-                    note={avis.note}
+                    description={avis.text}
+                    name={`${avis.first_name.toUpperCase()} ${capitalizeSentence(
+                      avis.last_name
+                    )}`}
+                    note={Number(avis.note)}
                   />
                 );
               })}

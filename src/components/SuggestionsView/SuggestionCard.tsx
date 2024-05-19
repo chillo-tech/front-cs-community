@@ -17,18 +17,22 @@ const SuggestionCard = ({
   position: string;
 }) => {
   return !name.includes("undefined") && name && title ? (
-    <div className="flex gap-3 rounded-xl md:bg-transparent bg-white p-5 h-[105px] w-max min-w-[200px] max-w-[400px] items-center">
+    <div className="flex gap-3 rounded-xl md:bg-transparent bg-white p-5 h-[105px] w-max min-w-[200px] max-w-[500px] items-center">
       <div
         className={`rounded-full text-xl font-bold flex-shrink-0 h-[45px] w-[45px] flex items-center justify-center gap-1 ${getRandomHexColor()}`}
       >
         {getInitials(name)}
       </div>
       <div>
-        <h3 className="font-bold">{wordEllipsis(name, 2)}</h3>{" "}
-        <p className="font-semibold italic text-sm mb-1">
-          {capitalizeWord(POSITIONS.find((el) => el.value === position)?.label)}
-        </p>
-        <p>{textEllipsis(title, 60, "...")}</p>
+        <div className="flex items-center gap-5">
+          <h3 className="font-bold">{wordEllipsis(name, 2)}</h3>{" - "}
+          <p className="font-semibold italic text-sm">
+            {capitalizeWord(
+              POSITIONS.find((el) => el.value === position)?.label
+            )}
+          </p>
+        </div>
+        <p>{textEllipsis(title, 100, "...")}</p>
       </div>
     </div>
   ) : null;

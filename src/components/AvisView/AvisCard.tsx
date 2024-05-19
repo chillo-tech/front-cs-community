@@ -24,7 +24,7 @@ const AvisCard = ({
           {getInitials(name)}
         </div>
         <div>
-          <span className="text-bold">{capitalizeSentence(name)}</span>
+          <span className="text-bold">{name}</span>
           <div className="flex gap-1">
             {Array(note)
               .fill(0)

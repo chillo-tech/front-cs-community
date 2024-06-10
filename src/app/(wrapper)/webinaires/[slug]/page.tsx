@@ -4,7 +4,15 @@ import WebinaireForm from "@/components/webinaire/form/webinaireForm";
 import { ApplicationContext } from "@/context/ApplicationContext";
 import { Wrapper as WebinaireWapper } from "@/context/WebinaireContext";
 import { useWebinaire } from "@/hooks/webinaire";
+import { Metadata } from "next";
 import { useContext, useEffect } from "react";
+
+
+export const metadata: Metadata = {
+  description: `Webnaire developpé par Chillo`,
+  title: `Webinaire`,
+  
+};
 
 const Webinaire = () => {
   const { viewQuery } = useWebinaire();
@@ -17,11 +25,12 @@ const Webinaire = () => {
     setData({
       leftComponent: asideComp,
       metaData: {
-        description: "weinaire developpé par Chillo",
+        description: "Webinaire developpé par Chillo",
         title: viewQuery.data?.title || "Webinaire",
       },
     });
   }, [viewQuery.data]);
+
   return viewQuery.data ? (
     <WebinaireWapper view={viewQuery.data}>
       <section>

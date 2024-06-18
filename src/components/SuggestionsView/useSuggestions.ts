@@ -7,7 +7,6 @@ const useSuggestions = () => {
     const response = await axios.get(
       "/api/backend/backoffice/suggestions"
     );
-    console.log('response', response)
     return {
       suggestions: response.data.suggestions,
     };

@@ -5,11 +5,11 @@ import ApplicationProvider from "../context/ApplicationProvider";
 import "./globals.css";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  other: {
-    "google-site-verification": "5ij7RBrzrJ75qGCb97uEfP5KstFGm0Rinja0aCVbC4Q",
-  },
-};
+// export const metadata: Metadata = {
+//   other: {
+//     "google-site-verification": "5ij7RBrzrJ75qGCb97uEfP5KstFGm0Rinja0aCVbC4Q",
+//   },
+// };
 export default function RootLayout({
   children,
 }: {

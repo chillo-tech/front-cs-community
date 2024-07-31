@@ -32,10 +32,12 @@ const capitalizeSentence = (sentence: string) => {
   if (sentence === "") {
     return sentence;
   }
-
-  const words = sentence.split(" ");
-  const capitalizedWords = words.map((word) => capitalizeWord(word));
-  const result = capitalizedWords.join(" ");
+  let result = sentence;
+  if (sentence && sentence.length) {
+    const words = sentence.split(" ");
+    const capitalizedWords = words.map((word) => capitalizeWord(word));
+    result = capitalizedWords.join(" ");
+  }
 
   return result;
 };

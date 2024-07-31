@@ -7,13 +7,6 @@ import { useWebinaire } from "@/hooks/webinaire";
 import { Metadata } from "next";
 import { useContext, useEffect } from "react";
 
-
-export const metadata: Metadata = {
-  description: `Webnaire developpé par Chillo`,
-  title: `Webinaire`,
-  
-};
-
 const Webinaire = () => {
   const { viewQuery } = useWebinaire();
 

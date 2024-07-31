@@ -13,7 +13,7 @@ export interface IWebinaireView {
   title: string;
   slug: string;
   image: ImageWebinaire;
-  plannings: IPlanning[];
+  planings: IPlanning[];
 }
 
 export interface IChannel {
@@ -24,11 +24,11 @@ export interface IChannel {
 
 export interface IPlanning {
   id: number;
-  startHour: string;
-  endHour: string;
+  start_hour: string;
+  end_hour: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
 }
 
 export interface ImageWebinaire {

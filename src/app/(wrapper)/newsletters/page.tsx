@@ -4,15 +4,6 @@ import { Metadata } from "next";
 import { ScaleLoader } from "react-spinners";
 import { useNewsletters } from "./useNewsletters";
 
-export const metadata: Metadata = {
-  description: `Rejoignez la communauté de stagiaires et de professionnels passionnés du code.  Les ingénieurs font confiance à nos contenus !`,
-  title: `Inscrivez vous à notre newsletter`,
-  other : {
-    "google-site-verification" : "5ij7RBrzrJ75qGCb97uEfP5KstFGm0Rinja0aCVbC4Q"
-  }
-};
-
-
 const Home = () => {
   const { register, onSubmit, errors, mutation, resetAll } = useNewsletters();
   return (

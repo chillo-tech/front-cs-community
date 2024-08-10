@@ -33,7 +33,12 @@ const WebinaireForm = ({ data }: { data?: IWebinaireView }) => {
           </p>
           <p className="p-4 text-center text-lg">A très vite | Chillo tech</p>
           <button type="button" className={formStyles.form_control__button}>
-            <Link className="h-full w-full text-center" href="https://chillo.tech">Retourner à l&apos;acceuil</Link>
+            <Link
+              className="h-full w-full text-center"
+              href="https://chillo.tech"
+            >
+              Retourner à l&apos;acceuil
+            </Link>
           </button>
         </>
       ) : (
@@ -41,24 +46,27 @@ const WebinaireForm = ({ data }: { data?: IWebinaireView }) => {
           <header className="mb-4 space-y-2">
             <h3 className="text-md lg:text-left">
               Inscrivez vous à <br />
-              <span className="uppercase text-2xl text-bold">{data?.title}</span>
-            </h3>
-
-            <h4 className="font-light lg:text-left">
-              Le webinaire débutera le{" "}
-              <span className="font-semibold">
-                {getHumanDate(
-                  new Date(data?.plannings.at(-1)?.startDate || "")
-                )}{" "}
-                à {data?.plannings.at(-1)?.startHour.slice(0, -3) || ""}
-              </span>{" "}
-              <br />
-              et prendra fin le{" "}
-              <span className="font-semibold">
-                {getHumanDate(new Date(data?.plannings.at(-1)?.endDate || ""))}{" "}
-                à {data?.plannings.at(-1)?.endHour.slice(0, -3) || ""}
+              <span className="uppercase text-2xl text-bold">
+                {data?.title}
               </span>
-            </h4>
+            </h3>
+            {data && data.planings ? (
+              <h4 className="font-light lg:text-left">
+                Le webinaire débutera le{" "}
+                <span className="font-semibold">
+                  {getHumanDate(
+                    new Date(data?.planings.at(-1)?.start_date || "")
+                  )}{" "}
+                  à {data?.planings.at(-1)?.start_hour.slice(0, -3) || ""}
+                </span>{" "}
+                <br />
+                et prendra fin le{" "}
+                <span className="font-semibold">
+                  {getHumanDate(new Date(data?.planings.at(-1)?.end_date || ""))}{" "}
+                  à {data?.planings.at(-1)?.end_hour.slice(0, -3) || ""}
+                </span>
+              </h4>
+            ) : null}
           </header>
           {Pages[formPageIndex]()}
 

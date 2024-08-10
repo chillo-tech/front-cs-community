@@ -16,16 +16,18 @@ const Aside = ({ data }: { data: IWebinaireView | undefined }) => {
           className={`${styles.form_control__label} !text-center font-light lg:!text-left pt-0 pb-8 [&>ul]:list-disc [&>ul]:my-2 [&>ul]:px-4 [&>p]:my-2`}
           dangerouslySetInnerHTML={{ __html: data.description }}
         />
-        <div className="flex flex-wrap gap-3 items-center my-2">
-          <p className="rounded-[35px] bg-gray-300 py-1 px-3">
-            {getHumanDate(new Date(data.plannings.at(-1)?.startDate || ""))} à{" "}
-            {data.plannings.at(-1)?.startHour.slice(0, -3) || ""}
-          </p>
-          <p className="rounded-[35px] bg-gray-300 py-1 px-3">
-            {getHumanDate(new Date(data.plannings.at(-1)?.endDate || ""))} à{" "}
-            {data.plannings.at(-1)?.endHour.slice(0, -3) || ""}
-          </p>
-        </div>
+        {data && data.planings ? (
+          <div className="flex flex-wrap gap-3 items-center my-2">
+            <p className="rounded-[35px] bg-gray-300 py-1 px-3">
+              {getHumanDate(new Date(data.planings.at(-1)?.start_date || ""))} à{" "}
+              {data.planings.at(-1)?.start_hour.slice(0, -3) || ""}
+            </p>
+            <p className="rounded-[35px] bg-gray-300 py-1 px-3">
+              {getHumanDate(new Date(data.planings.at(-1)?.end_date || ""))} à{" "}
+              {data.planings.at(-1)?.end_hour.slice(0, -3) || ""}
+            </p>
+          </div>
+        ) : null}
       </div>
     </aside>
   ) : null;

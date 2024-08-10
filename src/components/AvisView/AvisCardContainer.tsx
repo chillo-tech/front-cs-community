@@ -7,7 +7,7 @@ const AvisCardContainer = () => {
   const { avisQuery } = useAvis();
   const truncedArray = useMemo(() => {
     if (!avisQuery.data) return undefined;
-    return truncArray(avisQuery.data.avis, 2);
+    return truncArray(avisQuery.data.avis, 4);
   }, [avisQuery.data]);
   return (
     <div>
@@ -33,9 +33,9 @@ const AvisCardContainer = () => {
                   <AvisCard
                     key={`avis-${avisIdx}`}
                     description={avis.text}
-                    name={`${avis.first_name.toUpperCase()} ${capitalizeSentence(
-                      avis.last_name
-                    )}`}
+                    name={`${capitalizeSentence(avis.first_name)} ${
+                      avis.last_name ? avis.last_name.toUpperCase() : ''
+                    }`}
                     note={Number(avis.note)}
                   />
                 );

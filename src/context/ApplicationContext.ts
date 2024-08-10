@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { DataType } from "@/types/WrapperContext";
 
 const dataInit: DataType = {

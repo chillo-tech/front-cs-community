@@ -23,14 +23,14 @@ const useWebinaire = () => {
     const {
       data: { data: view },
     } = await axios.get(
-      `/api/backoffice/webinaire/${id}/?fields=*,image.*,plannings.*,channels.channel_id.*`
+      `/api/backoffice/webinar/${id}/?fields=*,planings.*,images.*` //,plannings.*.*,images.*` //,image.*,plannings.*,channels.channel_id.*
     );
-
+/*
 
     if (!view || view.slug !== slug) {
       throw new Error("View not found : provided slug doesnt match");
     }
-
+*/
     return view as IWebinaireView;
   };
 
@@ -51,22 +51,6 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
     "Une erreur est survenue, nous allons la résoudre sous peu"
   );
 
-  const fetchView = async () => {
-    const {
-      data: { data: channels },
-    } = await axios.get(
-      `/api/backoffice/channel/?filter[status][_eq]=published`
-    );
-
-    return channels as IChannel[];
-  };
-
-  const viewQuery = useQuery({
-    queryKey: ["vue-channels", 1],
-    queryFn: fetchView,
-    retry: 10,
-    refetchOnWindowFocus: false,
-  });
 
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -74,7 +58,7 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
 
   const answerWebinaire = (data: any) => {
     return axios.post(
-      `/api/backend/webinaire/${view.id}/planning/${view.plannings.at(-1)?.id}`,
+      `/api/backend/webinaire/${view.id}/planning/${view.planings.at(-1)?.id}`,
       data
     );
   };
@@ -135,8 +119,7 @@ const useWrapper = ({ view }: { view: IWebinaireView }) => {
     setErrorMessage,
     phoneNumber,
     setPhoneNumber,
-    view,
-    channels: viewQuery.data || [],
+    view
   };
 };
 

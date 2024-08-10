@@ -3,6 +3,7 @@ import WhatsappButton from "./WhatsappButton";
 import Link from "next/link";
 
 function Footer({ color }: { color?: string }) {
+  const now = new Date();
   return (
     <footer
       className={` pb-3 font-extralight flex flex-col text-${
@@ -60,7 +61,7 @@ function Footer({ color }: { color?: string }) {
       <div className=""></div>
       <div className="copyright border-top-1 px-2 mt-2 font-light relative">
         <div className="container flex flex-col md:flex-row py-2 justify-between text-sm mx-auto text-center border-solid border-t border-gray-600">
-          <span>© Copyright 2023 chillo.tech. Tous droits réservés.</span>
+          <span>© Copyright {now.getFullYear()} chillo.tech. Tous droits réservés.</span>
           <div className="liens">
             <Link href="https://chillo.tech/politique-de-confidentialite">
               Politique de confidentialité

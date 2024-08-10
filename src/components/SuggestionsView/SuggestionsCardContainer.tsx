@@ -11,7 +11,6 @@ const SuggestionsCardContainer = () => {
     if (!suggestionQuery.data) return undefined;
     return truncArray(suggestionQuery.data.suggestions, 1);
   }, [suggestionQuery.data]);
-  console.log("truncedArray", truncedArray);
   return (
     <div>
       {Array.isArray(truncedArray) && truncedArray.length ? (

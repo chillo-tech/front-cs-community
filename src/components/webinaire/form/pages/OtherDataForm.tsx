@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useContext } from "react";
 import { context } from "@/context/WebinaireContext";
 const OtherDataForm = () => {
-  const { register, channels, channel } = useContext(context);
+  const { register,channel } = useContext(context);
   return (
     <>
       {/* connaissance webinaire */}
@@ -16,6 +16,7 @@ const OtherDataForm = () => {
             Comment avez vous pris connaissance de ce webinaire
           </span>
         </label>
+        {/**
         <div className="space-y-2">
           {[
             ...channels,
@@ -50,6 +51,7 @@ const OtherDataForm = () => {
             </label>
           ))}
         </div>
+         */}
       </fieldset>
     </>
   );

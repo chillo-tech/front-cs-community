@@ -18,11 +18,12 @@ const Webinaire = () => {
     setData({
       leftComponent: asideComp,
       metaData: {
-        description: "weinaire developpé par Chillo",
+        description: "Webinaire developpé par Chillo",
         title: viewQuery.data?.title || "Webinaire",
       },
     });
   }, [viewQuery.data]);
+
   return viewQuery.data ? (
     <WebinaireWapper view={viewQuery.data}>
       <section>

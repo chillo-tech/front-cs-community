@@ -1,7 +1,8 @@
 "use client";
 import { Analytics, Message } from "@/components";
-import { useNewsletters } from "./useNewsletters";
+import { Metadata } from "next";
 import { ScaleLoader } from "react-spinners";
+import { useNewsletters } from "./useNewsletters";
 
 const Home = () => {
   const { register, onSubmit, errors, mutation, resetAll } = useNewsletters();
@@ -44,7 +45,9 @@ const Home = () => {
                   placeholder="Entrez votre nom"
                 />
                 <p className="text-rose-800">
-                  {errors && errors.firstName && "Veuillez nous indiquer votre nom."}
+                  {errors &&
+                    errors.firstName &&
+                    "Veuillez nous indiquer votre nom."}
                 </p>
               </div>
 
@@ -59,7 +62,9 @@ const Home = () => {
                   placeholder="Entrez votre prénom"
                 />
                 <p className="text-rose-800">
-                  {errors && errors.lastName && "Veuillez nous indiquer votre prénom."}
+                  {errors &&
+                    errors.lastName &&
+                    "Veuillez nous indiquer votre prénom."}
                 </p>
               </div>
 

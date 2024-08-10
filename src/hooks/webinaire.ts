@@ -25,12 +25,12 @@ const useWebinaire = () => {
     } = await axios.get(
       `/api/backoffice/webinar/${id}/?fields=*,planings.*,images.*` //,plannings.*.*,images.*` //,image.*,plannings.*,channels.channel_id.*
     );
-
+/*
 
     if (!view || view.slug !== slug) {
       throw new Error("View not found : provided slug doesnt match");
     }
-
+*/
     return view as IWebinaireView;
   };
 

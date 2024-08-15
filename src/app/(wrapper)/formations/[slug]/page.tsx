@@ -10,7 +10,7 @@ import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 
-function page({ params: { slug } }: { params: { slug: string } }) {
+function Page({ params: { slug } }: { params: { slug: string } }) {
   const {
     register,
     onSubmit,
@@ -51,7 +51,7 @@ function page({ params: { slug } }: { params: { slug: string } }) {
             (Array.isArray(viewQuery.data) && viewQuery.data.length > 0)) && (
             <form
               className={
-                "flex relative flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md text-blue-900"
+                "flex relative flex-col gap-2 font-light infos my-3 bg-slate-200 py-3 rounded-mdd px-3 md:px-10 md:text-lg rounded-md"
               }
               onSubmit={onSubmit}
             >
@@ -69,9 +69,9 @@ function page({ params: { slug } }: { params: { slug: string } }) {
                     </div>
                   ) : null}
                   <div className="">
-                    <p className="mb-2 font-black text-2xl mt-2">
-                      Inscrivez vous à <br />
-                      <span className="uppercase text-2xl text-bold">
+                    <p className="mb-2 text-2xl mt-2">
+                      Télécharger le programme de la formation<br />
+                      <span className="font-black uppercase text-2xl text-bold">
                         {viewQuery?.data?.title}
                       </span>
                     </p>
@@ -211,4 +211,4 @@ function page({ params: { slug } }: { params: { slug: string } }) {
   );
 }
 
-export default page;
+export default Page;

@@ -30,7 +30,7 @@ const Webinaire = () => {
         <main
           className={` container mx-auto my-5 mb-10 flex w-full flex-col items-start justify-between gap-10 px-2 lg:flex-row  lg:items-center`}
         >
-          <GoogleAnalytics gaId="G-X5R24HCH63"/>
+          <GoogleAnalytics gaId="G-X5R24HCH63" />
           <WebinaireForm data={viewQuery.data} />
         </main>
       </section>

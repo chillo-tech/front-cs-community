@@ -37,6 +37,9 @@ const config: Config = {
         "app-yellow": "#FDDE6D",
         "app-light-blue": "#EEF5FA",
         "app-light-gray": "#F8FAFB",
+        "app-color": "#2C3E50",
+        "app-teal-color": "#1ABC9C",
+        "app-accent-color": "#E67E22"
       },
     },
   },

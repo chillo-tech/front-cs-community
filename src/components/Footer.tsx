@@ -7,8 +7,8 @@ function Footer({ color }: { color?: string }) {
   return (
     <footer
       className={` pb-3 font-extralight flex flex-col text-${
-        color || "blue-900"
-      } relative pt-10 mt-7`}
+        color || "app-color"
+      } relative pt-10`}
     >
       <div className="presentation flex items-center justify-between">
         <div className=" flex items-center justify-between text-center ">
@@ -61,7 +61,9 @@ function Footer({ color }: { color?: string }) {
       <div className=""></div>
       <div className="copyright border-top-1 px-2 mt-2 font-light relative">
         <div className="container flex flex-col md:flex-row py-2 justify-between text-sm mx-auto text-center border-solid border-t border-gray-600">
-          <span>© Copyright {now.getFullYear()} chillo.tech. Tous droits réservés.</span>
+          <span>
+            © Copyright {now.getFullYear()} chillo.tech. Tous droits réservés.
+          </span>
           <div className="liens">
             <Link href="https://chillo.tech/politique-de-confidentialite">
               Politique de confidentialité

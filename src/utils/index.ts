@@ -8,3 +8,5 @@ export * from "./axios";
 export * from "./DateFormat";
 export * from "./capitalize";
 export * from "./formatSnakeCase";
+export * from "./genMetaObj";
+export * from "../services/bo-chillo-data";

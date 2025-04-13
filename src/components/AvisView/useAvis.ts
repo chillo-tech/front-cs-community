@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 const useAvis = () => {
   const getAvis = async () => {
-    const response = await axios.get("/api/backend/backoffice/avis");
+    const response = await axios.get("/api/backoffice/avis");
     return {
       avis: response.data.avis,
     };

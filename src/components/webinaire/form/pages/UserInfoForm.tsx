@@ -11,6 +11,15 @@ const UserInfoForm = () => {
     useContext(context);
   return (
     <>
+      {/* honeypot anti-spam: cache aux humains, rempli par les bots */}
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
+        {...register("website")}
+      />
       {/* prenom */}
       <div className={formStyles.form_control}>
         <label htmlFor={`prenom`} className={formStyles.form_control__label}>
